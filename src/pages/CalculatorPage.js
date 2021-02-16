@@ -1,10 +1,10 @@
 import React from "react";
-import CalculatorForm from "../utils/calculatorForm/CalculatorForm";
+import CalculatorInfo from "../components/calculatorInfo/CalculatorInfo";
 
 const CalculatorPage = () => {
   return (
     <>
-      <CalculatorForm />
+      <CalculatorInfo />
     </>
   );
 };
