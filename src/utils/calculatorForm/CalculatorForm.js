@@ -1,8 +1,5 @@
-// выводить инфо "только цифры или хватит так?"
-
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import { setUserInfo } from "../../redux/actions/calcAction";
 import getReccomendation from "../../redux/operations/calcOperation";
 
 import {

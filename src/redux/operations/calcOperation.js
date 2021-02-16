@@ -13,7 +13,7 @@ const getReccomendation = (userInfo, id) => async (dispatch) => {
     const response = await slimMomApi.getDailyRate(userInfo, id);
     dispatch(getRecomends(response));
   } catch (error) {
-    dispatch(setError(error));
+    dispatch(setError(error.message));
   } finally {
     dispatch(setLoading);
   }

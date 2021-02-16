@@ -1,10 +1,13 @@
 import React from "react";
-import CalculatorInfo from "../components/calculatorInfo/CalculatorInfo";
+import getReccomendation from "../redux/operations/calcOperation";
+import CalculatorForm from "../utils/calculatorForm/CalculatorForm";
+import Recommend from "../utils/recommendation/Recommend";
 
 const CalculatorPage = () => {
   return (
     <>
-      <CalculatorInfo />
+      <CalculatorForm loggedUserRecomends={getReccomendation} />
+      <Recommend />
     </>
   );
 };
