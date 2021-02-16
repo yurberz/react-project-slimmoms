@@ -1,2 +1,2 @@
-export const logged = false;
-// export const logged = true;
+// export const logged = false;
+export const logged = true;

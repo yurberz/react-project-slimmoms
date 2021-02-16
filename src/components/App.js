@@ -13,10 +13,7 @@ const App = () => {
             <Suspense fallback={<h2>Loading...</h2>}>
                 <Switch>
                     <Route path="/" exact={true} component={lazy(() => import("../pages/Home" /* webpackChunkName: "HomePage"*/))} />
-                    {routes.map(route => (route.isPrivate
-                      ? <PrivateRoutes key={route.path} {...route} />
-                      : <PublicRoutes key={route.path} {...route} />
-                    ))}
+                    {routes.map(route => (route.isPrivate ? <PrivateRoutes key={route.path} {...route} /> : <PublicRoutes key={route.path} {...route} />))}
                     <Redirect to="/" />
                 </Switch>
             </Suspense>

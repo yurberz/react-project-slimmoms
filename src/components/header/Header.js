@@ -1,22 +1,56 @@
-import {NavLink} from "react-router-dom";
+import React, {Component} from "react";
+import {Link} from "react-router-dom";
 import routes from "../../routes/routes";
 import NavItem from "./navItem.js/NavItem";
+import AppHeader from "./HeaderStyles";
+///////////
+import {logged} from "../../routes/LOGGED";
 
-const Header = () => {
-    return (
-        <header>
-            <nav>
-                <ul>
-                    <NavLink to="/" exact={true} className="link" activeClassName="active-link">
+export default class Header extends Component {
+    state = {
+        showMenu: false,
+    };
+
+    menuHandler = () => {
+        this.setState(prevState => ({
+            showMenu: !prevState.showMenu,
+        }));
+    };
+
+    render() {
+        return (
+            <AppHeader>
+                <nav>
+                    <Link to="/" className="logo">
                         SlimMom
-                    </NavLink>
-                    {routes.map(route => (
-                        <NavItem key={route.path} {...route} />
-                    ))}
-                </ul>
-            </nav>
-        </header>
-    );
-};
-
-export default Header;
+                    </Link>
+                    {logged ? (
+                        <>
+                            <ul className="commonList onMainBar">
+                                {routes.map(route => (
+                                    <NavItem key={route.path} {...route} />
+                                ))}
+                            </ul>
+                            <button className="menuButton" onClick={this.menuHandler}>
+                                menu
+                            </button>
+                        </>
+                    ) : (
+                        <ul className="commonList">
+                            {routes.map(route => (
+                                <NavItem key={route.path} {...route} />
+                            ))}
+                        </ul>
+                    )}
+                </nav>
+                {this.state.showMenu && (
+                    <ul className="onSubBar">
+                        {routes.map(route => (
+                            <NavItem key={route.path} {...route} />
+                        ))}
+                    </ul>
+                )}
+            </AppHeader>
+        );
+    }
+}
