@@ -1,24 +1,27 @@
 .decoration {
-  @media screen and (min-width: 320px) {
-    position: absolute;
-    top: 0px;
-    z-index: -1000;
-    width: 100vw;
-    min-height: 1160px;
-    height: 100%;
-    overflow: hidden;
-    background: linear-gradient(
-      180deg,
-      #fff,
-      #fff 664px,
-      $secondary-beckground 664px,
-      $secondary-beckground 100%
-    );
-  }
+  /* @media screen and (min-width: 320px) { */
+  position: absolute;
+  top: 0px;
+  z-index: -1000;
+  width: 100vw;
+  min-height: 1160px;
+  height: 100%;
+  overflow: hidden;
+  background: linear-gradient(
+    to bottom,
+    hsla(0, 0%, 100%, 0) 60%,
+    rgba(240, 241, 243, 1) 40%
+  );
+  /* background-image: linear-gradient(
+    to bottom,
+    #fff,
+    #f0f1f3 664px,
+    $secondary-beckground 664px,
+    $secondary-beckground 100%
+  ); */
 }
-
-.decoration {
-  @media screen and (min-width: 768px) {
+@media screen and (min-width: 768px) {
+  .decoration {
     position: absolute;
     top: 0;
     z-index: -1000;
@@ -27,50 +30,59 @@
     height: 100%;
     overflow: hidden;
     background: linear-gradient(
-      180deg,
-      #fff,
-      #fff 674px,
-      $secondary-beckground 674px,
-      $secondary-beckground 100%
+      to right,
+      hsla(0, 0%, 100%, 0) 60%,
+      rgba(240, 241, 243, 1) 40%
     );
+    /* background: linear-gradient(
+      to bottom,
+      #fff,
+      #f0f1f3 674px,
+      $secondary-background 674px,
+      $secondary-background 100%
+    ); */
+  }
+  .decleaves {
+    width: 362px;
+    height: 369px;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    background-image: url("../../img/rightSideBarBottom@1x.png");
+    background-repeat: no-repeat;
   }
 }
 
-.decleaves {
-  width: 362px;
-  height: 369px;
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
-  background-image: url("../../img/rightSideBarBottom@1x.png");
-  background-repeat: no-repeat;
-}
-
-.decoration {
-  @media screen and (min-width: 1280px) {
+@media screen and (min-width: 1280px) {
+  .decoration {
     position: absolute;
     top: 0;
     z-index: -1000;
     width: 100vw;
     height: 100%;
-    min-height: 850px;
+    /* min-height: 850px; */
+    min-height: 768px;
     overflow: hidden;
     background: linear-gradient(
-      90deg,
-      #fff,
-      #fff calc(50% + 105px),
-      $secondary-beckground calc(50% + 105px),
-      $secondary-beckground 100%
+      to right,
+      hsla(0, 0%, 100%, 0) 60%,
+      rgba(240, 241, 243, 1) 40%
     );
+    /* background: linear-gradient(
+      to right,
+      #fff,
+      #f0f1f3 calc(50% + 105px),
+      $secondary-background calc(50% + 105px),
+      $secondary-background 100%
+    ); */
   }
-}
-
-.decleaves {
-  width: 505px;
-  height: 777px;
-  position: absolute;
-  top: 35px;
-  right: 0px;
-  background-image: url("../../img/rightSideBar@1x.png");
-  background-repeat: no-repeat;
+  .decleaves {
+    width: 505px;
+    height: 777px;
+    position: absolute;
+    top: 35px;
+    right: 0px;
+    background-image: url("../../img/rightSideBar@1x.png");
+    background-repeat: no-repeat;
+  }
 }
