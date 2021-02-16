@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Inputt from "../components/form/Input";
 import Buttonn from "../components/form/Button";
 import { signUpOperation } from "../redux/operations/registerOperation";
+import { NavLink, Link } from "react-router-dom";
 
 const ContainerForm = styled.div`
   max-width: 439px;
@@ -71,7 +72,9 @@ class Registration extends Component {
             value={this.state.password}
           />
           <ContainerButton>
-            <Buttonn type={""} text={"Вход"} />
+            <Link to={{ pathname: "/login" }}>
+              <Buttonn type={""} text={"Вход"} />
+            </Link>
             <Buttonn type={"submit"} text={"Регистрация"} />
           </ContainerButton>
         </form>

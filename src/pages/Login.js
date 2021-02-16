@@ -5,6 +5,7 @@ import Buttonn from "../components/form/Button";
 import slimMomApi from "../services/api";
 import { connect } from "react-redux";
 import { logInOperation } from "../redux/operations/logInOperation";
+import { NavLink, Link } from "react-router-dom";
 
 const ContainerForm = styled.div`
   max-width: 439px;
@@ -66,7 +67,9 @@ class Login extends Component {
           />
           <ContainerButton>
             <Buttonn type={"submit"} text={"Вход"} />
-            <Buttonn type={""} text={"Регистрация"} />
+            <Link to={{ pathname: "/register" }}>
+              <Buttonn type={""} text={"Регистрация"} />
+            </Link>
           </ContainerButton>
         </form>
       </ContainerForm>
