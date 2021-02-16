@@ -8,13 +8,34 @@ html {
   box-sizing: inherit;
 }
 
+@font-face {
+  font-family: "GothamPro-Bold";
+  src: url("./fonts/GothamPro-Bold.woff");
+}
+
+@font-face {
+  font-family: "GothamPro-Light";
+  src: url("./fonts/GothamPro-Light.woff");
+}
+
+@font-face {
+  font-family: "GothamPro";
+  src: url("./fonts/GothamPro.woff");
+}
+
+@font-face {
+  font-family: "Verdana-Bold";
+  src: url("./fonts/Verdana-Bold.woff");
+}
+
+@font-face {
+  font-family: "Verdana";
+  src: url("./fonts/Verdana.woff");
+}
+
 body {
   margin: 0;
-  font-family: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: Verdana;
   background-color: white;
   color: black;
 }
@@ -42,9 +63,23 @@ ul {
 
 button {
   cursor: pointer;
-  font-family: inherit;
 }
 
 label {
   cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+  padding: 0;
 }

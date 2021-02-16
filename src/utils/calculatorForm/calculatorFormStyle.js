@@ -11,11 +11,32 @@ const WrapCalc = styled.div`
   }
 `;
 const InnerDiv = styled.div`
+  /* outline: 1px solid teal; */
   @media (min-width: 768px) {
     display: flex;
     flex-wrap: wrap;
-    height: 185px;
+    height: 230px;
     flex-direction: column;
+    align-content: space-between;
+  }
+`;
+const WrapInput = styled.div`
+  /* outline: 1px solid tomato; */
+  position: relative;
+  width: 240px;
+  height: 26px;
+  margin-bottom: 30px;
+  @media (min-width: 768px) {
+    width: 240px;
+    height: 36px;
+    margin-bottom: 40px;
+  }
+`;
+const WrapRadio = styled.div`
+  width: 240px;
+  height: 46px;
+  @media (min-width: 768px) {
+    height: 55px;
   }
 `;
 
@@ -97,12 +118,9 @@ const InputRadio = styled.input`
     font-weight: bold;
     color: #fc842d;
   }
-`;
-const WrapInput = styled.div`
-  position: relative;
-  width: 240px;
-  height: 26px;
-  margin-bottom: 30px;
+  @media (min-width: 768px) {
+    margin-top: 19px;
+  }
 `;
 
 export {
@@ -114,4 +132,5 @@ export {
   InputRadio,
   WrapInput,
   InnerDiv,
+  WrapRadio,
 };

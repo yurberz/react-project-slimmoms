@@ -10,6 +10,7 @@ import {
   InputRadio,
   WrapInput,
   InnerDiv,
+  WrapRadio,
 } from "./calculatorFormStyle";
 
 const blType = {
@@ -103,8 +104,8 @@ class CalculatorForm extends Component {
                 />
               </LabelCalc>
             </WrapInput>
-            <LabelCalc as="p">Группа крови *</LabelCalc>
-            <div role="group">
+            <WrapRadio role="group">
+              <LabelCalc as="p">Группа крови *</LabelCalc>
               <LabelRadio>
                 <InputRadio
                   type="radio"
@@ -141,7 +142,7 @@ class CalculatorForm extends Component {
                 />{" "}
                 4
               </LabelRadio>
-            </div>
+            </WrapRadio>
           </InnerDiv>
           <button type="submit">Похудеть</button>
         </form>
