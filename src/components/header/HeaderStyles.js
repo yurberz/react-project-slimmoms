@@ -5,6 +5,7 @@ const AppHeader = styled.header`
     font-size: 14px;
     line-height: 0.93;
     letter-spacing: 0.04em;
+    width: inherit;
 
     nav {
         display: flex;
@@ -20,7 +21,7 @@ const AppHeader = styled.header`
         @media screen and (min-width: 1280px) {
             justify-content: flex-start;
             border: none;
-            padding: 82px 90px 0 90px;
+            padding: 82px 90px;
         }
     }
 
@@ -71,8 +72,9 @@ const AppHeader = styled.header`
 
     .onSubBar {
         position: absolute;
+        z-index: 999;
         background-color: #264061;
-        width: 100%;
+        width: inherit;
         text-align: center;
         padding: 60px 0;
         font-family: Verdana;

@@ -19,7 +19,7 @@ const routes = [
         name: "КАЛЬКУЛЯТОР",
         path: "/calculator",
         exact: true,
-        component: lazy(() => import("../pages/Calculator" /* webpackChunkName: "CalculatorPage"*/)),
+        component: lazy(() => import("../pages/CalculatorPage" /* webpackChunkName: "CalculatorPage"*/)),
         isPrivate: true,
     },
     {
