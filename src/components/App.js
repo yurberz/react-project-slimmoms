@@ -1,5 +1,6 @@
 import CalculatorPage from "../pages/CalculatorPage";
-import Decoration from "./decoration/Decoration";
+// import HomePageDecoration from "./decoration/HomePageDecoration";
+// import LoginPageDecoration from "./decoration/LoginPageDecoration";
 import Layout from "./layout/Layout";
 
 const App = () => {
@@ -7,7 +8,8 @@ const App = () => {
     <Layout>
       <h1>Hello!</h1>
       {/* <CalculatorPage /> */}
-      {/* <Decoration /> */}
+      {/* <HomePageDecoration /> */}
+      {/* <LoginPageDecoration /> */}
     </Layout>
   );
 };

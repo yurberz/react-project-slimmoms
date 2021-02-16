@@ -1,11 +1,11 @@
 import React, { Fragment } from "react";
-import Decoration from "../components/decoration/Decoration";
+import HomePageDecoration from "../components/decoration/HomePageDecoration";
 
 
 const Home = () => {
     return (
         <Fragment>
-            <Decoration />
+            <HomePageDecoration />
         </Fragment>
     );
 }

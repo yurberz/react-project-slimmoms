@@ -1,7 +1,7 @@
 import React from 'react'
-import s from './Decoration.module.css'
+import s from './HomePageDecoration.module.css'
 
-const Decoration = () => {
+const HomePageDecoration = () => {
     return (
         <section className={s.decoration} >
             <div className={s.decspot}></div>
@@ -12,4 +12,4 @@ const Decoration = () => {
     );
 }
 
-export default Decoration;
+export default HomePageDecoration;
