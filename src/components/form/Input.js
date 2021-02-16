@@ -30,7 +30,6 @@ const FormInput = styled.input`
 `;
 
 const Inputt = ({ text, placeholder, name, onChange, value }) => {
-  console.log(placeholder);
   return (
     <FormInput
       type={text}
