@@ -1,6 +1,6 @@
-import CalculatorPage from "../pages/CalculatorPage";
 // import HomePageDecoration from "./decoration/HomePageDecoration";
 // import LoginPageDecoration from "./decoration/LoginPageDecoration";
+import CalculatorPageDecoration from "./decoration/CalculatorPageDecoration";
 import Layout from "./layout/Layout";
 
 const App = () => {
@@ -10,6 +10,7 @@ const App = () => {
       {/* <CalculatorPage /> */}
       {/* <HomePageDecoration /> */}
       {/* <LoginPageDecoration /> */}
+      <CalculatorPageDecoration />
     </Layout>
   );
 };
