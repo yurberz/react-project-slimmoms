@@ -1,7 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { signUp } from "../actions/registerAction";
-import { persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
 
 const initialState = {
   email: "",
@@ -19,9 +17,4 @@ const RegisterReducer = createReducer(
   }
 );
 
-const authPersistConfig = {
-  key: "register",
-  storage,
-};
-
-export default persistReducer(authPersistConfig, RegisterReducer);
+export default RegisterReducer;
