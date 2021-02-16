@@ -44,7 +44,6 @@ const App = () => {
             <Redirect to="/" />
           </Switch>
         </Suspense>
-        <CalculatorPage />
       </Layout>
     </Provider>
   );
