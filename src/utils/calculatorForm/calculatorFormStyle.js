@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const WrapCalc = styled.div`
-  outline: 1px solid teal;
+  /* outline: 1px solid teal; */
   margin-left: 5px;
   padding-left: 10px;
   width: 250px;
@@ -79,7 +79,7 @@ const LabelRadio = styled.label`
   &:not(:last-child) {
     margin-right: 28px;
   }
-  &:hover {
+  &:focus {
     font-weight: bold;
     color: #fc842d;
   }
@@ -93,7 +93,10 @@ const InputRadio = styled.input`
   margin-left: 0;
   margin-top: 8px;
   margin-bottom: 41px;
-  border-radius: 50%;
+  &:focus {
+    font-weight: bold;
+    color: #fc842d;
+  }
 `;
 const WrapInput = styled.div`
   position: relative;
