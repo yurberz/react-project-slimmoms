@@ -5,7 +5,7 @@ const App = () => {
   return (
     <Layout>
       <h1>Hello!</h1>
-      <CalculatorPage />
+      {/* <CalculatorPage /> */}
     </Layout>
   );
 };
