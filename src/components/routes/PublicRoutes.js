@@ -1,12 +1,12 @@
 import {Route, Redirect} from "react-router-dom";
+import {connect} from "react-redux";
 
-///////////////////////
-import {logged} from "../../routes/LOGGED";
-
-const PublicRoutes = ({path, exact, component: CurrentComponent}) => {
-    return logged
-        ? <Redirect to="/diary" />
-        : <Route path={path} exact={exact} component={CurrentComponent} />;
+const PublicRoutes = ({path, exact, component: CurrentComponent, logged}) => {
+    return logged ? <Redirect to="/diary" /> : <Route path={path} exact={exact} component={CurrentComponent} />;
 };
 
-export default PublicRoutes;
+const mapStateToProps = state => ({
+    logged: state.LogInReducer.accessToken,
+});
+
+export default connect(mapStateToProps)(PublicRoutes);
