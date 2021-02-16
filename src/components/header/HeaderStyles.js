@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import logoMobile from "../../svg/logo-mobile.svg";
+import logoTablet from "../../svg/logo-tablet.svg";
+import logoDesktop from "../../svg/logo-desktop.svg";
 
 const AppHeader = styled.header`
     font-family: GothamPro-Bold;
@@ -22,17 +25,49 @@ const AppHeader = styled.header`
             justify-content: flex-start;
             border: none;
             padding: 82px 90px;
+            align-items: flex-end;
         }
     }
 
     .logo {
-        text-decoration: none;
-        color: #fc842d;
+        background-image: url(${logoMobile});
+        width: 46.67px;
+        height: 44px;
+        background-repeat: no-repeat;
+
+        @media screen and (min-width: 768px) {
+            background-image: url(${logoTablet});
+            width: 162.3px;
+        }
+
+        @media screen and (min-width: 1280px) {
+            background-image: url(${logoDesktop});
+            width: 166.41px;
+            height: 66px;
+            margin-bottom: 6px;
+        }
+    }
+
+    .registeredLogo {
+        background-image: url(${logoTablet});
+        width: 162.3px;
+
+        @media screen and (min-width: 1280px) {
+            background-image: url(${logoDesktop});
+            width: 166.41px;
+        }
     }
 
     .menuButton {
         height: 24px;
-        font-size: 12px;
+        width: 24px;
+        padding: 0;
+        border: none;
+        background-color: inherit;
+
+        :focus {
+            outline: none;
+        }
 
         @media screen and (min-width: 1280px) {
             display: none;
