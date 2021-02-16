@@ -8,10 +8,14 @@ import "./fonts/GothamPro-Light.woff";
 import "./fonts/GothamPro.woff";
 import "./fonts/Verdana-Bold.woff";
 import "./fonts/Verdana.woff";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
   document.getElementById("root")
 );

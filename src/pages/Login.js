@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { connect } from "react-redux";
 import Inputt from "../components/form/Input";
 import Buttonn from "../components/form/Button";
-import { signUpOperation } from "../redux/operations/registerOperation";
+import slimMomApi from "../services/api";
+import { connect } from "react-redux";
+import { logInOperation } from "../redux/operations/logInOperation";
 import { NavLink, Link } from "react-router-dom";
 
 const ContainerForm = styled.div`
@@ -28,17 +29,16 @@ const HeadingH1 = styled.h1`
   margin-bottom: 60px;
 `;
 
-class Registration extends Component {
+class Login extends Component {
   state = {
     email: "",
     password: "",
-    username: "",
   };
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.signUpOperation(this.state);
-    this.setState({ email: "", password: "", username: "" });
+    this.props.logInOperation(this.state);
+    this.setState({ email: "", password: "" });
   };
 
   onChange = (e) => {
@@ -48,15 +48,8 @@ class Registration extends Component {
   render() {
     return (
       <ContainerForm>
-        <HeadingH1>РЕГИСТРАЦИЯ</HeadingH1>
+        <HeadingH1>ВХОД</HeadingH1>
         <form onSubmit={this.onSubmit}>
-          <Inputt
-            text={"text"}
-            placeholder={"Имя *"}
-            name={"username"}
-            onChange={this.onChange}
-            value={this.state.username}
-          />
           <Inputt
             text={"email"}
             placeholder={"Электронная почта *"}
@@ -64,6 +57,7 @@ class Registration extends Component {
             onChange={this.onChange}
             value={this.state.email}
           />
+
           <Inputt
             text={""}
             placeholder={"Пароль *"}
@@ -72,10 +66,10 @@ class Registration extends Component {
             value={this.state.password}
           />
           <ContainerButton>
-            <Link to={{ pathname: "/login" }}>
-              <Buttonn type={""} text={"Вход"} />
+            <Buttonn type={"submit"} text={"Вход"} />
+            <Link to={{ pathname: "/register" }}>
+              <Buttonn type={""} text={"Регистрация"} />
             </Link>
-            <Buttonn type={"submit"} text={"Регистрация"} />
           </ContainerButton>
         </form>
       </ContainerForm>
@@ -83,4 +77,4 @@ class Registration extends Component {
   }
 }
 
-export default connect(null, { signUpOperation })(Registration);
+export default connect(null, { logInOperation })(Login);
