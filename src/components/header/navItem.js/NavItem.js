@@ -1,8 +1,7 @@
 import {NavLink} from "react-router-dom";
-///////////
-import {logged} from "../../../routes/LOGGED";
+import {connect} from "react-redux";
 
-const NavItem = ({path, exact, name, isPrivate, menuReset}) => {
+const NavItem = ({path, exact, name, isPrivate, menuReset, logged}) => {
     return (
         <>
             {!logged && !isPrivate && (
@@ -24,4 +23,8 @@ const NavItem = ({path, exact, name, isPrivate, menuReset}) => {
     );
 };
 
-export default NavItem;
+const mapStateToProps = state => ({
+    logged: state.LogInReducer.accessToken,
+});
+
+export default connect(mapStateToProps)(NavItem);

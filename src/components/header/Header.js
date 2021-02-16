@@ -1,14 +1,13 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 import routes from "../../routes/routes";
 import NavItem from "./navItem.js/NavItem";
 import AppHeader from "./HeaderStyles";
 import openMenu from "../../svg/open-menu.svg";
 import closeMenu from "../../svg/close-menu.svg";
-///////////
-import {logged} from "../../routes/LOGGED";
 
-export default class Header extends Component {
+class Header extends Component {
     state = {
         showMenu: false,
     };
@@ -29,7 +28,7 @@ export default class Header extends Component {
         return (
             <AppHeader>
                 <nav>
-                    {logged ? (
+                    {this.props.logged ? (
                         <>
                             <Link to="/" className="logo registeredLogo" onClick={this.menuReset}></Link>
                             <ul className="commonList onMainBar">
@@ -63,3 +62,9 @@ export default class Header extends Component {
         );
     }
 }
+
+const mapStateToProps = state => ({
+    logged: state.LogInReducer.accessToken,
+});
+
+export default connect(mapStateToProps)(Header);
