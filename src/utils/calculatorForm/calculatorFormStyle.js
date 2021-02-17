@@ -44,10 +44,6 @@ const InnerDiv = styled.div`
   margin-bottom: 40px;
   @media (min-width: 768px) {
     margin: -15px;
-    /* margin-top: -15px;
-    margin-left: -15px;
-    margin-right: -15px;
-    margin-bottom: 45px */
 
     height: 200px;
     /* width: 530px; */
@@ -84,17 +80,8 @@ const WrapRadio = styled.div`
   }
 `;
 
-const LabelCalc = styled.label`
-  /* position: absolute; */
-  font-family: "Verdana-Bold";
-  font-size: 14px;
-  line-height: 1.214;
-  letter-spacing: 0.04em;
-  color: #9b9faa;
-`;
-
 const InputCalc = styled.input`
-  position: relative;
+  /* position: relative; */
   font-family: "Verdana-Bold";
   font-size: 14px;
   line-height: 17px;
@@ -107,6 +94,7 @@ const InputCalc = styled.input`
   border-bottom: 1px solid #e0e0e0;
   outline: none;
   width: 100%;
+  height: 26px;
   &:focus {
     background-color: white;
     border-bottom: 1px solid #e0e0e0;
@@ -118,6 +106,17 @@ const InputCalc = styled.input`
   &:invalid {
     border-bottom: 2px solid red;
   }
+`;
+const LabelCalc = styled.label`
+  position: absolute;
+  font-family: "Verdana-Bold";
+  font-size: 14px;
+  line-height: 1.214;
+  letter-spacing: 0.04em;
+  color: #9b9faa;
+  /* ${InputCalc}:focus & {
+    transform: translateY(-55%);
+  } */
 `;
 
 const LabelRadio = styled.label`
@@ -163,6 +162,7 @@ const Svg = styled.svg`
 
 const Span = styled.span`
   color: ${(props) => (props.checked ? "#fc842d" : "#9b9faa")};
+  font-family: ${(props) => (props.checked ? "Verdana-Bold" : "Verdana")};
 `;
 
 const Text = styled.p`
@@ -171,7 +171,9 @@ const Text = styled.p`
   line-height: 1.214;
   letter-spacing: 0.04em;
   color: #9b9faa;
-  margin-left: 15px;
+  @media (min-width: 768px) {
+    margin-left: 15px;
+  }
 `;
 
 // const InputRadio = styled.input`
