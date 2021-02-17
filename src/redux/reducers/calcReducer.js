@@ -2,7 +2,7 @@ import { createReducer } from "@reduxjs/toolkit";
 import {
   getRecomends,
   setError,
-  setLoading,
+  // setLoading,
   setUserInfo,
 } from "../actions/calcAction";
 
