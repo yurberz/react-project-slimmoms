@@ -1,6 +1,5 @@
 import { Provider } from "react-redux";
 import store from "../redux/store";
-import CalculatorPage from "../pages/CalculatorPage";
 
 import React, { Suspense, lazy } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";

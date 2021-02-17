@@ -4,23 +4,13 @@ import getReccomendation from "../redux/operations/calcOperation";
 import CalculatorForm from "../utils/calculatorForm/CalculatorForm";
 import Recommend from "../utils/recommendation/Recommend";
 
-// const CalculatorPage = (id) => {
-//   console.log("id", id);
-//   return (
-//     <>
-//       <CalculatorForm loggedUserRecomends={getReccomendation} />
-//       <Recommend />
-//     </>
-//   );
-// };
-
 class CalculatorPage extends Component {
   render() {
     return (
       <>
         <CalculatorForm
           getReccomendation={getReccomendation}
-          id={this.props.id}
+          // id={this.props.id}
         />
         <Recommend />
       </>
@@ -30,7 +20,7 @@ class CalculatorPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    id: state.LogInReducer.sid,
+    id: state.RegisterReducer.id,
   };
 };
 
