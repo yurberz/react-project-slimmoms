@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Inputt from "../components/form/Input";
 import Buttonn from "../components/form/Button";
 import { signUpOperation } from "../redux/operations/registerOperation";
+import LoginPageDecoration from '../components/decoration/LoginPageDecoration';
 import { Link } from "react-router-dom";
 
 const ContainerForm = styled.div`
@@ -53,6 +54,7 @@ class Registration extends Component {
   render() {
     return (
       <ContainerForm>
+        <LoginPageDecoration />
         <HeadingH1>РЕГИСТРАЦИЯ</HeadingH1>
         <form onSubmit={this.onSubmit}>
           <Inputt

@@ -4,6 +4,7 @@ import Inputt from "../components/form/Input";
 import Buttonn from "../components/form/Button";
 import { connect } from "react-redux";
 import { logInOperation } from "../redux/operations/logInOperation";
+import LoginPageDecoration from '../components/decoration/LoginPageDecoration'
 import { logOut } from "../redux/actions/logOutAction";
 import { Link } from "react-router-dom";
 
@@ -59,6 +60,7 @@ class Login extends Component {
   render() {
     return (
       <ContainerForm>
+        <LoginPageDecoration />
         <HeadingH1>ВХОД</HeadingH1>
         <form onSubmit={this.onSubmit}>
           <Inputt
