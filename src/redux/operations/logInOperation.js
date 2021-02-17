@@ -4,7 +4,7 @@ import slimMomApi from "../../services/api";
 const logInOperation = (user) => async (dispatch) => {
   try {
     const response = await slimMomApi.logIn({ ...user });
-    console.log("super", response.accessToken);
+
     slimMomApi.setToken(response.accessToken);
     dispatch(signIn(response));
   } catch (error) {
