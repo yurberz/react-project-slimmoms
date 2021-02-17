@@ -30,24 +30,34 @@ class Header extends Component {
                 <nav>
                     {this.props.logged ? (
                         <>
-                            <Link to="/" className="logo registeredLogo" onClick={this.menuReset}></Link>
-                            <ul className="commonList onMainBar">
-                                {routes.map(route => (
-                                    <NavItem key={route.path} {...route} menuReset={this.menuReset} />
-                                ))}
-                            </ul>
-                            <button className="menuButton" onClick={this.menuToggler}>
-                                {this.state.showMenu ? <img src={closeMenu} alt="закрыть меню" /> : <img src={openMenu} alt="открыть меню" />}
-                            </button>
+                            <div className="mainBarSubContainer">
+                                <Link to="/" className="logo registeredLogo" onClick={this.menuReset}></Link>
+                                <ul className="commonList onMainBarList">
+                                    {routes.map(route => (
+                                        <NavItem key={route.path} {...route} menuReset={this.menuReset} />
+                                    ))}
+                                </ul>
+                            </div>
+                            <div className="mainBarSubContainer">
+                                <div className="userInfo onMainBarInfo">
+                                    <p>{this.props.userName}</p>
+                                    <button>Выйти</button>
+                                </div>
+                                <button className="menuButton" onClick={this.menuToggler}>
+                                    {this.state.showMenu ? <img src={closeMenu} alt="закрыть меню" /> : <img src={openMenu} alt="открыть меню" />}
+                                </button>
+                            </div>
                         </>
                     ) : (
                         <>
-                            <Link to="/" className="logo" onClick={this.menuReset}></Link>
-                            <ul className="commonList">
-                                {routes.map(route => (
-                                    <NavItem key={route.path} {...route} menuReset={this.menuReset} />
-                                ))}
-                            </ul>
+                            <div className="secondaryContainer">
+                                <Link to="/" className="logo" onClick={this.menuReset}></Link>
+                                <ul className="commonList">
+                                    {routes.map(route => (
+                                        <NavItem key={route.path} {...route} menuReset={this.menuReset} />
+                                    ))}
+                                </ul>
+                            </div>
                         </>
                     )}
                 </nav>
@@ -58,6 +68,11 @@ class Header extends Component {
                         ))}
                     </ul>
                 )}
+                {this.props.logged &&
+                <div className="userInfo">
+                    <p>{this.props.userName}</p>
+                    <button>Выйти</button>
+                </div>}
             </AppHeader>
         );
     }
@@ -65,6 +80,7 @@ class Header extends Component {
 
 const mapStateToProps = state => ({
     logged: state.LogInReducer.accessToken,
+    userName: state.LogInReducer.user.username,
 });
 
 export default connect(mapStateToProps)(Header);

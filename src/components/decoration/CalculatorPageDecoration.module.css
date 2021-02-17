@@ -7,18 +7,6 @@
   min-height: 1160px;
   height: 100%;
   overflow: hidden;
-  background: linear-gradient(
-    to bottom,
-    hsla(0, 0%, 100%, 0) 60%,
-    rgba(240, 241, 243, 1) 40%
-  );
-  /* background-image: linear-gradient(
-    to bottom,
-    #fff,
-    #f0f1f3 664px,
-    $secondary-beckground 664px,
-    $secondary-beckground 100%
-  ); */
 }
 @media screen and (min-width: 768px) {
   .decoration {
@@ -29,18 +17,6 @@
     min-height: 1024px;
     height: 100%;
     overflow: hidden;
-    background: linear-gradient(
-      to right,
-      hsla(0, 0%, 100%, 0) 60%,
-      rgba(240, 241, 243, 1) 40%
-    );
-    /* background: linear-gradient(
-      to bottom,
-      #fff,
-      #f0f1f3 674px,
-      $secondary-background 674px,
-      $secondary-background 100%
-    ); */
   }
   .decleaves {
     width: 362px;
@@ -63,18 +39,6 @@
     /* min-height: 850px; */
     min-height: 768px;
     overflow: hidden;
-    background: linear-gradient(
-      to right,
-      hsla(0, 0%, 100%, 0) 60%,
-      rgba(240, 241, 243, 1) 40%
-    );
-    /* background: linear-gradient(
-      to right,
-      #fff,
-      #f0f1f3 calc(50% + 105px),
-      $secondary-background calc(50% + 105px),
-      $secondary-background 100%
-    ); */
   }
   .decleaves {
     width: 505px;
