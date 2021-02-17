@@ -41,8 +41,14 @@ const TitleForm = styled.h2`
 
 const InnerDiv = styled.div`
   /* outline: 1px solid tomato; */
+  margin-bottom: 40px;
   @media (min-width: 768px) {
     margin: -15px;
+    /* margin-top: -15px;
+    margin-left: -15px;
+    margin-right: -15px;
+    margin-bottom: 45px */
+
     height: 200px;
     /* width: 530px; */
     display: flex;

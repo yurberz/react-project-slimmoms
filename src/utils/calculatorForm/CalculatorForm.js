@@ -108,10 +108,10 @@ class CalculatorForm extends Component {
                   <InputRadio
                     type="radio"
                     value={item.value}
-                    checked={item.value === bloodType}
+                    checked={item.value === this.state.bloodType}
                     onChange={this.onRadioCheck}
                   />
-                  {item.value === bloodType ? (
+                  {item.value === this.state.bloodType ? (
                     <>
                       <Svg checked>
                         <use href={sprite + "#icon-radio_button_on"} />
