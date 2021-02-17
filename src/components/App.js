@@ -37,8 +37,8 @@ const App = () => {
               route.isPrivate ? (
                 <PrivateRoutes key={route.path} {...route} />
               ) : (
-                <PublicRoutes key={route.path} {...route} />
-              )
+                  <PublicRoutes key={route.path} {...route} />
+                )
             )}
             <Redirect to="/" />
           </Switch>

@@ -1,6 +1,14 @@
+import React, { Fragment } from "react";
+import HomePageDecoration from "../components/decoration/HomePageDecoration";
+import CalculatorForm from "../utils/calculatorForm/CalculatorForm";
+
+
 const Home = () => {
     return (
-        <h2>Главная страница</h2>
+        <Fragment>
+            <HomePageDecoration />
+            <CalculatorForm />
+        </Fragment>
     );
 }
 

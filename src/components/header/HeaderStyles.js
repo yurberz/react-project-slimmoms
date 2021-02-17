@@ -22,7 +22,6 @@ const AppHeader = styled.header`
         }
 
         @media screen and (min-width: 1280px) {
-            justify-content: flex-start;
             border: none;
             padding: 82px 90px;
             align-items: flex-end;
@@ -97,7 +96,7 @@ const AppHeader = styled.header`
         }
     }
 
-    .onMainBar {
+    .onMainBarList {
         display: none;
 
         @media screen and (min-width: 1280px) {
@@ -138,6 +137,75 @@ const AppHeader = styled.header`
 
         .active-link {
             color: #ffffff;
+        }
+    }
+
+    .userInfo {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 4px 0 4px 15px;
+        background-color: #EFF1F3;
+
+
+        @media screen and (min-width: 768px) {
+            display: none;
+        }
+
+        button {
+            padding: 9px 15px;
+            margin-left: 15px;
+            border: none;
+            border-left: 2px solid #E0E0E0;
+            color: #9B9FAA;
+            font-family: inherit;
+            background-color: inherit;
+            font-size: inherit;
+
+            :focus {
+                outline: none;
+            }
+
+            :hover {
+                color: black;
+            }
+        }
+    }
+
+    .onMainBarInfo {
+        display: none;
+        background-color: inherit;
+
+        @media screen and (min-width: 768px) {
+            display: flex;
+            margin-right: 35px;
+        }
+
+        @media screen and (min-width: 1280px) {
+            margin: 0;
+            padding-bottom: 0;
+        }
+    }
+
+    .mainBarSubContainer {
+        display: flex;
+        align-items: center;
+
+        @media screen and (min-width: 1280px) {
+            margin: 0;
+            align-items: flex-end;
+        }
+    }
+
+    .secondaryContainer {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: space-between;
+
+        @media screen and (min-width: 1280px) {
+            align-items: flex-end;
+            width: inherit;
         }
     }
 `;
