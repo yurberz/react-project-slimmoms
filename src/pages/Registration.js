@@ -5,6 +5,7 @@ import Inputt from "../components/form/Input";
 import Buttonn from "../components/form/Button";
 import { signUpOperation } from "../redux/operations/registerOperation";
 import { NavLink, Link } from "react-router-dom";
+import LoginPageDecoration from '../components/decoration/LoginPageDecoration';
 
 const ContainerForm = styled.div`
   max-width: 439px;
@@ -48,6 +49,7 @@ class Registration extends Component {
   render() {
     return (
       <ContainerForm>
+        <LoginPageDecoration />
         <HeadingH1>РЕГИСТРАЦИЯ</HeadingH1>
         <form onSubmit={this.onSubmit}>
           <Inputt

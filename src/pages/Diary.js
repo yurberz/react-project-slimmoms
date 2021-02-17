@@ -1,6 +1,11 @@
+import CalculatorPageDecoration from '../components/decoration/CalculatorPageDecoration';
+
 const Diary = () => {
     return (
-        <h2>Страница дневника</h2>
+        <>
+            <CalculatorPageDecoration />
+            <h2>Страница дневника</h2>
+        </>
     );
 }
 

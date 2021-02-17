@@ -6,6 +6,7 @@ import slimMomApi from "../services/api";
 import { connect } from "react-redux";
 import { logInOperation } from "../redux/operations/logInOperation";
 import { NavLink, Link } from "react-router-dom";
+import LoginPageDecoration from '../components/decoration/LoginPageDecoration'
 
 const ContainerForm = styled.div`
   max-width: 439px;
@@ -48,6 +49,7 @@ class Login extends Component {
   render() {
     return (
       <ContainerForm>
+        <LoginPageDecoration />
         <HeadingH1>ВХОД</HeadingH1>
         <form onSubmit={this.onSubmit}>
           <Inputt
