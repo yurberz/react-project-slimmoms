@@ -1,4 +1,5 @@
 import { signUp } from "../actions/registerAction";
+import { signIn } from "../actions/logInAction";
 import slimMomApi from "../../services/api";
 
 const signUpOperation = (user) => async (dispatch) => {
@@ -6,10 +7,12 @@ const signUpOperation = (user) => async (dispatch) => {
     const response = await slimMomApi.register({ ...user });
 
     dispatch(signUp(response));
+    // console.log(response);
+    // dispatch(signIn(response.user));
   } catch (error) {
     // dispatch(setError(error));
   } finally {
-    // dispatch(setLoading());
+    // dispatch(signIn(response.user));
   }
 };
 

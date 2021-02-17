@@ -18,6 +18,7 @@ const Button = styled.button`
   color: #fc842d;
   margin: 60px 0 0 0;
   outline: none;
+
   &:hover {
     background: #fc842d;
     color: white;
