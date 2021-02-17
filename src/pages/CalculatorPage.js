@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import getReccomendation from "../redux/operations/calcOperation";
 import CalculatorForm from "../utils/calculatorForm/CalculatorForm";
-import Recommend from "../utils/recommendation/Recommend";
+import RightSideBar from "../utils/rightSideBar/rightSideBar";
 
 class CalculatorPage extends Component {
   render() {
@@ -12,7 +12,8 @@ class CalculatorPage extends Component {
           getReccomendation={getReccomendation}
           // id={this.props.id}
         />
-        <Recommend />
+
+        <RightSideBar />
       </>
     );
   }
