@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Buttonn from "../../components/form/Button";
+import Inputt from "../../components/form/Input";
 import getReccomendation from "../../redux/operations/calcOperation";
 
 import {
@@ -57,7 +59,14 @@ class CalculatorForm extends Component {
         <TitleForm>Узнай свою суточную норму калорий</TitleForm>
         <form onSubmit={this.onSubmitForm}>
           <InnerDiv>
-            <WrapInput>
+            <Inputt
+              type={"text"}
+              placeholder={"Рост * "}
+              name={"height"}
+              onChange={this.onInputChng}
+              value={height}
+            />
+            {/* <WrapInput>
               <LabelCalc>
                 Рост *
                 <InputCalc
@@ -68,7 +77,7 @@ class CalculatorForm extends Component {
                   onChange={this.onInputChng}
                 />
               </LabelCalc>
-            </WrapInput>
+            </WrapInput> */}
             <WrapInput>
               <LabelCalc>
                 Возраст *
@@ -145,7 +154,7 @@ class CalculatorForm extends Component {
               </LabelRadio>
             </WrapRadio>
           </InnerDiv>
-          <button type="submit">Похудеть</button>
+          <Buttonn type={"submit"} text={"Похудеть"} />
         </form>
       </WrapCalc>
     );

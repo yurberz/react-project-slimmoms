@@ -7,7 +7,7 @@ import {
 } from "../actions/calcAction";
 
 const getReccomendation = (userInfo, id) => async (dispatch) => {
-  dispatch(setLoading);
+  // dispatch(setLoading);
   dispatch(setUserInfo(userInfo));
   try {
     const response = await slimMomApi.getDailyRate(userInfo, id);
@@ -15,7 +15,7 @@ const getReccomendation = (userInfo, id) => async (dispatch) => {
   } catch (error) {
     dispatch(setError(error));
   } finally {
-    dispatch(setLoading);
+    // dispatch(setLoading);
   }
 };
 

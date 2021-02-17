@@ -8,10 +8,10 @@ import {
 
 const initialState = {
   userInfo: {},
-  recomends: [],
+  notAllowed: [],
   data: "",
+  cclal: "",
   error: "",
-  loading: false,
 };
 
 export const calcReducer = createReducer(
@@ -35,12 +35,12 @@ export const calcReducer = createReducer(
         error: action.error,
       };
     },
-    [setLoading]: (state) => {
-      return {
-        ...state,
-        loading: !state.loading,
-      };
-    },
+    // [setLoading]: (state) => {
+    //   return {
+    //     ...state,
+    //     loading: !state.loading,
+    //   };
+    // },
   }
 );
 
