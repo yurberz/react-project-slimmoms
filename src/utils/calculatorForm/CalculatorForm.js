@@ -1,6 +1,7 @@
 // сделать валидацию вносимых значений
 
 import React, { Component } from "react";
+import Modal from "../../components/modal/Modal";
 import {
   TitleForm,
   LabelCalc,
@@ -25,10 +26,17 @@ const initialState = {
   currentWeight: "",
   goalWeight: "",
   bloodType: null,
+  showModal: false,
 };
 
 class CalculatorForm extends Component {
   state = { ...initialState };
+
+  toggleModal = () => {
+    this.setState((prevState) => ({
+      showModal: !prevState.showModal,
+    }));
+  };
 
   onInputChng = (e) => {
     const { name, value } = e.target;
@@ -144,8 +152,15 @@ class CalculatorForm extends Component {
               </LabelRadio>
             </WrapRadio>
           </InnerDiv>
-          <button type="submit">Похудеть</button>
+          <button type="submit" onClick={this.toggleModal}>
+            Похудеть
+          </button>
         </form>
+
+        <Modal
+          toggleModal={this.toggleModal}
+          showModal={this.state.showModal}
+        />
       </WrapCalc>
     );
   }
