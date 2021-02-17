@@ -1,6 +1,9 @@
-// сделать валидацию вносимых значений
-
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import Buttonn from "../../components/form/Button";
+import Inputt from "../../components/form/Input";
+import getReccomendation from "../../redux/operations/calcOperation";
+
 import {
   TitleForm,
   LabelCalc,
@@ -20,10 +23,10 @@ const blType = {
   TYPE4: 4,
 };
 const initialState = {
+  weight: "",
   height: "",
   age: "",
-  currentWeight: "",
-  goalWeight: "",
+  desiredWeight: "",
   bloodType: null,
 };
 
@@ -33,30 +36,37 @@ class CalculatorForm extends Component {
   onInputChng = (e) => {
     const { name, value } = e.target;
     if (Number.isNaN(Number(value))) {
-      console.log("AHTUNG AHTUNG!!!!");
       return;
     } else {
-      this.setState({ [name]: value });
+      this.setState({ [name]: Number(value) });
     }
   };
 
   onRadioCheck = (e) => {
-    const { name, value } = e.target;
-    this.setState({ bloodType: Number(value) });
+    this.setState({ bloodType: Number(e.target.value) });
   };
 
   onSubmitForm = (e) => {
     e.preventDefault();
+    this.props.getReccomendation({ ...this.state }, this.props.id);
+    this.setState({ ...initialState });
   };
 
   render() {
-    const { height, age, currentWeight, goalWeight, bloodType } = this.state;
+    const { height, age, weight, desiredWeight, bloodType } = this.state;
     return (
       <WrapCalc>
         <TitleForm>Узнай свою суточную норму калорий</TitleForm>
         <form onSubmit={this.onSubmitForm}>
           <InnerDiv>
-            <WrapInput>
+            <Inputt
+              type={"text"}
+              placeholder={"Рост * "}
+              name={"height"}
+              onChange={this.onInputChng}
+              value={height}
+            />
+            {/* <WrapInput>
               <LabelCalc>
                 Рост *
                 <InputCalc
@@ -67,7 +77,7 @@ class CalculatorForm extends Component {
                   onChange={this.onInputChng}
                 />
               </LabelCalc>
-            </WrapInput>
+            </WrapInput> */}
             <WrapInput>
               <LabelCalc>
                 Возраст *
@@ -86,8 +96,8 @@ class CalculatorForm extends Component {
                 <InputCalc
                   // placeholder="Текущий вес *"
                   type="text"
-                  value={currentWeight}
-                  name="currentWeight"
+                  value={weight}
+                  name="weight"
                   onChange={this.onInputChng}
                 />
               </LabelCalc>
@@ -98,8 +108,8 @@ class CalculatorForm extends Component {
                 <InputCalc
                   // placeholder="Желаемый вес *"
                   type="text"
-                  value={goalWeight}
-                  name="goalWeight"
+                  value={desiredWeight}
+                  name="desiredWeight"
                   onChange={this.onInputChng}
                 />
               </LabelCalc>
@@ -144,11 +154,15 @@ class CalculatorForm extends Component {
               </LabelRadio>
             </WrapRadio>
           </InnerDiv>
-          <button type="submit">Похудеть</button>
+          <Buttonn type={"submit"} text={"Похудеть"} />
         </form>
       </WrapCalc>
     );
   }
 }
 
-export default CalculatorForm;
+const mapDispatchToProps = {
+  getReccomendation,
+};
+
+export default connect(null, mapDispatchToProps)(CalculatorForm);
