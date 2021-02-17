@@ -4,10 +4,14 @@ import { connect } from "react-redux";
 import Inputt from "../components/form/Input";
 import Buttonn from "../components/form/Button";
 import { signUpOperation } from "../redux/operations/registerOperation";
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const ContainerForm = styled.div`
   max-width: 439px;
+  padding: 15px;
+  @media screen and (max-width: 768px) {
+    margin: 0 auto;
+  }
 `;
 const ContainerButton = styled.div`
   max-width: 400px;
@@ -26,6 +30,7 @@ const HeadingH1 = styled.h1`
   line-height: 13px;
   letter-spacing: 0.04em;
   margin-bottom: 60px;
+  padding-top: 95px;
 `;
 
 class Registration extends Component {
