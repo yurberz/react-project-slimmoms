@@ -8,7 +8,8 @@ import {
 
 const initialState = {
   userInfo: {},
-  recomends: {},
+  recomends: [],
+  data: "",
   error: "",
   loading: false,
 };

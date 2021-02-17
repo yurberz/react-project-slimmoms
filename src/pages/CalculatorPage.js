@@ -20,7 +20,7 @@ class CalculatorPage extends Component {
       <>
         <CalculatorForm
           getReccomendation={getReccomendation}
-          id={this.props.id}
+          // id={this.props.id}
         />
         <Recommend />
       </>

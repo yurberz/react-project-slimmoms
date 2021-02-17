@@ -46,7 +46,6 @@ class CalculatorForm extends Component {
 
   onSubmitForm = (e) => {
     e.preventDefault();
-    // console.log("form", this.props.id);
     this.props.getReccomendation({ ...this.state }, this.props.id);
     this.setState({ ...initialState });
   };
