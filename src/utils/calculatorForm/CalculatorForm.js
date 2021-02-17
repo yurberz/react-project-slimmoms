@@ -157,10 +157,12 @@ class CalculatorForm extends Component {
           </button>
         </form>
 
-        <Modal
-          toggleModal={this.toggleModal}
-          showModal={this.state.showModal}
-        />
+        {this.state.showModal && (
+          <Modal
+            toggleModal={this.toggleModal}
+            showModal={this.state.showModal}
+          ></Modal>
+        )}
       </WrapCalc>
     );
   }
