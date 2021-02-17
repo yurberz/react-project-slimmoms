@@ -1,14 +1,29 @@
-import React from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import getReccomendation from "../redux/operations/calcOperation";
 import CalculatorForm from "../utils/calculatorForm/CalculatorForm";
 import CalculatorPageDecoration from '../components/decoration/CalculatorPageDecoration';
+import Recommend from "../utils/recommendation/Recommend";
 
-const CalculatorPage = () => {
-  return (
-    <>
-      <CalculatorPageDecoration />
-      <CalculatorForm />
-    </>
-  );
+class CalculatorPage extends Component {
+  render() {
+    return (
+      <>
+        <CalculatorPageDecoration />
+        <CalculatorForm
+          getReccomendation={getReccomendation}
+        // id={this.props.id}
+        />
+        <Recommend />
+      </>
+    );
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    id: state.RegisterReducer.id,
+  };
 };
 
-export default CalculatorPage;
+export default connect(mapStateToProps)(CalculatorPage);
