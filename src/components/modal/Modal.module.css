@@ -28,14 +28,16 @@
 }
 
 .modalBtn {
-  margin: 17px 15px 0 15px;
   border: none;
   outline: none;
-  height: 12px;
+  height: 40px;
   background: url("./svg/icon-back.svg") no-repeat scroll 0 0 transparent;
   color: #000000;
   cursor: pointer;
-  background-color: gray;
+  background-color: #f0f1f3;
+  width: 100%;
+  background-position-x: 10px;
+  background-position-y: 16px;
 }
 
 @media (min-width: 767px) {
