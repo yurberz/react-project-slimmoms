@@ -27,10 +27,12 @@ const FormInput = styled.input`
   &:invalid {
     border-bottom: 2px solid red;
   }
+  @media screen and (max-width: 768px) {
+    margin: 0 auto;
+  }
 `;
 
 const Inputt = ({ text, placeholder, name, onChange, value }) => {
-  console.log(placeholder);
   return (
     <FormInput
       type={text}

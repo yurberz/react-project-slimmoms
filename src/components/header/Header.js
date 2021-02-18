@@ -1,56 +1,86 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 import routes from "../../routes/routes";
 import NavItem from "./navItem.js/NavItem";
 import AppHeader from "./HeaderStyles";
-///////////
-import {logged} from "../../routes/LOGGED";
+import openMenu from "../../svg/open-menu.svg";
+import closeMenu from "../../svg/close-menu.svg";
 
-export default class Header extends Component {
+class Header extends Component {
     state = {
         showMenu: false,
     };
 
-    menuHandler = () => {
+    menuToggler = () => {
         this.setState(prevState => ({
             showMenu: !prevState.showMenu,
         }));
+    };
+
+    menuReset = () => {
+        this.setState({
+            showMenu: false,
+        });
     };
 
     render() {
         return (
             <AppHeader>
                 <nav>
-                    <Link to="/" className="logo">
-                        SlimMom
-                    </Link>
-                    {logged ? (
+                    {this.props.logged ? (
                         <>
-                            <ul className="commonList onMainBar">
-                                {routes.map(route => (
-                                    <NavItem key={route.path} {...route} />
-                                ))}
-                            </ul>
-                            <button className="menuButton" onClick={this.menuHandler}>
-                                menu
-                            </button>
+                            <div className="mainBarSubContainer">
+                                <Link to="/" className="logo registeredLogo" onClick={this.menuReset}></Link>
+                                <ul className="commonList onMainBarList">
+                                    {routes.map(route => (
+                                        <NavItem key={route.path} {...route} menuReset={this.menuReset} />
+                                    ))}
+                                </ul>
+                            </div>
+                            <div className="mainBarSubContainer">
+                                <div className="userInfo onMainBarInfo">
+                                    <p>{this.props.userName}</p>
+                                    <button>Выйти</button>
+                                </div>
+                                <button className="menuButton" onClick={this.menuToggler}>
+                                    {this.state.showMenu ? <img src={closeMenu} alt="закрыть меню" /> : <img src={openMenu} alt="открыть меню" />}
+                                </button>
+                            </div>
                         </>
                     ) : (
-                        <ul className="commonList">
-                            {routes.map(route => (
-                                <NavItem key={route.path} {...route} />
-                            ))}
-                        </ul>
+                        <>
+                            <div className="secondaryContainer">
+                                <Link to="/" className="logo" onClick={this.menuReset}></Link>
+                                <ul className="commonList">
+                                    {routes.map(route => (
+                                        <NavItem key={route.path} {...route} menuReset={this.menuReset} />
+                                    ))}
+                                </ul>
+                            </div>
+                        </>
                     )}
                 </nav>
                 {this.state.showMenu && (
                     <ul className="onSubBar">
                         {routes.map(route => (
-                            <NavItem key={route.path} {...route} />
+                            <NavItem key={route.path} {...route} menuReset={this.menuReset} />
                         ))}
                     </ul>
                 )}
+                {this.props.logged &&
+                <div className="userInfo">
+                    <p>{this.props.userName}</p>
+                    <button>Выйти</button>
+                </div>}
             </AppHeader>
         );
     }
 }
+
+const mapStateToProps = state => ({
+    logged: state.LogInReducer.accessToken,
+    userName: state.LogInReducer.user.username,
+});
+
+export default connect(mapStateToProps)(Header);
