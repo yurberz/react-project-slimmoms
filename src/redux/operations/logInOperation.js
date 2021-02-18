@@ -1,4 +1,9 @@
-import { signIn, setErrorr } from "../actions/logInAction";
+import {
+  signIn,
+  setErrorr,
+  chngParams,
+  chngRecomends,
+} from "../actions/logInAction";
 import slimMomApi from "../../services/api";
 
 const logInOperation = (user) => async (dispatch) => {
@@ -12,10 +17,24 @@ const logInOperation = (user) => async (dispatch) => {
       dispatch(signIn(response));
     }
   } catch (error) {
-    // dispatch(setError(error));
+    // dispatch(setErrorr(error));
+  } finally {
+    // dispatch(setLoading());
+  }
+};
+// ====================================================
+const chngUserParam = (userInfo, id) => async (dispatch) => {
+  dispatch(chngParams(userInfo));
+  try {
+    const response = await slimMomApi.getDailyRate(userInfo, id);
+    if (response === "No token provided") {
+      dispatch(setErrorr(response));
+    } else {
+      dispatch(chngParams(response));
+    }
   } finally {
     // dispatch(setLoading());
   }
 };
 
-export { logInOperation };
+export { logInOperation, chngUserParam };

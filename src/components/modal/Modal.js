@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { toggleModal } from "../../redux/actions/calcAction";
+import { toggleModal, clearState } from "../../redux/actions/calcAction";
 
 // import PropTypes from "prop-types";
 
@@ -16,6 +16,7 @@ class Modal extends Component {
   modal = (e) => {
     if (e.code === "Escape" || e.target.id === "overlay") {
       this.props.toggleModal();
+      this.props.clearState();
     }
   };
 
@@ -42,9 +43,13 @@ class Modal extends Component {
             <button
               type="button"
               className={s.modalBtn}
-              onClick={this.modal}
+              // onClickStart={this.modal}
             ></button>
-            <DailyCalorieIntake />
+            <DailyCalorieIntake
+              dailyRate={this.props.dailyRate}
+              notAllowed={this.props.notAllowed}
+              hndlBtnNext={this.hndlBtnNext}
+            />
           </div>
         </div>
       </>
@@ -52,13 +57,18 @@ class Modal extends Component {
   }
 }
 
+//notAllowed - огромній массив завтра уточним как вібирать
+
 const mapStateToProps = (state) => {
   return {
     modal: state.calculator.modal,
+    notAllowed: state.calculator.notAllowed,
+    dailyRate: state.calculator.dailyRate,
   };
 };
 const mapDispatchToProps = {
   toggleModal,
+  clearState,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Modal);

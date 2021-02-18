@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import getReccomendation from "../../redux/operations/calcOperation";
 import { clearState, toggleModal } from "../../redux/actions/calcAction";
+import { chngUserParam } from "../../redux/operations/logInOperation";
 import sprite from "../../svg/elipscomb.svg";
 
 import {
@@ -62,20 +63,15 @@ class CalculatorForm extends Component {
   state = { ...initialState };
 
   componentDidUpdate = () => {
-    console.log("update", this.props.accessToken);
+    if (this.props.accessToken) {
+      this.props.clearState();
+    }
   };
-
-  // componentDidMount = () => {
-  //   if (this.props.accessToken) {
-  //     this.props.clearState();
-  //   }
-  // };
-
-  // modalOpen = () => {
-  //   if (this.props.accessToken) {
-  //     this.props.clearState();
-  //   }
-  // };
+  componentDidUpdate = () => {
+    if (this.props.accessToken) {
+      this.props.clearState();
+    }
+  };
 
   onInputChng = (e) => {
     const { name, value } = e.target;
@@ -94,8 +90,10 @@ class CalculatorForm extends Component {
     e.preventDefault();
     if (!this.props.accessToken) {
       this.props.toggleModal();
+      this.props.getReccomendation({ ...this.state });
+    } else {
+      this.props.chngUserParam({ ...this.state }, this.props.id);
     }
-    this.props.getReccomendation({ ...this.state }, this.props.id);
     this.setState({ ...initialState });
   };
 
@@ -160,6 +158,7 @@ const mapDispatchToProps = {
   getReccomendation,
   clearState,
   toggleModal,
+  chngUserParam,
 };
 
 const mapStateToProps = (state) => {
