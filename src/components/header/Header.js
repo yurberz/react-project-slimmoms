@@ -6,6 +6,7 @@ import NavItem from "./navItem.js/NavItem";
 import AppHeader from "./HeaderStyles";
 import openMenu from "../../svg/open-menu.svg";
 import closeMenu from "../../svg/close-menu.svg";
+import {logOut} from "../../redux/actions/logOutAction";
 
 class Header extends Component {
     state = {
@@ -41,7 +42,7 @@ class Header extends Component {
                             <div className="mainBarSubContainer">
                                 <div className="userInfo onMainBarInfo">
                                     <p>{this.props.userName}</p>
-                                    <button>Выйти</button>
+                                    <button onClick={this.props.logOut}>Выйти</button>
                                 </div>
                                 <button className="menuButton" onClick={this.menuToggler}>
                                     {this.state.showMenu ? <img src={closeMenu} alt="закрыть меню" /> : <img src={openMenu} alt="открыть меню" />}
@@ -71,7 +72,7 @@ class Header extends Component {
                 {this.props.logged &&
                 <div className="userInfo">
                     <p>{this.props.userName}</p>
-                    <button>Выйти</button>
+                    <button onClick={this.props.logOut}>Выйти</button>
                 </div>}
             </AppHeader>
         );
@@ -83,4 +84,8 @@ const mapStateToProps = state => ({
     userName: state.LogInReducer.user.username,
 });
 
-export default connect(mapStateToProps)(Header);
+const mapDispatchToProps = dispatch => ({
+    logOut: () => dispatch(logOut()),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
