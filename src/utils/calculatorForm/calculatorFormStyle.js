@@ -12,7 +12,7 @@ const WrapCalc = styled.div`
   @media (min-width: 1280px) {
     width: 605px;
     height: 447px;
-  }
+      }
 `;
 const TitleForm = styled.h2`
   font-family: "Verdana-Bold";
