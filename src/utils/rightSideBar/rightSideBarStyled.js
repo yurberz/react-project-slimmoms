@@ -1,10 +1,8 @@
 import styled from "styled-components";
-import bgTablet from "../../img/rightSideBarBottom@1x.png";
 
 export const Section = styled.section`
-  position: relative;
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 115px;
+  padding-bottom: 0px;
 
   h2 {
     margin-bottom: 20px;
@@ -44,16 +42,16 @@ export const Section = styled.section`
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     display: flex;
-    padding-top: 91px;
-    padding-bottom: 91px;
-    background-image: url(${bgTablet});
-    background-repeat: no-repeat;
-    background-position: bottom;
-    background-position-x: 436px;
+    position: relative;
+    padding-top: 230px;
+    padding-bottom: 0px;
+    h2 {
+      margin-bottom: 23px;
+    }
 
     .dayInfoWrapper {
       margin-right: 60px;
-      min-width: 290px;
+      width: 491px;
     }
   }
 
@@ -62,8 +60,4 @@ export const Section = styled.section`
     padding-bottom: 146px;
     width: 330px;
   }
-
-  @media screen and (max-width: 1279px) {
-    background-color: #f0f1f3;
-  } ;
 `;
