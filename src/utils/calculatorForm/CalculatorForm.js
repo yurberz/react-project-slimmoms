@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import getReccomendation from "../../redux/operations/calcOperation";
+import { clearState, toggleModal } from "../../redux/actions/calcAction";
 import sprite from "../../svg/elipscomb.svg";
 
 import {
@@ -60,6 +61,22 @@ const initialState = {
 class CalculatorForm extends Component {
   state = { ...initialState };
 
+  componentDidUpdate = () => {
+    console.log("update", this.props.accessToken);
+  };
+
+  // componentDidMount = () => {
+  //   if (this.props.accessToken) {
+  //     this.props.clearState();
+  //   }
+  // };
+
+  // modalOpen = () => {
+  //   if (this.props.accessToken) {
+  //     this.props.clearState();
+  //   }
+  // };
+
   onInputChng = (e) => {
     const { name, value } = e.target;
     if (Number.isNaN(Number(value))) {
@@ -75,7 +92,9 @@ class CalculatorForm extends Component {
 
   onSubmitForm = (e) => {
     e.preventDefault();
-    this.props.openModal();
+    if (!this.props.accessToken) {
+      this.props.toggleModal();
+    }
     this.props.getReccomendation({ ...this.state }, this.props.id);
     this.setState({ ...initialState });
   };
@@ -130,9 +149,7 @@ class CalculatorForm extends Component {
               ))}
             </WrapRadio>
           </InnerDiv>
-          <FormButton type="submit" openModal={this.props.openModal}>
-            Похудеть
-          </FormButton>
+          <FormButton type="submit">Похудеть</FormButton>
         </form>
       </WrapCalc>
     );
@@ -141,6 +158,14 @@ class CalculatorForm extends Component {
 
 const mapDispatchToProps = {
   getReccomendation,
+  clearState,
+  toggleModal,
 };
 
-export default connect(null, mapDispatchToProps)(CalculatorForm);
+const mapStateToProps = (state) => {
+  return {
+    accessToken: state.LogInReducer.accessToken,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CalculatorForm);
