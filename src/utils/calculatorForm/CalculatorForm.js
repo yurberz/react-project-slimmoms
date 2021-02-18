@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Modal from "../../components/modal/Modal";
+// import Modal from "../../components/modal/Modal";
 import { connect } from "react-redux";
 // import Inputt from "../../components/form/Input";
 import getReccomendation from "../../redux/operations/calcOperation";
@@ -57,17 +57,10 @@ const initialState = {
   age: "",
   desiredWeight: "",
   bloodType: null,
-  showModal: false,
 };
 
 class CalculatorForm extends Component {
   state = { ...initialState };
-
-  toggleModal = () => {
-    this.setState((prevState) => ({
-      showModal: !prevState.showModal,
-    }));
-  };
 
   onInputChng = (e) => {
     const { name, value } = e.target;
@@ -89,7 +82,6 @@ class CalculatorForm extends Component {
   };
 
   render() {
-    const { bloodType } = this.state;
     return (
       <WrapCalc>
         <TitleForm>{this.props.title}</TitleForm>
@@ -141,13 +133,6 @@ class CalculatorForm extends Component {
           </InnerDiv>
           <FormButton type="submit">Похудеть</FormButton>
         </form>
-        {/* onClick={this.toggleModal} */}
-        {/* {this.state.showModal && (
-          <Modal
-            toggleModal={this.toggleModal}
-            showModal={this.state.showModal}
-          ></Modal>
-        )} */}
       </WrapCalc>
     );
   }
