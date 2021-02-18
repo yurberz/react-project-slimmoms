@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import HomePageDecoration from "../components/decoration/HomePageDecoration";
 import CalculatorForm from "../utils/calculatorForm/CalculatorForm";
@@ -12,14 +12,18 @@ const Div = styled.div`
   margin-right: 0px;
   margin-bottom: 0px;
   margin-top: 0px;
-  outline: 1px solid teal;
+  padding-left: 115px;
+  @media screen and(min-width: 768px) {
+    margin: 0 auto;
+  }
 `;
 
 class Home extends Component {
   render() {
     return (
-      <Fragment>
+      <>
         {this.props.modal && <Modal />}
+
         <HomePageDecoration />
         <Div>
           <CalculatorForm
@@ -27,7 +31,7 @@ class Home extends Component {
             getReccomendation={getReccomendation}
           />
         </Div>
-      </Fragment>
+      </>
     );
   }
 }
