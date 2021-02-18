@@ -107,7 +107,8 @@ margin-bottom: 60px;
         margin-left: 0;
         box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
     border-radius: 50%;
-    padding: 0;
+    padding: 18px;
+    //padding: 0;
     width: 50px;
     height: 50px;
     background-image: url('');
@@ -123,7 +124,7 @@ margin-bottom: 60px;
 //   background-color: transparent;
 //   padding-top: 10px;
     }
-  
+ 
     .input_add-gramm{
         text-align: center;
     width: 105px;
