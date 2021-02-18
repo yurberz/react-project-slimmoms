@@ -20,7 +20,6 @@ const searchProductOperation = query => async (dispatch, getState) => {
     dispatch(searchProductRequest());
     try {
         const data = await api.searchProduct(query);
-        console.log(data);
         dispatch(searchProductSuccess(data));
     } catch (error) {
         console.log(error);
@@ -28,15 +27,19 @@ const searchProductOperation = query => async (dispatch, getState) => {
     }
 }
 
-const addNewProductOperation = product => async dispatch => {
+const addNewProductOperation = product => async (dispatch, getState) => {
+    const accessToken = getState().LogInReducer.accessToken;
+    api.setToken(accessToken);
     dispatch(addProductRequest());
     try {
-        const {data} = await api.addEatenProduct(product);
+        const data = await api.addEatenProduct(product);
         dispatch(addProductSuccess(data));
     } catch (error) {
         dispatch(addProductError(error));
     }
 };
+
+/////////////////////////
 
 const getCurentInfoOperation = date => async dispatch => {
     dispatch(getInfoCurentRequest());
