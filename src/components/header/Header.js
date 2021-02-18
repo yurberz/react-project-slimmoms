@@ -7,6 +7,8 @@ import AppHeader from "./HeaderStyles";
 import openMenu from "../../svg/open-menu.svg";
 import closeMenu from "../../svg/close-menu.svg";
 import {logOut} from "../../redux/actions/logOutAction";
+/////////////////
+// import { addNewProductOperation } from "../../redux/operations/diaryOperations";
 
 class Header extends Component {
     state = {
@@ -17,6 +19,13 @@ class Header extends Component {
         this.setState(prevState => ({
             showMenu: !prevState.showMenu,
         }));
+        /////////
+        // const product = {
+        //     date: "2020-12-31",
+        //     productId: "5d51694802b2373622ff552c",
+        //     weight: 100,
+        // }
+        // this.props.addNewProductOperation(product);
     };
 
     menuReset = () => {
@@ -86,6 +95,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     logOut: () => dispatch(logOut()),
+    /////
+    // addNewProductOperation: product => dispatch(addNewProductOperation(product)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
