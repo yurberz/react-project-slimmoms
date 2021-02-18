@@ -4,9 +4,11 @@ import Inputt from "../components/form/Input";
 import Buttonn from "../components/form/Button";
 import { connect } from "react-redux";
 import { logInOperation } from "../redux/operations/logInOperation";
-import LoginPageDecoration from '../components/decoration/LoginPageDecoration'
+import LoginPageDecoration from "../components/decoration/LoginPageDecoration";
 import { logOut } from "../redux/actions/logOutAction";
 import { Link } from "react-router-dom";
+import { CSSTransition } from "react-transition-group";
+import "../components/form/register.css";
 
 const ContainerForm = styled.div`
   max-width: 439px;
@@ -33,6 +35,9 @@ const HeadingH1 = styled.h1`
   letter-spacing: 0.04em;
   margin-bottom: 60px;
   padding-top: 95px;
+  @media screen and (min-width: 1300px) {
+    padding-top: 0;
+  }
 `;
 
 class Login extends Component {
@@ -58,9 +63,20 @@ class Login extends Component {
   // };
 
   render() {
+    const error = this.props.error;
     return (
       <ContainerForm>
         <LoginPageDecoration />
+        <CSSTransition
+          in={error.length >= 1}
+          timeout={500}
+          classNames="fade"
+          unmountOnExit
+        >
+          <div className="warning">
+            <p>Профиль не зарегестрирован</p>
+          </div>
+        </CSSTransition>
         <HeadingH1>ВХОД</HeadingH1>
         <form onSubmit={this.onSubmit}>
           <Inputt
@@ -80,7 +96,7 @@ class Login extends Component {
           />
           <ContainerButton>
             <Buttonn type={"submit"} text={"Вход"} />
-            <Link to={{ pathname: "/register" }}>
+            <Link to={{ pathname: "/registration" }}>
               <Buttonn type={""} text={"Регистрация"} />
             </Link>
             {/* <button onClick={this.logOutt}>Выйти</button> */}
@@ -91,4 +107,10 @@ class Login extends Component {
   }
 }
 
-export default connect(null, { logInOperation, logOut })(Login);
+const mapStateToProps = (state) => {
+  return {
+    error: state.LogInReducer.error,
+  };
+};
+
+export default connect(mapStateToProps, { logInOperation, logOut })(Login);

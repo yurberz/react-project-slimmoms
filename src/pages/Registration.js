@@ -4,8 +4,10 @@ import { connect } from "react-redux";
 import Inputt from "../components/form/Input";
 import Buttonn from "../components/form/Button";
 import { signUpOperation } from "../redux/operations/registerOperation";
-import LoginPageDecoration from '../components/decoration/LoginPageDecoration';
+import LoginPageDecoration from "../components/decoration/LoginPageDecoration";
 import { Link } from "react-router-dom";
+import { CSSTransition } from "react-transition-group";
+import "../components/form/register.css";
 
 const ContainerForm = styled.div`
   max-width: 439px;
@@ -31,7 +33,6 @@ const HeadingH1 = styled.h1`
   line-height: 13px;
   letter-spacing: 0.04em;
   margin-bottom: 60px;
-  padding-top: 95px;
 `;
 
 class Registration extends Component {
@@ -39,12 +40,42 @@ class Registration extends Component {
     email: "",
     password: "",
     username: "",
+    error: "",
   };
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.signUpOperation(this.state);
-    this.setState({ email: "", password: "", username: "" });
+    const history = this.props.history;
+
+    if (this.state.username.length < 3 || this.state.username.length > 12) {
+      this.setState({
+        error: "Имя должно содержать не меньше 3 символов и не больше 12 ",
+      });
+      return;
+    } else if (
+      this.state.password.length < 3 ||
+      this.state.password.length > 12
+    ) {
+      this.setState({
+        error: "Пароль должно содержать не меньше 3 символов и не больше 12 ",
+      });
+      return;
+    } else if (!this.state.email.includes("@")) {
+      this.setState({
+        error: "Адресс почты введен неверно",
+      });
+      return;
+    } else {
+      this.props.signUpOperation(
+        {
+          email: this.state.email,
+          password: this.state.password,
+          username: this.state.username,
+        },
+        history
+      );
+      this.setState({ email: "", password: "", username: "", error: "" });
+    }
   };
 
   onChange = (e) => {
@@ -52,9 +83,31 @@ class Registration extends Component {
   };
 
   render() {
+    const error = this.props.error;
     return (
       <ContainerForm>
         <LoginPageDecoration />
+
+        <CSSTransition
+          in={this.state.error.length >= 1}
+          timeout={500}
+          classNames="fade"
+          unmountOnExit
+        >
+          <div className="warning">
+            <p>{this.state.error}</p>
+          </div>
+        </CSSTransition>
+        <CSSTransition
+          in={error.length >= 1}
+          timeout={500}
+          classNames="fade"
+          unmountOnExit
+        >
+          <div className="warning">
+            <p>Профиль уже зарегестрирован</p>
+          </div>
+        </CSSTransition>
         <HeadingH1>РЕГИСТРАЦИЯ</HeadingH1>
         <form onSubmit={this.onSubmit}>
           <Inputt
@@ -65,7 +118,7 @@ class Registration extends Component {
             value={this.state.username}
           />
           <Inputt
-            text={"email"}
+            text={"text"}
             placeholder={"Электронная почта *"}
             name={"email"}
             onChange={this.onChange}
@@ -79,7 +132,7 @@ class Registration extends Component {
             value={this.state.password}
           />
           <ContainerButton>
-            <Link to={{ pathname: "/login" }}>
+            <Link to={{ pathname: "/login" }} className="linkTablet">
               <Buttonn type={""} text={"Вход"} />
             </Link>
             <Buttonn type={"submit"} text={"Регистрация"} />
@@ -90,4 +143,10 @@ class Registration extends Component {
   }
 }
 
-export default connect(null, { signUpOperation })(Registration);
+const mapStateToProps = (state) => {
+  return {
+    error: state.RegisterReducer.error,
+  };
+};
+
+export default connect(mapStateToProps, { signUpOperation })(Registration);

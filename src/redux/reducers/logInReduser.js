@@ -1,10 +1,11 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { signIn } from "../actions/logInAction";
+import { signIn, setErrorr } from "../actions/logInAction";
 import { logOut } from "../actions/logOutAction";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 const initialState = {
+  error: "",
   accessToken: "",
   refreshToken: "",
   sid: "",
@@ -34,6 +35,11 @@ const logInReducer = createReducer(
       // sid: action.payload.sid,
       // userId: action.payload.user,
       ...action.payload,
+      error: "",
+    }),
+    [setErrorr]: (state, action) => ({
+      ...initialState,
+      error: action.payload,
     }),
     [logOut]: (state, action) => ({
       // ...state,

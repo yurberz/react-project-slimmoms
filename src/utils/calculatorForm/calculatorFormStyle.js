@@ -1,41 +1,34 @@
 import styled from "styled-components";
 
 const WrapCalc = styled.div`
-  /* outline: 1px solid teal; */
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-top: 40px;
-  padding-bottom: 60px;
+  width: 290px;
+  margin-top: 30px;
+  /* margin-bottom: 80x; */
 
   @media (min-width: 768px) {
-    /* height: 595px; */
-    padding-top: 100px;
-    padding-bottom: 74px;
-    padding-left: 115px;
-    padding-right: 25px;
+    width: 605px;
+    height: 420px;
   }
   @media (min-width: 1280px) {
-    /* height: 698px; */
-    width: 745px;
-    padding-top: 50px;
-    padding-bottom: 111px;
-    padding-left: 87px;
+    width: 605px;
+    height: 447px;
   }
 `;
 const TitleForm = styled.h2`
   font-family: "Verdana-Bold";
-  display: block;
-  width: 290px;
   font-size: 18px;
   line-height: 1.44;
   color: #212121;
-  margin-bottom: 40px;
+  /* margin-bottom: 40px; */
+  margin-bottom: 30px;
   @media (min-width: 768px) {
+    width: 605px;
     font-size: 30px;
     line-height: 1.2;
     margin-bottom: 60px;
   }
   @media (min-width: 1280px) {
+    width: 605px;
     font-size: 34px;
     line-height: 1.205;
     margin-bottom: 68px;
@@ -44,12 +37,10 @@ const TitleForm = styled.h2`
 
 const InnerDiv = styled.div`
   /* outline: 1px solid tomato; */
-  margin-bottom: 40px;
   @media (min-width: 768px) {
     margin: -15px;
-
     height: 200px;
-    /* width: 530px; */
+    width: 510px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -141,7 +132,6 @@ const LabelRadio = styled.label`
   }
 `;
 const InputRadio = styled.input`
-  /* display: none; */
   position: absolute;
   width: 1px;
   height: 1px;
@@ -150,10 +140,6 @@ const InputRadio = styled.input`
   overflow: hidden;
   border: 0;
   clip: rect(0 0 0 0);
-
-  &:checked {
-    color: #fc842d;
-  }
 `;
 
 const Svg = styled.svg`
@@ -178,6 +164,44 @@ const Text = styled.p`
   }
 `;
 
+const FormButton = styled.button`
+  display: block;
+  width: 176px;
+  height: 44px;
+  background: #fc842d;
+  box-sizing: border-box;
+  border-radius: 30px;
+  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+  border-radius: 30px;
+  outline: none;
+  border: transparent;
+
+  font-family: "Verdana-Bold";
+  font-size: 14px;
+  line-height: 17px;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.04em;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.04em;
+  margin: 60px 0 0 0;
+  color: #fff;
+
+  margin-top: 40px;
+  margin-right: auto;
+  margin-left: auto;
+
+  @media (min-width: 768px) {
+    margin-top: 60px;
+    margin-left: 0;
+  }
+  @media (min-width: 1280px) {
+    margin-top: 60px;
+    margin-left: 320px;
+  }
+`;
+
 export {
   TitleForm,
   LabelCalc,
@@ -191,5 +215,5 @@ export {
   Svg,
   Text,
   Span,
-  // SvgOn,
+  FormButton,
 };
