@@ -40,6 +40,7 @@ const Background = styled.div`
     right: 0;
     z-index: -100;
     width: 100vw;
+    min-height: 850px;
     height: 100%;
     background: url(${bgLayers}),
       linear-gradient(
