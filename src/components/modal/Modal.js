@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { toggleModal } from "../../redux/actions/calcAction";
+
 // import PropTypes from "prop-types";
 
 import Button from "./button/Button";
@@ -49,4 +52,13 @@ class Modal extends Component {
   }
 }
 
-export default Modal;
+const mapStateToProps = (state) => {
+  return {
+    modal: state.calculator.modal,
+  };
+};
+const mapDispatchToProps = {
+  toggleModal,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Modal);

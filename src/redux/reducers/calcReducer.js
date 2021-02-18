@@ -1,5 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 import {
+  clearState,
   getRecomends,
   setError,
   // setLoading,
@@ -39,10 +40,14 @@ export const calcReducer = createReducer(
         error: action.error,
       };
     },
-    [toggleModal]: (state, action) => ({
+    [toggleModal]: (state) => ({
       ...state,
       modal: !state.modal,
     }),
+    // [clearState]: (state) => {
+    //   return { ...initialState };
+    // },
+
     // [setLoading]: (state) => {
     //   return {
     //     ...state,
