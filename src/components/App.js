@@ -11,15 +11,6 @@ import PrivateRoutes from "./routes/PrivateRoutes";
 import PublicRoutes from "./routes/PublicRoutes";
 
 const App = () => {
-  // return (
-  //   <Provider store={store}>
-  //     <Layout>
-  //       <h1>Hello!</h1>
-  //       <CalculatorPage />
-  //     </Layout>
-  //   </Provider>
-  // );
-
   return (
     <Provider store={store}>
       <Layout>
@@ -37,8 +28,8 @@ const App = () => {
               route.isPrivate ? (
                 <PrivateRoutes key={route.path} {...route} />
               ) : (
-                  <PublicRoutes key={route.path} {...route} />
-                )
+                <PublicRoutes key={route.path} {...route} />
+              )
             )}
             <Redirect to="/" />
           </Switch>
