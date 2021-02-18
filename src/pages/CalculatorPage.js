@@ -77,8 +77,6 @@ class CalculatorPage extends Component {
   render() {
     return (
       <>
-        {/* <CalculatorPageDecoration /> */}
-
         <Background />
         <Div>
           <CalculatorForm
