@@ -7,6 +7,9 @@ const Home = () => {
     return (
         <Fragment>
             <HomePageDecoration />
+            {/* <h2>Просчитай свою суточную
+            <br />
+                норму калорий прямо сейчас</h2> */}
             <CalculatorForm />
         </Fragment>
     );
