@@ -77,19 +77,17 @@ class CalculatorPage extends Component {
   render() {
     return (
       <>
+        {/* <CalculatorPageDecoration /> */}
 
-        <CalculatorPageDecoration />
-   
         <Background />
         <Div>
-        <CalculatorForm
-          getReccomendation={getReccomendation}
-          id={this.props.id}
-          title={"Узнай свою суточную норму калорий"}
-        />
+          <CalculatorForm
+            getReccomendation={getReccomendation}
+            id={this.props.id}
+            title={"Узнай свою суточную норму калорий"}
+          />
           <RightSideBar />
         </Div>
-
       </>
     );
   }
