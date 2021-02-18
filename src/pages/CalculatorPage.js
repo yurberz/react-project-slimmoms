@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import getReccomendation from "../redux/operations/calcOperation";
 import CalculatorForm from "../utils/calculatorForm/CalculatorForm";
-import CalculatorPageDecoration from '../components/decoration/CalculatorPageDecoration';
+import CalculatorPageDecoration from "../components/decoration/CalculatorPageDecoration";
 import Recommend from "../utils/recommendation/Recommend";
 
 class CalculatorPage extends Component {
@@ -12,7 +12,8 @@ class CalculatorPage extends Component {
         <CalculatorPageDecoration />
         <CalculatorForm
           getReccomendation={getReccomendation}
-        // id={this.props.id}
+          id={this.props.id}
+          title={"Узнай свою суточную норму калорий"}
         />
         <Recommend />
       </>
@@ -22,7 +23,7 @@ class CalculatorPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    id: state.RegisterReducer.id,
+    id: state.LogInReducer.user.id,
   };
 };
 

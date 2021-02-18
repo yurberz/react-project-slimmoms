@@ -9,8 +9,8 @@ import {
 const initialState = {
   userInfo: {},
   notAllowed: [],
-  data: "",
-  cclal: "",
+  dailyRate: "",
+  // recomends: {},
   error: "",
 };
 
@@ -26,7 +26,9 @@ export const calcReducer = createReducer(
     [getRecomends]: (state, action) => {
       return {
         ...state,
-        recomends: { ...action.payload },
+        dailyRate: action.payload.dailyRate,
+        notAllowed: [...action.payload.notAllowedProducts],
+        // recomends: { ...action.payload },
       };
     },
     [setError]: (state, action) => {

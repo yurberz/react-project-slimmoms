@@ -44,7 +44,10 @@ class slimMomApi {
         .then((res) => res.data)
         .catch((error) => error.message);
     }
-    return axios.post("/daily-rate/", userCharacteristics);
+    return axios
+      .post("/daily-rate/", userCharacteristics)
+      .then((res) => res.data)
+      .catch((error) => error.message);
   }
   //===
 
