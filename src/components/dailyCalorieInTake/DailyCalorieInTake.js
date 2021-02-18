@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./DailyCalorieInTake.module.css";
 
-const DailyCalorieIntake = () => {
+const DailyCalorieIntake = ({ dailyRate, notAllowed }) => {
   return (
     <div className={s.container}>
       <p className={s.title}>
@@ -9,11 +9,13 @@ const DailyCalorieIntake = () => {
       </p>
 
       <p className={s.calories}>
-        1500<span className={s.caloriesText}>ккал</span>
+        {dailyRate}
+        <span className={s.caloriesText}>ккал</span>
       </p>
 
       <div className={s.line}></div>
       <h2 className={s.products}>
+        {console.log(notAllowed)}
         Продукты, которые вам не рекомендуется употреблять
       </h2>
       <ol className={s.productsList}>
