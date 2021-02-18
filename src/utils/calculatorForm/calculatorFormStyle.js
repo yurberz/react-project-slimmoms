@@ -2,26 +2,16 @@ import styled from "styled-components";
 
 const WrapCalc = styled.div`
   width: 290px;
-  margin-left: 15px;
-  margin-right: 15px;
   margin-top: 30px;
-  margin-bottom: 80x;
+  /* margin-bottom: 80x; */
 
   @media (min-width: 768px) {
     width: 605px;
     height: 420px;
-    margin-top: 100px;
-    margin-bottom: 74px;
-    margin-left: 87px;
-    margin-right: 76px;
   }
   @media (min-width: 1280px) {
     width: 605px;
     height: 447px;
-    margin-top: 146px;
-    margin-bottom: 111px;
-    margin-left: 115px;
-    margin-right: 25px;
   }
 `;
 const TitleForm = styled.h2`
@@ -208,7 +198,7 @@ const FormButton = styled.button`
   }
   @media (min-width: 1280px) {
     margin-top: 60px;
-    margin-left: 280px;
+    margin-left: 320px;
   }
 `;
 
