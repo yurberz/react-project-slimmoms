@@ -1,9 +1,9 @@
 import React, { Component } from "react";
+import Modal from "../../components/modal/Modal";
 import { connect } from "react-redux";
-import Buttonn from "../../components/form/Button";
 // import Inputt from "../../components/form/Input";
 import getReccomendation from "../../redux/operations/calcOperation";
-import sprite from "../../svg/radio-btn.svg";
+import sprite from "../../svg/elipscomb.svg";
 
 import {
   TitleForm,
@@ -18,6 +18,7 @@ import {
   Svg,
   Text,
   Span,
+  FormButton,
 } from "./calculatorFormStyle";
 
 const blType = {
@@ -33,16 +34,16 @@ const renderProps = Object.keys(blType).map((item) => ({
 
 const renderInputForm = [
   {
+    title: "Рост *",
+    name: "height",
+  },
+  {
     title: "Возраст *",
     name: "age",
   },
   {
-    title: "Вес *",
+    title: "Текущий вес *",
     name: "weight",
-  },
-  {
-    title: "Рост *",
-    name: "height",
   },
   {
     title: "Желаемый вес *",
@@ -56,10 +57,17 @@ const initialState = {
   age: "",
   desiredWeight: "",
   bloodType: null,
+  showModal: false,
 };
 
 class CalculatorForm extends Component {
   state = { ...initialState };
+
+  toggleModal = () => {
+    this.setState((prevState) => ({
+      showModal: !prevState.showModal,
+    }));
+  };
 
   onInputChng = (e) => {
     const { name, value } = e.target;
@@ -84,14 +92,15 @@ class CalculatorForm extends Component {
     const { bloodType } = this.state;
     return (
       <WrapCalc>
-        <TitleForm>Узнай свою суточную норму калорий</TitleForm>
+        <TitleForm>{this.props.title}</TitleForm>
         <form onSubmit={this.onSubmitForm}>
           <InnerDiv>
             {renderInputForm.map((item) => (
-              <WrapInput>
+              <WrapInput key={item.name}>
                 <LabelCalc>
                   {item.title}
                   <InputCalc
+                    // placeholder={item.title}
                     type="text"
                     value={this.state[item.name]}
                     name={item.name}
@@ -104,7 +113,7 @@ class CalculatorForm extends Component {
             <Text>Группа крови *</Text>
             <WrapRadio role="group">
               {renderProps.map((item) => (
-                <LabelRadio>
+                <LabelRadio key={item.value}>
                   <InputRadio
                     type="radio"
                     value={item.value}
@@ -114,14 +123,14 @@ class CalculatorForm extends Component {
                   {item.value === this.state.bloodType ? (
                     <>
                       <Svg checked>
-                        <use href={sprite + "#icon-radio_button_on"} />
+                        <use href={sprite + "#icon-elips-combine"} />
                       </Svg>
                       <Span checked>{item.value}</Span>
                     </>
                   ) : (
                     <>
                       <Svg>
-                        <use href={sprite + "#icon-panorama_fisheye"} />
+                        <use href={sprite + "#icon-elips-gray"} />
                       </Svg>
                       <Span>{item.value}</Span>{" "}
                     </>
@@ -130,8 +139,15 @@ class CalculatorForm extends Component {
               ))}
             </WrapRadio>
           </InnerDiv>
-          <Buttonn type={"submit"} text={"Похудеть"} />
+          <FormButton type="submit">Похудеть</FormButton>
         </form>
+        {/* onClick={this.toggleModal} */}
+        {/* {this.state.showModal && (
+          <Modal
+            toggleModal={this.toggleModal}
+            showModal={this.state.showModal}
+          ></Modal>
+        )} */}
       </WrapCalc>
     );
   }
