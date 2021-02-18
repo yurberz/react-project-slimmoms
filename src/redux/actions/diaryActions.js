@@ -1,4 +1,4 @@
-import { createAction } from "@reduxjs/toolkit";
+import {createAction} from "@reduxjs/toolkit";
 
 const searchProductRequest = createAction("@user/searchProductRequest");
 const searchProductSuccess = createAction("@user/searchProductSuccess");
@@ -28,5 +28,5 @@ export {
     deleteProductError,
     getInfoCurentRequest,
     getInfoCurentSuccess,
-    getInfoCurentProductError
-}
+    getInfoCurentProductError,
+};
