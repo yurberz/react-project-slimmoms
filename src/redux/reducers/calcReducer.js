@@ -4,6 +4,7 @@ import {
   setError,
   // setLoading,
   setUserInfo,
+  toggleModal,
 } from "../actions/calcAction";
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
   dailyRate: "",
   // recomends: {},
   error: "",
+  modal: false,
 };
 
 export const calcReducer = createReducer(
@@ -37,6 +39,10 @@ export const calcReducer = createReducer(
         error: action.error,
       };
     },
+    [toggleModal]: (state, action) => ({
+      ...state,
+      modal: !state.modal,
+    }),
     // [setLoading]: (state) => {
     //   return {
     //     ...state,
