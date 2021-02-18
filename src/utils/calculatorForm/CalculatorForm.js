@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Modal from "../../components/modal/Modal";
 import { connect } from "react-redux";
 import Buttonn from "../../components/form/Button";
 // import Inputt from "../../components/form/Input";
@@ -57,10 +58,17 @@ const initialState = {
   age: "",
   desiredWeight: "",
   bloodType: null,
+  showModal: false,
 };
 
 class CalculatorForm extends Component {
   state = { ...initialState };
+
+  toggleModal = () => {
+    this.setState((prevState) => ({
+      showModal: !prevState.showModal,
+    }));
+  };
 
   onInputChng = (e) => {
     const { name, value } = e.target;
@@ -132,8 +140,17 @@ class CalculatorForm extends Component {
               ))}
             </WrapRadio>
           </InnerDiv>
-          <Buttonn type={"submit"} text={"Похудеть"} />
+          <button type="submit" onClick={this.toggleModal}>
+            Похудеть
+          </button>
         </form>
+
+        {this.state.showModal && (
+          <Modal
+            toggleModal={this.toggleModal}
+            showModal={this.state.showModal}
+          ></Modal>
+        )}
       </WrapCalc>
     );
   }
