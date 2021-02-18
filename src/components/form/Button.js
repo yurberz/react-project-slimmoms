@@ -18,11 +18,13 @@ const Button = styled.button`
   color: #fc842d;
   margin: 60px 0 0 0;
   outline: none;
-
   &:hover {
     background: #fc842d;
     color: white;
     box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+  }
+  @media screen and (max-width: 400px) {
+    margin: 15px auto;
   }
 `;
 
