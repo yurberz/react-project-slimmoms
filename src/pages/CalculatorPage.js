@@ -13,6 +13,7 @@ class CalculatorPage extends Component {
         <CalculatorForm
           getReccomendation={getReccomendation}
           id={this.props.id}
+          title={"Узнай свою суточную норму калорий"}
         />
         <Recommend />
       </>

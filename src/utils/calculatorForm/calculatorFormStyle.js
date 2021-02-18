@@ -3,6 +3,7 @@ import styled from "styled-components";
 const WrapCalc = styled.div`
   /* outline: 1px solid teal; */
   padding-left: 15px;
+  padding-right: 15px;
   padding-top: 40px;
   padding-bottom: 60px;
 
@@ -23,6 +24,8 @@ const WrapCalc = styled.div`
 `;
 const TitleForm = styled.h2`
   font-family: "Verdana-Bold";
+  display: block;
+  width: 290px;
   font-size: 18px;
   line-height: 1.44;
   color: #212121;
@@ -54,7 +57,7 @@ const InnerDiv = styled.div`
   }
 `;
 const WrapInput = styled.div`
-  outline: 1px solid green;
+  /* outline: 1px solid green; */
   position: relative;
   width: 240px;
   height: 26px;
@@ -67,7 +70,7 @@ const WrapInput = styled.div`
   }
 `;
 const WrapRadio = styled.div`
-  outline: 1px solid green;
+  /* outline: 1px solid green; */
   display: flex;
   /* justify-content: space-between; */
   /* align-items: center; */
@@ -154,7 +157,6 @@ const InputRadio = styled.input`
 `;
 
 const Svg = styled.svg`
-  fill: ${(props) => (props.checked ? "#fc842d" : "#9b9faa")};
   width: 20px;
   height: 20px;
   margin-right: 6px;
@@ -175,25 +177,6 @@ const Text = styled.p`
     margin-left: 15px;
   }
 `;
-
-// const InputRadio = styled.input`
-//   visibility: hidden;
-//   background: #ffffff;
-//   border: 1px solid #e0e0e0;
-//   width: 20px;
-//   height: 20px;
-//   margin-left: 0;
-//   margin-top: 8px;
-//   margin-bottom: 41px;
-//   &:focus {
-//     font-weight: bold;
-//     color: #fc842d;
-//   }
-
-//   @media (min-width: 768px) {
-//     margin-top: 19px;
-//   }
-// `;
 
 export {
   TitleForm,
