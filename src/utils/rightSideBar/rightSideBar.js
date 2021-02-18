@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import { Component } from "react";
+import { connect } from "react-redux";
 import { Section } from "./rightSideBarStyled";
 
 const initialState = {
@@ -13,8 +14,6 @@ const initialState = {
 class RightSideBar extends Component {
   state = { ...initialState };
   render() {
-    // const { date, left, used, norm, prcnt } = this.state;
-
     return (
       <Section>
         <div className="dayInfoWrapper">
@@ -60,4 +59,4 @@ class RightSideBar extends Component {
   }
 }
 
-export default RightSideBar;
+export default connect()(RightSideBar);

@@ -1,6 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { signIn, setErrorr } from "../actions/logInAction";
 import { logOut } from "../actions/logOutAction";
+import getUserInfoActions from "../actions/getUserInfoActions";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
@@ -44,6 +45,10 @@ const logInReducer = createReducer(
     [logOut]: (state, action) => ({
       // ...state,
       ...initialState,
+    }),
+    [getUserInfoActions.getUserInfoSuccess]: (state, { payload }) => ({
+      ...state,
+      ...payload,
     }),
   }
 );
