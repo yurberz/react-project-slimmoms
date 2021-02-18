@@ -1,0 +1,54 @@
+.alert-appear {
+    transform: translateX(-200px);
+}
+
+.alert-appear-active {
+    transform: translateX(0);
+    transition: transform 300ms linear;
+}
+
+.fade-enter {
+    transform: translateX(-200px);
+}
+
+
+.fade-enter-active {
+    transform: translateX(0);
+    transition: transform 500ms ease-in-out;
+}
+
+
+.fade-exit {
+    transform: translateX(0);
+    transition: transform 500ms ease-in-out;
+}
+
+
+.fade-exit-active {
+    transform: translateX(-200px);
+}
+
+.warning {
+    position: absolute;
+    top: 26px;
+    left: 10px;
+    max-width: 400px;
+    min-height: 50px;
+    background-color: #fc842d;
+    border-radius: 10px;
+    color: white;
+    font-family: "GothamPro";
+    padding: 12px;
+    font-size: 20px;
+    margin-right: 10px;
+
+}
+
+
+
+@media screen and (max-width: 400px) {
+    .linkTablet {
+        margin: 15px auto;
+
+    }
+}
