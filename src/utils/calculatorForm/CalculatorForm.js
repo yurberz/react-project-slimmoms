@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-// import Modal from "../../components/modal/Modal";
 import { connect } from "react-redux";
-// import Inputt from "../../components/form/Input";
 import getReccomendation from "../../redux/operations/calcOperation";
 import sprite from "../../svg/elipscomb.svg";
 
@@ -77,6 +75,7 @@ class CalculatorForm extends Component {
 
   onSubmitForm = (e) => {
     e.preventDefault();
+    this.props.openModal();
     this.props.getReccomendation({ ...this.state }, this.props.id);
     this.setState({ ...initialState });
   };
@@ -131,7 +130,9 @@ class CalculatorForm extends Component {
               ))}
             </WrapRadio>
           </InnerDiv>
-          <FormButton type="submit">Похудеть</FormButton>
+          <FormButton type="submit" openModal={this.props.openModal}>
+            Похудеть
+          </FormButton>
         </form>
       </WrapCalc>
     );
