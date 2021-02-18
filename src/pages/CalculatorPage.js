@@ -15,7 +15,7 @@ class CalculatorPage extends Component {
           id={this.props.id}
           title={"Узнай свою суточную норму калорий"}
         />
-        <Recommend />
+        {/* <Recommend /> */}
       </>
     );
   }

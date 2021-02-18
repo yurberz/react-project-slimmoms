@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Buttonn from "../../components/form/Button";
 // import Inputt from "../../components/form/Input";
 import getReccomendation from "../../redux/operations/calcOperation";
-// import sprite from "../../svg/radio-btn.svg";
 import sprite from "../../svg/elipscomb.svg";
 
 import {
@@ -19,6 +17,7 @@ import {
   Svg,
   Text,
   Span,
+  FormButton,
 } from "./calculatorFormStyle";
 
 const blType = {
@@ -132,7 +131,7 @@ class CalculatorForm extends Component {
               ))}
             </WrapRadio>
           </InnerDiv>
-          <Buttonn type={"submit"} text={"Похудеть"} />
+          <FormButton type="submit">Похудеть</FormButton>
         </form>
       </WrapCalc>
     );
