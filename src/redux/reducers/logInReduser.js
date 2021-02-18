@@ -10,10 +10,11 @@ const initialState = {
   accessToken: "",
   refreshToken: "",
   sid: "",
-  todaySummary: {},
   user: {
     email: "",
     username: "",
+    id: "",
+    dailyRate: null,
     userData: {
       notAllowedProducts: [],
       weight: 0,
@@ -23,21 +24,26 @@ const initialState = {
       desiredWeight: 0,
       dailyRate: 0,
     },
-    id: "",
+    eatenProducts: [],
+    daySummary: {},
+    currentDayId: null,
+    currentDay: null,
+    summaries: [],
   },
 };
 
 const logInReducer = createReducer(
   { ...initialState },
   {
-    [signIn]: (state, action) => ({
+    [signIn]: (state, { payload }) => ({
       // accessToken: action.payload.accessToken,
       // refreshToken: action.payload.refreshToken,
       // sid: action.payload.sid,
       // userId: action.payload.user,
-      ...action.payload,
+      ...payload,
       error: "",
     }),
+    [signIn]: (_, { payload }) => payload.logInReducer.user,
     [setErrorr]: (state, action) => ({
       ...initialState,
       error: action.payload,

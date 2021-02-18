@@ -1,6 +1,3 @@
-import { Provider } from "react-redux";
-import store from "../redux/store";
-
 import React, { Suspense, lazy } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 
@@ -12,30 +9,28 @@ import PublicRoutes from "./routes/PublicRoutes";
 
 const App = () => {
   return (
-    <Provider store={store}>
-      <Layout>
-        <Header />
-        <Suspense fallback={<h2>Loading...</h2>}>
-          <Switch>
-            <Route
-              path="/"
-              exact={true}
-              component={lazy(() =>
-                import("../pages/Home" /* webpackChunkName: "HomePage"*/)
-              )}
-            />
-            {routes.map((route) =>
-              route.isPrivate ? (
-                <PrivateRoutes key={route.path} {...route} />
-              ) : (
-                <PublicRoutes key={route.path} {...route} />
-              )
+    <Layout>
+      <Header />
+      <Suspense fallback={<h2>Loading...</h2>}>
+        <Switch>
+          <Route
+            path="/"
+            exact={true}
+            component={lazy(() =>
+              import("../pages/Home" /* webpackChunkName: "HomePage"*/)
             )}
-            <Redirect to="/" />
-          </Switch>
-        </Suspense>
-      </Layout>
-    </Provider>
+          />
+          {routes.map((route) =>
+            route.isPrivate ? (
+              <PrivateRoutes key={route.path} {...route} />
+            ) : (
+              <PublicRoutes key={route.path} {...route} />
+            )
+          )}
+          <Redirect to="/" />
+        </Switch>
+      </Suspense>
+    </Layout>
   );
 };
 
