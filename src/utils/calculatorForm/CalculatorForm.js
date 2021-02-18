@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Buttonn from "../../components/form/Button";
-import Inputt from "../../components/form/Input";
+// import Inputt from "../../components/form/Input";
 import getReccomendation from "../../redux/operations/calcOperation";
+// import sprite from "../../svg/radio-btn.svg";
+import sprite from "../../svg/elipscomb.svg";
 
 import {
   TitleForm,
@@ -14,6 +16,9 @@ import {
   WrapInput,
   InnerDiv,
   WrapRadio,
+  Svg,
+  Text,
+  Span,
 } from "./calculatorFormStyle";
 
 const blType = {
@@ -22,6 +27,30 @@ const blType = {
   TYPE3: 3,
   TYPE4: 4,
 };
+
+const renderProps = Object.keys(blType).map((item) => ({
+  value: blType[item],
+}));
+
+const renderInputForm = [
+  {
+    title: "Рост *",
+    name: "height",
+  },
+  {
+    title: "Возраст *",
+    name: "age",
+  },
+  {
+    title: "Текущий вес *",
+    name: "weight",
+  },
+  {
+    title: "Желаемый вес *",
+    name: "desiredWeight",
+  },
+];
+
 const initialState = {
   weight: "",
   height: "",
@@ -53,105 +82,54 @@ class CalculatorForm extends Component {
   };
 
   render() {
-    const { height, age, weight, desiredWeight, bloodType } = this.state;
+    const { bloodType } = this.state;
     return (
       <WrapCalc>
-        <TitleForm>Узнай свою суточную норму калорий</TitleForm>
+        <TitleForm>{this.props.title}</TitleForm>
         <form onSubmit={this.onSubmitForm}>
           <InnerDiv>
-            <Inputt
-              type={"text"}
-              placeholder={"Рост * "}
-              name={"height"}
-              onChange={this.onInputChng}
-              value={height}
-            />
-            {/* <WrapInput>
-              <LabelCalc>
-                Рост *
-                <InputCalc
-                  // placeholder="Рост * "
-                  type="text"
-                  value={height}
-                  name="height"
-                  onChange={this.onInputChng}
-                />
-              </LabelCalc>
-            </WrapInput> */}
-            <WrapInput>
-              <LabelCalc>
-                Возраст *
-                <InputCalc
-                  // placeholder="Возраст *"
-                  type="text"
-                  value={age}
-                  name="age"
-                  onChange={this.onInputChng}
-                />
-              </LabelCalc>
-            </WrapInput>
-            <WrapInput>
-              <LabelCalc>
-                Текущий вес *
-                <InputCalc
-                  // placeholder="Текущий вес *"
-                  type="text"
-                  value={weight}
-                  name="weight"
-                  onChange={this.onInputChng}
-                />
-              </LabelCalc>
-            </WrapInput>
-            <WrapInput>
-              <LabelCalc>
-                Желаемый вес *
-                <InputCalc
-                  // placeholder="Желаемый вес *"
-                  type="text"
-                  value={desiredWeight}
-                  name="desiredWeight"
-                  onChange={this.onInputChng}
-                />
-              </LabelCalc>
-            </WrapInput>
+            {renderInputForm.map((item) => (
+              <WrapInput key={item.name}>
+                <LabelCalc>
+                  {item.title}
+                  <InputCalc
+                    // placeholder={item.title}
+                    type="text"
+                    value={this.state[item.name]}
+                    name={item.name}
+                    onChange={this.onInputChng}
+                  />
+                </LabelCalc>
+              </WrapInput>
+            ))}
+
+            <Text>Группа крови *</Text>
             <WrapRadio role="group">
-              <LabelCalc as="p">Группа крови *</LabelCalc>
-              <LabelRadio>
-                <InputRadio
-                  type="radio"
-                  value={blType.TYPE1}
-                  checked={blType.TYPE1 === bloodType}
-                  onChange={this.onRadioCheck}
-                />{" "}
-                1
-              </LabelRadio>
-              <LabelRadio>
-                <InputRadio
-                  type="radio"
-                  value={blType.TYPE2}
-                  checked={blType.TYPE2 === bloodType}
-                  onChange={this.onRadioCheck}
-                />{" "}
-                2
-              </LabelRadio>
-              <LabelRadio>
-                <InputRadio
-                  type="radio"
-                  value={blType.TYPE3}
-                  checked={blType.TYPE3 === bloodType}
-                  onChange={this.onRadioCheck}
-                />{" "}
-                3
-              </LabelRadio>
-              <LabelRadio>
-                <InputRadio
-                  type="radio"
-                  value={blType.TYPE4}
-                  checked={blType.TYPE4 === bloodType}
-                  onChange={this.onRadioCheck}
-                />{" "}
-                4
-              </LabelRadio>
+              {renderProps.map((item) => (
+                <LabelRadio key={item.value}>
+                  <InputRadio
+                    type="radio"
+                    value={item.value}
+                    checked={item.value === this.state.bloodType}
+                    onChange={this.onRadioCheck}
+                  />
+                  {item.value === this.state.bloodType ? (
+                    <>
+                      <Svg checked>
+                        <use href={sprite + "#icon-elips-combine"} />
+                      </Svg>
+                      <Span checked>{item.value}</Span>
+                    </>
+                  ) : (
+                    <>
+                      <Svg>
+                        <use href={sprite + "#icon-elips-gray"} />
+                      </Svg>
+                      <Span>{item.value}</Span>{" "}
+                    </>
+                  )}{" "}
+                </LabelRadio>
+              ))}
             </WrapRadio>
           </InnerDiv>
           <Buttonn type={"submit"} text={"Похудеть"} />

@@ -2,15 +2,15 @@ import { createReducer } from "@reduxjs/toolkit";
 import {
   getRecomends,
   setError,
-  setLoading,
+  // setLoading,
   setUserInfo,
 } from "../actions/calcAction";
 
 const initialState = {
   userInfo: {},
   notAllowed: [],
-  data: "",
-  cclal: "",
+  dailyRate: "",
+  // recomends: {},
   error: "",
 };
 
@@ -26,7 +26,9 @@ export const calcReducer = createReducer(
     [getRecomends]: (state, action) => {
       return {
         ...state,
-        recomends: { ...action.payload },
+        dailyRate: action.payload.dailyRate,
+        notAllowed: [...action.payload.notAllowedProducts],
+        // recomends: { ...action.payload },
       };
     },
     [setError]: (state, action) => {
