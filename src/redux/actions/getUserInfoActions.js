@@ -1,8 +1,8 @@
 import { createAction } from "@reduxjs/toolkit";
 
-const getUserInfoRequest = createAction("auth/getUserRequest");
-const getUserInfoSuccess = createAction("auth/getUserSuccess");
-const getUserInfoError = createAction("auth/getUserError");
+const getUserInfoRequest = createAction("/getUserRequest");
+const getUserInfoSuccess = createAction("/getUserSuccess");
+const getUserInfoError = createAction("/getUserError");
 
 export default {
   getUserInfoRequest,

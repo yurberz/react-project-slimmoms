@@ -1,19 +1,14 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import { Section } from "./rightSideBarStyled";
-
-const initialState = {
-  date: "",
-  left: "",
-  used: "",
-  norm: "",
-  prcnt: "",
-  unrecommend: [],
-};
+import { Section } from "./RightSideBarStyled";
+import getUserInfoSelectors from "../../redux/selectors/getUserInfoSelectors";
 
 class RightSideBar extends Component {
-  state = { ...initialState };
   render() {
+    const { daySummary, notAllowedProducts } = this.props;
+    daySummary.forEach((element) => console.log(element));
+    console.log(Object.keys(daySummary));
+
     return (
       <Section>
         <div className="dayInfoWrapper">
@@ -47,11 +42,10 @@ class RightSideBar extends Component {
         </div>
         <div className="notAllowedWrapper">
           <h2>Нерекомендуемые продукты</h2>
-          <div>
-            <p>
-              Apple, Carrot, Pineapple, Apple, Carrot, Pineapple,Apple, Carrot,
-              Pineapple
-            </p>
+          <div className="notAllowedProductsList">
+            {notAllowedProducts.map((product) => (
+              <p key={product}>{product}, </p>
+            ))}
           </div>
         </div>
       </Section>
@@ -59,4 +53,9 @@ class RightSideBar extends Component {
   }
 }
 
-export default connect()(RightSideBar);
+const mSTP = (state) => ({
+  daySummary: getUserInfoSelectors.getDaySummary(state),
+  notAllowedProducts: getUserInfoSelectors.getNotAllowrdProducts(state),
+});
+
+export default connect(mSTP)(RightSideBar);
