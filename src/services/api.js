@@ -70,7 +70,7 @@ class slimMomApi {
 
     delEatenProduct(product) {
         return axios
-            .delete("/day", product)
+            .delete("/day", {data: product})
             .then(res => res.data)
             .catch(error => error.message);
     }

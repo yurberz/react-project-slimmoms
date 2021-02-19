@@ -9,9 +9,9 @@ import {
     deleteProductRequest,
     deleteProductSuccess,
     deleteProductError,
-    getInfoCurentRequest,
-    getInfoCurentSuccess,
-    getInfoCurentProductError,
+    getCurentDayInfoRequest,
+    getCurentDayInfoSuccess,
+    getCurentDayInfoError,
 } from "../actions/diaryActions";
 
 const searchProductOperation = query => async (dispatch, getState) => {
@@ -22,7 +22,6 @@ const searchProductOperation = query => async (dispatch, getState) => {
         const data = await api.searchProduct(query);
         dispatch(searchProductSuccess(data));
     } catch (error) {
-        console.log(error);
         dispatch(searchProductError(error));
     }
 }
@@ -39,27 +38,29 @@ const addNewProductOperation = product => async (dispatch, getState) => {
     }
 };
 
-/////////////////////////
-
-const getCurentInfoOperation = date => async dispatch => {
-    dispatch(getInfoCurentRequest());
+const getCurentDayInfoOperation = date => async (dispatch, getState) => {
+    const accessToken = getState().LogInReducer.accessToken;
+    api.setToken(accessToken);
+    dispatch(getCurentDayInfoRequest());
     try {
-        const {data} = await api.getProducts(date);
-        dispatch(getInfoCurentSuccess(data));
+        const data = await api.getProducts(date);
+        dispatch(getCurentDayInfoSuccess(data));
     } catch (error) {
-        dispatch(getInfoCurentProductError(error));
+        dispatch(getCurentDayInfoError(error));
     }
 };
 
-const deleteProductOperation = (dayId, eatenProductId) => async dispatch => {
+const deleteProductOperation = prodOfDay => async (dispatch, getState) => {
+    const accessToken = getState().LogInReducer.accessToken;
+    api.setToken(accessToken);
     dispatch(deleteProductRequest());
     try {
-        const {data} = await api.delEatenProduct(dayId, eatenProductId);
+        const data = await api.delEatenProduct(prodOfDay);
+        console.log(data);
         dispatch(deleteProductSuccess(data));
     } catch (error) {
         dispatch(deleteProductError(error));
     }
 };
-// посмотреть правильность названия, чтоб dayId, eatenProductId были в state распарсить и добавить айди
 
-export {searchProductOperation, addNewProductOperation, getCurentInfoOperation, deleteProductOperation};
+export {searchProductOperation, addNewProductOperation, getCurentDayInfoOperation, deleteProductOperation};

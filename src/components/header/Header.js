@@ -8,7 +8,8 @@ import openMenu from "../../svg/open-menu.svg";
 import closeMenu from "../../svg/close-menu.svg";
 import {logOut} from "../../redux/actions/logOutAction";
 /////////////////
-// import { addNewProductOperation } from "../../redux/operations/diaryOperations";
+// import { getCurentDayInfoOperation } from "../../redux/operations/diaryOperations";
+// import { deleteProductOperation } from "../../redux/operations/diaryOperations";
 
 class Header extends Component {
     state = {
@@ -19,14 +20,21 @@ class Header extends Component {
         this.setState(prevState => ({
             showMenu: !prevState.showMenu,
         }));
-        /////////
-        // const product = {
-        //     date: "2020-12-31",
-        //     productId: "5d51694802b2373622ff552c",
-        //     weight: 100,
-        // }
-        // this.props.addNewProductOperation(product);
+
+        // this.props.getCurentDayInfoOperation({date: "2020-12-31"});
+
+        // this.props.deleteProductOperation({
+        //     dayId: "602e7d88b358b53ec8eb29b7",
+        //     eatenProductId: "b69e0c05-5bd8-4f2d-9815-5a12a8a2360d",
+        // });
     };
+
+    // eatenProductId: "",
+            // eatenProductId: "",
+            // eatenProductId: "",
+            // eatenProductId: "",
+            // eatenProductId: "",
+            // eatenProductId: "3a173d89-2b98-4a7d-9aba-75107cec5dc4",
 
     menuReset = () => {
         this.setState({
@@ -96,7 +104,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     logOut: () => dispatch(logOut()),
     /////
-    // addNewProductOperation: product => dispatch(addNewProductOperation(product)),
+    // getCurentDayInfoOperation: date => dispatch(getCurentDayInfoOperation(date)),
+    // deleteProductOperation: prodOfDay => dispatch(deleteProductOperation(prodOfDay)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
