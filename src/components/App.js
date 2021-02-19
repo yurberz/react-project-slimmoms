@@ -6,12 +6,13 @@ import Header from "./header/Header";
 import routes from "../routes/routes";
 import PrivateRoutes from "./routes/PrivateRoutes";
 import PublicRoutes from "./routes/PublicRoutes";
-import getUserInfo from "../redux/operations/getUserInfoOperation";
-import getUserInfoSelectors from "../redux/selectors/getUserInfoSelectors";
+import { refreshToken } from "../redux/operations/logInOperation";
 
 class App extends Component {
   componentDidMount() {
-    this.props.getUserInfo();
+    const { refreshToken, isAuth } = this.props;
+    console.log("log from App:", typeof refreshToken);
+    isAuth && refreshToken();
   }
 
   // componentDidUpdate(prevProps, _) {
@@ -52,12 +53,11 @@ class App extends Component {
 }
 
 const mSTP = (state) => ({
-  daySummary: getUserInfoSelectors.getDaySummary(state),
-  notAllowedProducts: getUserInfoSelectors.getNotAllowrdProducts(state),
+  isAuth: state.LogInReducer.accessToken,
 });
 
 const mDTP = {
-  getUserInfo,
+  refreshToken,
 };
 
 export default connect(mSTP, mDTP)(App);

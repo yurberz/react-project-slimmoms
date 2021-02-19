@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import getReccomendation from "../redux/operations/calcOperation";
 import CalculatorForm from "../utils/calculatorForm/CalculatorForm";
-import RightSideBar from "../utils/rightSideBar/RightSideBar";
+import RightSideBar from "../utils/rightSideBar/rightSideBar";
 import styled from "styled-components";
 import bgLayers from "../img/layersBg.png";
 import bgTablet from "../img/rightSideBarBottom@1x.png";
