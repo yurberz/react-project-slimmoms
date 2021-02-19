@@ -5,6 +5,7 @@ import CalculatorForm from "../utils/calculatorForm/CalculatorForm";
 import getReccomendation from "../redux/operations/calcOperation";
 import { toggleModal } from "../redux/actions/calcAction";
 import styled from "styled-components";
+import Modal from "../components/modal/Modal";
 
 const Div = styled.div`
   margin-left: 0px;
@@ -12,34 +13,32 @@ const Div = styled.div`
   margin-bottom: 0px;
   margin-top: 0px;
   padding-left: 115px;
-@media screen and(min-width: 768px) {
-  margin: 0 auto;
- }
+  @media screen and(min-width: 768px) {
+    margin: 0 auto;
+  }
 `;
 
-
 class Home extends Component {
-  openModal = () => {
-    this.props.toggleModal();
-  };
-
   render() {
     return (
       <>
+        {this.props.modal && <Modal />}
+
         <HomePageDecoration />
         <Div>
           <CalculatorForm
             title={"Просчитай свою суточную норму калорий прямо сейчас"}
             getReccomendation={getReccomendation}
-            openModal={this.openModal}
           />
         </Div>
       </>
     );
   }
 }
-
-const mapDispatchToProps = {
-  toggleModal,
+const mapStateToProps = (state) => {
+  return {
+    modal: state.calculator.modal,
+  };
 };
-export default connect(null, mapDispatchToProps)(Home);
+
+export default connect(mapStateToProps)(Home);

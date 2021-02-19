@@ -1,5 +1,10 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { signIn, setErrorr } from "../actions/logInAction";
+import {
+  signIn,
+  setErrorr,
+  chngRecomends,
+  chngParams,
+} from "../actions/logInAction";
 import { logOut } from "../actions/logOutAction";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
@@ -45,6 +50,25 @@ const logInReducer = createReducer(
       // ...state,
       ...initialState,
     }),
+    //==========================================
+    [chngRecomends]: (state, action) => {
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          userData: { ...state.user.userData, ...action.payload },
+        },
+      };
+    },
+    [chngParams]: (state, action) => {
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          userData: { ...state.user.userData, ...action.payload },
+        },
+      };
+    },
   }
 );
 
@@ -54,4 +78,9 @@ const authPersistConfig = {
   // whitelist: ["accessToken", "refreshToken", "sid"],
 };
 
-export default persistReducer(authPersistConfig, logInReducer);
+export default persistReducer(
+  authPersistConfig,
+  logInReducer,
+  chngRecomends,
+  chngParams
+);

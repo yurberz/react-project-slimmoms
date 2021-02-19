@@ -41,7 +41,7 @@ class slimMomApi {
     return axios
       .get(`/product?search=${query}`)
       .then((res) => res.data)
-      .catch((error) => error);
+      .catch((error) => error.message);
   }
   //===
 
@@ -51,12 +51,12 @@ class slimMomApi {
       return axios
         .post(`/daily-rate/${id}`, userCharacteristics)
         .then((res) => res.data)
-        .catch((error) => error);
+        .catch((error) => error.message);
     }
     return axios
       .post("/daily-rate/", userCharacteristics)
       .then((res) => res.data)
-      .catch((error) => error);
+      .catch((error) => error.message);
   }
   //===
 
@@ -65,21 +65,21 @@ class slimMomApi {
     return axios
       .post("/day", product)
       .then((res) => res.data)
-      .catch((error) => error);
+      .catch((error) => error.message);
   }
 
   delEatenProduct(product) {
     return axios
-      .delete("/day", product)
+      .delete("/day", { data: product })
       .then((res) => res.data)
-      .catch((error) => error);
+      .catch((error) => error.message);
   }
 
   getProducts(date) {
     return axios
       .post("/day/info", date)
       .then((res) => res.data)
-      .catch((error) => error);
+      .catch((error) => error.message);
   }
   //===
 
@@ -88,7 +88,7 @@ class slimMomApi {
     return axios
       .get("/user")
       .then((res) => res.data)
-      .catch((error) => error);
+      .catch((error) => error.message);
   }
   //===
 }

@@ -10,17 +10,17 @@ import {
     deleteProductRequest,
     deleteProductSuccess,
     deleteProductError,
-    getInfoCurentRequest,
-    getInfoCurentSuccess,
-    getInfoCurentProductError,
+    getCurentDayInfoRequest,
+    getCurentDayInfoSuccess,
+    getCurentDayInfoError,
 } from "../actions/diaryActions";
 
 const initialState = {
+    productsFound: [],
     eatenProducts: [],
-    curentDate: "",
     daySummary: {},
     dayId: "",
-    productsFound: [],
+    curentDate: "",
 };
 
 const formDiaryReducer = createReducer(initialState, {
@@ -31,15 +31,15 @@ const formDiaryReducer = createReducer(initialState, {
 
     [addProductSuccess]: (state, {payload}) => ({
         ...state,
-        ...payload,
+        eatenProducts: [...state.eatenProducts, payload.eatenProduct],
     }),
 
     [deleteProductSuccess]: (state, {payload}) => ({
         ...state,
-        daySummary: {...payload},
+        daySummary: payload.newDaySummary,
     }),
 
-    [getInfoCurentSuccess]: (state, {payload}) => ({
+    [getCurentDayInfoSuccess]: (state, {payload}) => ({
         ...state,
         eatenProducts: payload.eatenProducts ? payload.eatenProducts : [],
         daySummary: payload.daySummary ? payload.daySummary : {},
@@ -57,8 +57,8 @@ const errorDiaryReducer = createReducer(null, {
     [deleteProductError]: ({payload}) => payload,
     [deleteProductRequest]: () => null,
 
-    [getInfoCurentProductError]: ({payload}) => payload,
-    [getInfoCurentRequest]: () => null,
+    [getCurentDayInfoError]: ({payload}) => payload,
+    [getCurentDayInfoRequest]: () => null,
 });
 const userDiaryReducer = combineReducers({user: formDiaryReducer, error: errorDiaryReducer});
 

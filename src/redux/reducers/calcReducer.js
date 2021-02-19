@@ -1,36 +1,35 @@
 import { createReducer } from "@reduxjs/toolkit";
 import {
+  clearState,
   getRecomends,
   setError,
-  // setLoading,
-  setUserInfo,
+  // setUserInfo,
   toggleModal,
 } from "../actions/calcAction";
 
 const initialState = {
-  userInfo: {},
+  // userInfo: {},
   notAllowed: [],
   dailyRate: "",
-  // recomends: {},
   error: "",
   modal: false,
+  // userResponse: {},
 };
 
 export const calcReducer = createReducer(
   { ...initialState },
   {
-    [setUserInfo]: (state, action) => {
-      return {
-        ...state,
-        userInfo: { ...action.payload },
-      };
-    },
+    // [setUserInfo]: (state, action) => {
+    //   return {
+    //     ...state,
+    //     userInfo: { ...action.payload },
+    //   };
+    // },
     [getRecomends]: (state, action) => {
       return {
         ...state,
         dailyRate: action.payload.dailyRate,
         notAllowed: [...action.payload.notAllowedProducts],
-        // recomends: { ...action.payload },
       };
     },
     [setError]: (state, action) => {
@@ -39,16 +38,14 @@ export const calcReducer = createReducer(
         error: action.error,
       };
     },
-    [toggleModal]: (state, action) => ({
+    [toggleModal]: (state) => ({
       ...state,
       modal: !state.modal,
     }),
-    // [setLoading]: (state) => {
-    //   return {
-    //     ...state,
-    //     loading: !state.loading,
-    //   };
-    // },
+    [clearState]: (state, action) => {
+      // console.log("ochishchau");
+      return { ...initialState };
+    },
   }
 );
 

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import getReccomendation from "../../redux/operations/calcOperation";
+import { clearState, toggleModal } from "../../redux/actions/calcAction";
+import { chngUserParam } from "../../redux/operations/logInOperation";
 import sprite from "../../svg/elipscomb.svg";
 
 import {
@@ -60,6 +62,17 @@ const initialState = {
 class CalculatorForm extends Component {
   state = { ...initialState };
 
+  componentDidUpdate = () => {
+    if (this.props.accessToken) {
+      this.props.clearState();
+    }
+  };
+  componentDidUpdate = () => {
+    if (this.props.accessToken) {
+      this.props.clearState();
+    }
+  };
+
   onInputChng = (e) => {
     const { name, value } = e.target;
     if (Number.isNaN(Number(value))) {
@@ -75,8 +88,12 @@ class CalculatorForm extends Component {
 
   onSubmitForm = (e) => {
     e.preventDefault();
-    this.props.openModal();
-    this.props.getReccomendation({ ...this.state }, this.props.id);
+    if (!this.props.accessToken) {
+      this.props.toggleModal();
+      this.props.getReccomendation({ ...this.state });
+    } else {
+      this.props.chngUserParam({ ...this.state }, this.props.id);
+    }
     this.setState({ ...initialState });
   };
 
@@ -130,9 +147,7 @@ class CalculatorForm extends Component {
               ))}
             </WrapRadio>
           </InnerDiv>
-          <FormButton type="submit" openModal={this.props.openModal}>
-            Похудеть
-          </FormButton>
+          <FormButton type="submit">Похудеть</FormButton>
         </form>
       </WrapCalc>
     );
@@ -141,6 +156,15 @@ class CalculatorForm extends Component {
 
 const mapDispatchToProps = {
   getReccomendation,
+  clearState,
+  toggleModal,
+  chngUserParam,
 };
 
-export default connect(null, mapDispatchToProps)(CalculatorForm);
+const mapStateToProps = (state) => {
+  return {
+    accessToken: state.LogInReducer.accessToken,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CalculatorForm);
