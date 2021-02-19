@@ -68,12 +68,12 @@ class slimMomApi {
       .catch((error) => error.message);
   }
 
-  delEatenProduct(product) {
-    return axios
-      .delete("/day", product)
-      .then((res) => res.data)
-      .catch((error) => error.message);
-  }
+    delEatenProduct(product) {
+        return axios
+            .delete("/day", {data: product})
+            .then(res => res.data)
+            .catch(error => error.message);
+    }
 
   getProducts(date) {
     return axios
