@@ -31,9 +31,9 @@ export const HomeContainer = styled.div`
   /* decspot ---------------------------------- */
 .decspot {
   display: none;
-}
+
 @media screen and (min-width: 768px) {
-  .decspot {
+  
     display: block;
     position: absolute;
     background-repeat: no-repeat;
@@ -42,16 +42,16 @@ export const HomeContainer = styled.div`
     width: 553px;
     height: 750px;
     background-image: url(${spotTablet});
-  }
+  
 }
 @media screen and (min-width: 1280px) {
-  .decspot {
+  
     top: 34px;
     right: 0;
     width: 603px;
     height: 816px;
     background-image: url(${spotDesc});
-  }
+}
 }
 
 /* decstrawberry ---------------------------------- */

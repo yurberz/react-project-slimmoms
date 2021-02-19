@@ -1,5 +1,4 @@
-import React from 'react'
-// import s from './HomePageDecoration.module.css'
+import React from 'react';
 import { HomeContainer } from './HomePageStyled';
 
 const HomePageDecoration = () => {
