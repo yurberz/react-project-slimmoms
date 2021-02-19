@@ -1,10 +1,11 @@
 import { createReducer } from "@reduxjs/toolkit";
 import {
   clearState,
-  getRecomends,
-  setError,
+  // getRecomends,
+  // setError,
   // setUserInfo,
   toggleModal,
+  getRecomendsSuccess,
 } from "../actions/calcAction";
 
 const initialState = {
@@ -19,31 +20,27 @@ const initialState = {
 export const calcReducer = createReducer(
   { ...initialState },
   {
-    // [setUserInfo]: (state, action) => {
-    //   return {
-    //     ...state,
-    //     userInfo: { ...action.payload },
-    //   };
-    // },
-    [getRecomends]: (state, action) => {
+    [getRecomendsSuccess]: (state, action) => {
       return {
         ...state,
         dailyRate: action.payload.dailyRate,
         notAllowed: [...action.payload.notAllowedProducts],
       };
     },
-    [setError]: (state, action) => {
+    // [setError]: (state, action) => {
+    //   return {
+    //     ...state,
+    //     error: action.error,
+    //   };
+    // },
+    [toggleModal]: (state, action) => {
+      // console.log(action);
       return {
         ...state,
-        error: action.error,
+        modal: !state.modal,
       };
     },
-    [toggleModal]: (state) => ({
-      ...state,
-      modal: !state.modal,
-    }),
     [clearState]: (state, action) => {
-      // console.log("ochishchau");
       return { ...initialState };
     },
   }

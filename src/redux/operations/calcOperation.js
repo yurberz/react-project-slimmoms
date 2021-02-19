@@ -1,25 +1,17 @@
 import slimMomApi from "../../services/api";
 import {
-  getRecomends,
-  setError,
-  // setLoading,
-  // setUserInfo,
+  getRecomendsRequest,
+  getRecomendsError,
+  getRecomendsSuccess,
 } from "../actions/calcAction";
 
 const getReccomendation = (userInfo, id) => async (dispatch) => {
-  // dispatch(setLoading);
-  // dispatch(setUserInfo(userInfo));
+  dispatch(getRecomendsRequest());
   try {
     const response = await slimMomApi.getDailyRate(userInfo, id);
-    if (response === "No token provided") {
-      dispatch(setError(response));
-    } else {
-      dispatch(getRecomends(response));
-    }
-    // catch (error) {
-    //   dispatch(setError(error));
-  } finally {
-    // dispatch(setLoading);
+    dispatch(getRecomendsSuccess(response));
+  } catch (error) {
+    dispatch(getRecomendsError(error.message));
   }
 };
 
