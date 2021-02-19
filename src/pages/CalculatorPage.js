@@ -75,6 +75,7 @@ const Div = styled.div`
 
 class CalculatorPage extends Component {
   render() {
+    // console.log("my id", this.props.id);
     return (
       <>
         <Background />
@@ -93,7 +94,7 @@ class CalculatorPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    id: state.RegisterReducer.id,
+    id: state.LogInReducer.user.id,
   };
 };
 
