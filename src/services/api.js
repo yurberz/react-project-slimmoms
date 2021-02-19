@@ -56,7 +56,7 @@ class slimMomApi {
         });
     }
     return axios
-      .post("/daily-rate/", userCharacteristics)
+      .post("/daily-rate", userCharacteristics)
       .then((res) => res.data)
       .catch((error) => {
         throw new Error(error);
@@ -72,12 +72,12 @@ class slimMomApi {
       .catch((error) => error.message);
   }
 
-    delEatenProduct(product) {
-        return axios
-            .delete("/day", {data: product})
-            .then(res => res.data)
-            .catch(error => error.message);
-    }
+  delEatenProduct(product) {
+    return axios
+      .delete("/day", { data: product })
+      .then((res) => res.data)
+      .catch((error) => error.message);
+  }
 
   getProducts(date) {
     return axios
