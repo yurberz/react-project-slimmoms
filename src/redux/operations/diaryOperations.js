@@ -20,6 +20,7 @@ const searchProductOperation = query => async (dispatch, getState) => {
     dispatch(searchProductRequest());
     try {
         const data = await api.searchProduct(query);
+     
         dispatch(searchProductSuccess(data));
     } catch (error) {
         dispatch(searchProductError(error));
