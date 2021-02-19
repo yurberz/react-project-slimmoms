@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { CSSTransition } from "react-transition-group";
 import getReccomendation from "../../redux/operations/calcOperation";
 import { clearState, toggleModal } from "../../redux/actions/calcAction";
 import { chngUserParam } from "../../redux/operations/logInOperation";
@@ -20,6 +21,8 @@ import {
   Span,
   FormButton,
 } from "./calculatorFormStyle";
+import { getLoading } from "../../redux/selectors/spinSelector";
+import Spin from "../../components/loader/Spin";
 
 const blType = {
   TYPE1: 1,
@@ -62,16 +65,16 @@ const initialState = {
 class CalculatorForm extends Component {
   state = { ...initialState };
 
-  componentDidUpdate = () => {
-    if (this.props.accessToken) {
-      this.props.clearState();
-    }
-  };
-  componentDidUpdate = () => {
-    if (this.props.accessToken) {
-      this.props.clearState();
-    }
-  };
+  // componentDidUpdate = () => {
+  //   if (this.props.accessToken) {
+  //     this.props.clearState();
+  //   }
+  // };
+  // componentDidUpdate = () => {
+  //   if (this.props.accessToken) {
+  //     this.props.clearState();
+  //   }
+  // };
 
   onInputChng = (e) => {
     const { name, value } = e.target;
@@ -92,6 +95,7 @@ class CalculatorForm extends Component {
       this.props.toggleModal();
       this.props.getReccomendation({ ...this.state });
     } else {
+      console.log(this.props.id);
       this.props.chngUserParam({ ...this.state }, this.props.id);
     }
     this.setState({ ...initialState });
@@ -99,57 +103,61 @@ class CalculatorForm extends Component {
 
   render() {
     return (
-      <WrapCalc>
-        <TitleForm>{this.props.title}</TitleForm>
-        <form onSubmit={this.onSubmitForm}>
-          <InnerDiv>
-            {renderInputForm.map((item) => (
-              <WrapInput key={item.name}>
-                <LabelCalc>
-                  {item.title}
-                  <InputCalc
-                    // placeholder={item.title}
-                    type="text"
-                    value={this.state[item.name]}
-                    name={item.name}
-                    onChange={this.onInputChng}
-                  />
-                </LabelCalc>
-              </WrapInput>
-            ))}
-
-            <Text>Группа крови *</Text>
-            <WrapRadio role="group">
-              {renderProps.map((item) => (
-                <LabelRadio key={item.value}>
-                  <InputRadio
-                    type="radio"
-                    value={item.value}
-                    checked={item.value === this.state.bloodType}
-                    onChange={this.onRadioCheck}
-                  />
-                  {item.value === this.state.bloodType ? (
-                    <>
-                      <Svg checked>
-                        <use href={sprite + "#icon-elips-combine"} />
-                      </Svg>
-                      <Span checked>{item.value}</Span>
-                    </>
-                  ) : (
-                    <>
-                      <Svg>
-                        <use href={sprite + "#icon-elips-gray"} />
-                      </Svg>
-                      <Span>{item.value}</Span>{" "}
-                    </>
-                  )}{" "}
-                </LabelRadio>
+      <>
+        <WrapCalc>
+          <TitleForm>{this.props.title}</TitleForm>
+          <form onSubmit={this.onSubmitForm}>
+            <InnerDiv>
+              {renderInputForm.map((item) => (
+                <WrapInput key={item.name}>
+                  <LabelCalc>
+                    {item.title}
+                    <InputCalc
+                      autoFocus
+                      // placeholder={item.title}
+                      type="text"
+                      value={this.state[item.name]}
+                      name={item.name}
+                      onChange={this.onInputChng}
+                    />
+                  </LabelCalc>
+                </WrapInput>
               ))}
-            </WrapRadio>
-          </InnerDiv>
-          <FormButton type="submit">Похудеть</FormButton>
-        </form>
-      </WrapCalc>
+
+              <Text>Группа крови *</Text>
+              <WrapRadio role="group">
+                {renderProps.map((item, idx) => (
+                  <LabelRadio key={item.value}>
+                    <InputRadio
+                      type="radio"
+                      value={item.value}
+                      checked={item.value === this.state.bloodType}
+                      onChange={this.onRadioCheck}
+                      tabIndex={idx}
+                    />
+                    {item.value === this.state.bloodType ? (
+                      <>
+                        <Svg checked>
+                          <use href={sprite + "#icon-elips-combine"} />
+                        </Svg>
+                        <Span checked>{item.value}</Span>
+                      </>
+                    ) : (
+                      <>
+                        <Svg>
+                          <use href={sprite + "#icon-elips-gray"} />
+                        </Svg>
+                        <Span>{item.value}</Span>{" "}
+                      </>
+                    )}{" "}
+                  </LabelRadio>
+                ))}
+              </WrapRadio>
+            </InnerDiv>
+            <FormButton type="submit">Похудеть</FormButton>
+          </form>
+        </WrapCalc>
+      </>
     );
   }
 }
@@ -164,6 +172,8 @@ const mapDispatchToProps = {
 const mapStateToProps = (state) => {
   return {
     accessToken: state.LogInReducer.accessToken,
+    id: state.LogInReducer.user.id,
+    spin: getLoading(state),
   };
 };
 
