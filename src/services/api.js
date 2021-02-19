@@ -92,7 +92,9 @@ class slimMomApi {
     return axios
       .get("/user")
       .then((res) => res.data)
-      .catch((error) => error.message);
+      .catch((error) => {
+        throw new Error(error);
+      });
   }
   //===
 }

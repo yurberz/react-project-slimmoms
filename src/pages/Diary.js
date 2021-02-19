@@ -14,7 +14,7 @@ class Diary extends Component {
           <DiaryAddProduct />
           <DiaryList />
         </DiaryStyle>
-        {/* <RightSideBar /> */}
+        <RightSideBar />
       </>
     );
   }
