@@ -2,7 +2,7 @@ import { createReducer } from "@reduxjs/toolkit";
 import {
   signIn,
   setErrorr,
-  chngRecomends,
+  chngRecomendsSuccess,
   chngParams,
   newTknSuccess,
 } from "../actions/logInAction";
@@ -55,7 +55,7 @@ const logInReducer = createReducer(
     }),
 
     //==========================================
-    [chngRecomends]: (state, action) => {
+    [chngRecomendsSuccess]: (state, action) => {
       return {
         ...state,
         user: {
@@ -85,6 +85,6 @@ const authPersistConfig = {
 export default persistReducer(
   authPersistConfig,
   logInReducer,
-  chngRecomends,
+  chngRecomendsSuccess,
   chngParams
 );

@@ -12,7 +12,7 @@ const WrapCalc = styled.div`
   @media (min-width: 1280px) {
     width: 605px;
     height: 447px;
-      }
+  }
 `;
 const TitleForm = styled.h2`
   font-family: "Verdana-Bold";
@@ -107,6 +107,8 @@ const LabelCalc = styled.label`
   font-size: 14px;
   line-height: 1.214;
   letter-spacing: 0.04em;
+  /* color: #fc842d; */
+  /* color: #212121; */
   color: #9b9faa;
   /* ${InputCalc}:focus & {
     transform: translateY(-55%);
@@ -126,10 +128,14 @@ const LabelRadio = styled.label`
     margin-right: 28px;
   }
 
-  &:checked {
+  /* &:checked {
     font-family: "Verdana-Bold";
     color: #fc842d;
   }
+  &::focus {
+    font-family: "Verdana-Bold";
+    color: #fc842d;
+  } */
 `;
 const InputRadio = styled.input`
   position: absolute;

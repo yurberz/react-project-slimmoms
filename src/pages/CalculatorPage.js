@@ -75,7 +75,6 @@ const Div = styled.div`
 
 class CalculatorPage extends Component {
   render() {
-    // console.log("my id", this.props.id);
     return (
       <>
         <Background />

@@ -7,12 +7,18 @@ import {
   newTknSuccess,
   newTknError,
   newTknRequest,
+  chngRecomendsRequest,
+  chngRecomendsSuccess,
+  chngRecomendseError,
 } from "../actions/logInAction";
 import { logOut } from "../actions/logOutAction";
 import slimMomApi from "../../services/api";
 import getUserInfo from "./getUserInfoOperation";
+import { setLoading } from "../actions/loadingAction";
+
 
 const logInOperation = (user) => async (dispatch) => {
+  dispatch(setLoading());
   try {
     const response = await slimMomApi.logIn({ ...user });
 
@@ -27,21 +33,18 @@ const logInOperation = (user) => async (dispatch) => {
   } catch (error) {
     // dispatch(setErrorr(error));
   } finally {
-    // dispatch(setLoading());
+    dispatch(setLoading());
   }
 };
 // ====================================================
 const chngUserParam = (userInfo, id) => async (dispatch) => {
+  dispatch(chngRecomendsRequest());
   dispatch(chngParams(userInfo));
   try {
     const response = await slimMomApi.getDailyRate(userInfo, id);
-    if (response === "No token provided") {
-      dispatch(setErrorr(response));
-    } else {
-      dispatch(chngParams(response));
-    }
-  } finally {
-    // dispatch(setLoading());
+    dispatch(chngRecomendsSuccess(response));
+  } catch {
+    dispatch(chngRecomendseError());
   }
 };
 

@@ -23,7 +23,6 @@ class Home extends Component {
     return (
       <>
         {this.props.modal && <Modal />}
-
         <HomePageDecoration />
         <Div>
           <CalculatorForm
