@@ -12,9 +12,9 @@ const deleteProductRequest = createAction("@user/deleteProductRequest");
 const deleteProductSuccess = createAction("@user/deleteProductSuccess");
 const deleteProductError = createAction("@user/deleteProductError");
 
-const getInfoCurentRequest = createAction("@user/getInfoCurentRequest");
-const getInfoCurentSuccess = createAction("@user/getInfoCurentSuccess");
-const getInfoCurentProductError = createAction("@user/getInfoCurentError");
+const getCurentDayInfoRequest = createAction("@user/getCurentDayInfoRequest");
+const getCurentDayInfoSuccess = createAction("@user/getCurentDayInfoSuccess");
+const getCurentDayInfoError = createAction("@user/getCurentDayInfoError");
 
 export {
     searchProductRequest,
@@ -26,7 +26,7 @@ export {
     deleteProductRequest,
     deleteProductSuccess,
     deleteProductError,
-    getInfoCurentRequest,
-    getInfoCurentSuccess,
-    getInfoCurentProductError,
+    getCurentDayInfoRequest,
+    getCurentDayInfoSuccess,
+    getCurentDayInfoError,
 };
