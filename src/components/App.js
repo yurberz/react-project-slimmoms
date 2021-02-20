@@ -13,7 +13,6 @@ import { getLoading } from "../redux/selectors/spinSelector";
 class App extends Component {
   componentDidMount() {
     const { refreshToken, isAuth } = this.props;
-    console.log("log from App:", typeof refreshToken);
     isAuth && refreshToken();
   }
 
