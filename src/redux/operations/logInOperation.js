@@ -16,7 +16,6 @@ import slimMomApi from "../../services/api";
 import getUserInfo from "./getUserInfoOperation";
 import { setLoading } from "../actions/loadingAction";
 
-
 const logInOperation = (user) => async (dispatch) => {
   dispatch(setLoading());
   try {
@@ -50,7 +49,6 @@ const chngUserParam = (userInfo, id) => async (dispatch) => {
 
 const refreshToken = () => async (dispatch, getState) => {
   const accessToken = getState().LogInReducer.accessToken;
-  console.log(accessToken);
   slimMomApi.setToken(accessToken);
 
   const sid = getState().LogInReducer.sid;
@@ -68,7 +66,5 @@ const refreshToken = () => async (dispatch, getState) => {
     dispatch(logOut());
   }
 };
-
-console.log(typeof refreshToken);
 
 export { logInOperation, chngUserParam, refreshToken };
