@@ -1,14 +1,14 @@
-import React from 'react'
-import s from './HomePageDecoration.module.css'
+import React from 'react';
+import { HomeContainer } from './HomePageStyled';
 
 const HomePageDecoration = () => {
     return (
-        <div className={s.decoration} >
-            <div className={s.decspot}></div>
-            <div className={s.decstrawberry}></div>
-            <div className={s.decleaves}></div>
-            <div className={s.decbanana}></div>
-        </div>
+        <HomeContainer >
+            <div className="decspot"></div>
+            <div className="decstrawberry"></div>
+            <div className="decleaves"></div>
+            <div className="decbanana"></div>
+        </HomeContainer>
     );
 }
 
