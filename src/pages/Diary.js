@@ -4,20 +4,20 @@ import DiaryCalendar from "../components/Diary/DiaryCalendar";
 import DiaryList from "../components/Diary/DiaryList";
 import RightSideBar from "../utils/rightSideBar/rightSideBar";
 import DiaryStyle from "../components/Diary/DiaryStyled";
+import CalculatorPageDecoration from '../components/decoration/CalculatorPageDecoration';
 
 class Diary extends Component {
-  render() {
-    return (
-      <>
-        <DiaryStyle>
-          <DiaryCalendar />
-          <DiaryAddProduct />
-          <DiaryList />
-        </DiaryStyle>
-        <RightSideBar />
-      </>
-    );
-  }
+    render() {
+        return (
+            <DiaryStyle>
+                <DiaryCalendar />
+                <DiaryAddProduct />
+                <DiaryList />
+                <CalculatorPageDecoration />
+            </DiaryStyle>
+            {/* <RightSideBar /> */}
+        );
+    }
 }
 
 export default Diary;
