@@ -60,4 +60,17 @@ export const Section = styled.section`
     padding-bottom: 146px;
     width: 330px;
   }
+
+  .notAllowedProductsList {
+    max-height: 152px;
+    margin-top: 25px;
+    color: black;
+    overflow-y: scroll;
+    z-index: 1;
+    position: relative;
+    overscroll-behavior: contain;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 10px;
+  }
 `;

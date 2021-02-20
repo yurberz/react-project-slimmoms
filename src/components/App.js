@@ -1,18 +1,31 @@
-import { Provider } from "react-redux";
-import store from "../redux/store";
-
-import React, { Suspense, lazy } from "react";
+import { Component, Suspense, lazy } from "react";
+import { connect } from "react-redux";
 import { Route, Switch, Redirect } from "react-router-dom";
-
 import Layout from "./layout/Layout";
 import Header from "./header/Header";
 import routes from "../routes/routes";
 import PrivateRoutes from "./routes/PrivateRoutes";
 import PublicRoutes from "./routes/PublicRoutes";
+import { refreshToken } from "../redux/operations/logInOperation";
 
-const App = () => {
-  return (
-    <Provider store={store}>
+class App extends Component {
+  componentDidMount() {
+    const { refreshToken, isAuth } = this.props;
+    console.log("log from App:", typeof refreshToken);
+    isAuth && refreshToken();
+  }
+
+  // componentDidUpdate(prevProps, _) {
+  //   if (
+  //     prevProps.daySummary !== this.props.daySummary ||
+  //     prevProps.notAllowedProducts !== this.props.notAllowedProducts
+  //   ) {
+  //     this.props.getUserInfo();
+  //   }
+  // }
+
+  render() {
+    return (
       <Layout>
         <Header />
         <Suspense fallback={<h2>Loading...</h2>}>
@@ -35,8 +48,16 @@ const App = () => {
           </Switch>
         </Suspense>
       </Layout>
-    </Provider>
-  );
+    );
+  }
+}
+
+const mSTP = (state) => ({
+  isAuth: state.LogInReducer.accessToken,
+});
+
+const mDTP = {
+  refreshToken,
 };
 
-export default App;
+export default connect(mSTP, mDTP)(App);
