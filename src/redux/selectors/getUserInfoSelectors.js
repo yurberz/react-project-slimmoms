@@ -1,5 +1,6 @@
-const getDaySummary = (state) => state.getUserInfo.user.currentDayInfo;
+const getDaySummary = (state) => state.userDiary.user.daySummary;
 const getNotAllowrdProducts = (state) =>
-  state.getUserInfo.user.userData.notAllowedProducts;
+  state.LogInReducer.user.userData.notAllowedProducts;
+const getDailyRate = (state) => state.LogInReducer.user.userData.dailyRate;
 
-export default { getDaySummary, getNotAllowrdProducts };
+export default { getDaySummary, getNotAllowrdProducts, getDailyRate };

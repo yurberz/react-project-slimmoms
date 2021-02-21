@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const DailyCalorieIntake = ({ dailyRate, notAllowed, hndlBtnNext }) => {
   // const history = useHistory();
-
+  const filterNotAllowed = notAllowed.filter((product, index) => index < 4);
   const onStartClick = () => {
     hndlBtnNext();
   };
@@ -22,19 +22,16 @@ const DailyCalorieIntake = ({ dailyRate, notAllowed, hndlBtnNext }) => {
 
       <div className={s.line}></div>
       <h2 className={s.products}>
-        {/* {notAllowed && console.log(notAllowed)} */}
         Продукты, которые вам не рекомендуется употреблять
       </h2>
+
       <ol className={s.productsList}>
-        {notAllowed && notAllowed.map((item, idx) => <li key={idx}>{item}</li>)}
-        {/* <li className={s.productsItem}>Сало</li>
-        <li className={s.productsItem}>Пиво</li>
-        <li className={s.productsItem}>Фаст-фуд</li>
-        <li className={s.productsItem}>Хлеб</li> */}
+        {notAllowed &&
+          filterNotAllowed.map((product, idx) => <li key={idx}>{product}</li>)}
       </ol>
 
       <button className={s.button} onClick={() => {}}>
-        <Link to="/registration" onClick={onStartClick}>
+        <Link to="/registration" onClick={onStartClick} className={s.link}>
           Начать худеть
         </Link>
       </button>

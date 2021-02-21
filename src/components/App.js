@@ -16,15 +16,6 @@ class App extends Component {
     isAuth && refreshToken();
   }
 
-  // componentDidUpdate(prevProps, _) {
-  //   if (
-  //     prevProps.daySummary !== this.props.daySummary ||
-  //     prevProps.notAllowedProducts !== this.props.notAllowedProducts
-  //   ) {
-  //     this.props.getUserInfo();
-  //   }
-  // }
-
   render() {
     return (
       <Layout>
