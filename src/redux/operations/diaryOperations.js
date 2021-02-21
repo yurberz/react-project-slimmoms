@@ -20,7 +20,6 @@ const searchProductOperation = query => async (dispatch, getState) => {
     dispatch(searchProductRequest());
     try {
         const data = await api.searchProduct(query);
-     
         dispatch(searchProductSuccess(data));
     } catch (error) {
         dispatch(searchProductError(error));
@@ -54,10 +53,11 @@ const getCurentDayInfoOperation = date => async (dispatch, getState) => {
 const deleteProductOperation = prodOfDay => async (dispatch, getState) => {
     const accessToken = getState().LogInReducer.accessToken;
     api.setToken(accessToken);
+    const {eatenProductId} = prodOfDay;
     dispatch(deleteProductRequest());
     try {
         const data = await api.delEatenProduct(prodOfDay);
-        dispatch(deleteProductSuccess(data));
+        dispatch(deleteProductSuccess({...data, eatenProductId}));
     } catch (error) {
         dispatch(deleteProductError(error));
     }

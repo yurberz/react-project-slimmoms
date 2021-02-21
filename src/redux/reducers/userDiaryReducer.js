@@ -36,7 +36,7 @@ const formDiaryReducer = createReducer(initialState, {
 
     [deleteProductSuccess]: (state, {payload}) => ({
         ...state,
-        
+        eatenProducts: [...state.eatenProducts.filter(product => product.id !== payload.eatenProductId)],
         daySummary: payload.newDaySummary,
     }),
 
