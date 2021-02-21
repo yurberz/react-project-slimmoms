@@ -1,6 +1,6 @@
 
 
-const DelIcon = ({width, height, fill}) => {
+const DelIcon = ({ width, height, fill}) => {
     return (
     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" fill={fill} width={width} height={height} viewBox="0 0 32 32">
         <title>cross</title>

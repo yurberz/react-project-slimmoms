@@ -57,7 +57,6 @@ const deleteProductOperation = prodOfDay => async (dispatch, getState) => {
     dispatch(deleteProductRequest());
     try {
         const data = await api.delEatenProduct(prodOfDay);
-        console.log(data);
         dispatch(deleteProductSuccess(data));
     } catch (error) {
         dispatch(deleteProductError(error));

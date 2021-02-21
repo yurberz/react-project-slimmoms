@@ -36,6 +36,7 @@ const formDiaryReducer = createReducer(initialState, {
 
     [deleteProductSuccess]: (state, {payload}) => ({
         ...state,
+        
         daySummary: payload.newDaySummary,
     }),
 
