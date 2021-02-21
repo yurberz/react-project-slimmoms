@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { toggleModal, clearState } from "../../redux/actions/calcAction";
+import { toggleModal } from "../../redux/actions/calcAction";
 
 // import PropTypes from "prop-types";
 
@@ -32,7 +32,6 @@ class Modal extends Component {
   };
   hndlBtnNext = () => {
     this.props.toggleModal();
-    this.props.clearState();
   };
 
   render() {
@@ -47,7 +46,6 @@ class Modal extends Component {
           <div className={s.modalBody}>
             <button
               type="button"
-              // name="zakrosya"
               className={s.modalBtn}
               onClick={this.hndlBtnNext}
             ></button>
@@ -63,8 +61,6 @@ class Modal extends Component {
   }
 }
 
-//notAllowed - огромній массив завтра уточним как вібирать
-
 const mapStateToProps = (state) => {
   return {
     modal: state.calculator.modal,
@@ -74,7 +70,6 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = {
   toggleModal,
-  clearState,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Modal);

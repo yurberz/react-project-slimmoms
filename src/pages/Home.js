@@ -6,6 +6,7 @@ import getReccomendation from "../redux/operations/calcOperation";
 import { toggleModal } from "../redux/actions/calcAction";
 import styled from "styled-components";
 import Modal from "../components/modal/Modal";
+import FormikCalc from "../utils/calculatorForm/FormikCalc";
 
 const Div = styled.div`
   margin-left: 0px;
@@ -25,6 +26,9 @@ class Home extends Component {
         {this.props.modal && <Modal />}
         <HomePageDecoration />
         <Div>
+          <FormikCalc
+            title={"Просчитай свою суточную норму калорий прямо сейчас"}
+          />
           <CalculatorForm
             title={"Просчитай свою суточную норму калорий прямо сейчас"}
             getReccomendation={getReccomendation}

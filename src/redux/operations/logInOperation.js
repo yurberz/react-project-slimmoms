@@ -10,7 +10,7 @@ import slimMomApi from "../../services/api";
 import { setLoading } from "../actions/loadingAction";
 
 const logInOperation = (user) => async (dispatch) => {
-  dispatch(setLoading());
+  // dispatch(setLoading());
   try {
     const response = await slimMomApi.logIn({ ...user });
 
@@ -23,7 +23,7 @@ const logInOperation = (user) => async (dispatch) => {
   } catch (error) {
     // dispatch(setErrorr(error));
   } finally {
-    dispatch(setLoading());
+    // dispatch(setLoading());
   }
 };
 // ====================================================

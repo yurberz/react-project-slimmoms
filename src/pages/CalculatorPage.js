@@ -6,6 +6,8 @@ import RightSideBar from "../utils/rightSideBar/rightSideBar";
 import styled from "styled-components";
 import bgLayers from "../img/layersBg.png";
 import bgTablet from "../img/rightSideBarBottom@1x.png";
+import CalcFormik from "../utils/calculatorForm/CalcFormik";
+import FormikCalc from "../utils/calculatorForm/FormikCalc";
 
 const Background = styled.div`
   position: absolute;
@@ -79,6 +81,7 @@ class CalculatorPage extends Component {
       <>
         <Background />
         <Div>
+          <FormikCalc title={"Узнай свою суточную норму калорий"} />
           <CalculatorForm
             getReccomendation={getReccomendation}
             id={this.props.id}
