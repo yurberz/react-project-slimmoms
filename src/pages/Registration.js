@@ -10,7 +10,7 @@ import { CSSTransition } from "react-transition-group";
 import "../components/form/register.css";
 
 const ContainerForm = styled.div`
-  max-width: 439px;
+  /* max-width: 439px; */
   padding-left: 15px;
   padding-right: 15px;
 
@@ -20,24 +20,24 @@ const ContainerForm = styled.div`
     padding-right: 87px;
   }
   @media screen and (min-width: 1280px) {
-    max-width: 639px;
+    /* max-width: 639px; */
     padding-left: 115px;
     padding-right: 115px;
   }
   @media screen and (max-width: 768px) {
-    max-width: 439px;
-    margin: 0 auto;
+    /* max-width: 439px; */
+    /* margin: 0 auto; */
   }
   @media screen and (max-width: 369px) {
-    max-width: 439px;
-    margin: 0 auto;
+    /* max-width: 439px; */
+    /* margin: 0 auto; */
   }
 `;
 const ContainerButton = styled.div`
   max-width: 400px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 0px;
   margin-top: 82px;
   @media screen and (max-width: 390px) {
@@ -47,19 +47,18 @@ const ContainerButton = styled.div`
 
 const HeadingH1 = styled.h1`
   color: #fc842d;
-  font-family: "GothamPro";
-  font-style: normal;
-  font-weight: bold;
+  font-family: GothamPro-Bold;
   font-size: 14px;
   line-height: 13px;
   letter-spacing: 0.04em;
-  margin-top: 100px;
-
+  margin-top: 112px;
   margin-bottom: 60px;
+
   @media screen and (min-width: 1300px) {
     margin-top: 100px;
     padding-top: 0;
   }
+
   @media screen and (max-width: 766px) {
     padding-top: 0;
     margin-top: 100px;
