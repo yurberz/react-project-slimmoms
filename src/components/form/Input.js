@@ -6,7 +6,7 @@ const FormInput = styled.input`
   border-right: none;
   border-left: none;
   padding: 15px 15px 15px 0;
-  width: 239px;
+  width: 289px;
   font-family: Verdana;
   font-style: normal;
   font-weight: bold;
