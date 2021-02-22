@@ -2,18 +2,10 @@ import { createReducer, combineReducers } from "@reduxjs/toolkit";
 import moment from "moment";
 
 import {
-  searchProductRequest,
   searchProductSuccess,
-  searchProductError,
-  addProductRequest,
   addProductSuccess,
-  addProductError,
-  deleteProductRequest,
   deleteProductSuccess,
-  deleteProductError,
-  getCurentDayInfoRequest,
   getCurentDayInfoSuccess,
-  getCurentDayInfoError,
 } from "../actions/diaryActions";
 import getUserInfoActions from "../actions/getUserInfoActions";
 
@@ -72,22 +64,8 @@ const formDiaryReducer = createReducer(initialState, {
   },
 });
 
-const errorDiaryReducer = createReducer(null, {
-  [searchProductError]: ({ payload }) => payload,
-  [searchProductRequest]: () => null,
-
-  [addProductError]: ({ payload }) => payload,
-  [addProductRequest]: () => null,
-
-  [deleteProductError]: ({ payload }) => payload,
-  [deleteProductRequest]: () => null,
-
-  [getCurentDayInfoError]: ({ payload }) => payload,
-  [getCurentDayInfoRequest]: () => null,
-});
 const userDiaryReducer = combineReducers({
   user: formDiaryReducer,
-  error: errorDiaryReducer,
 });
 
 export default userDiaryReducer;
