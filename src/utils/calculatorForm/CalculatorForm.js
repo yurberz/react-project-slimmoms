@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { Formik } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import getReccomendation from "../../redux/operations/calcOperation";
 import { chngUserParam } from "../../redux/operations/logInOperation";
 import sprite from "../../svg/elipscomb.svg";
-
 import {
   TitleForm,
   LabelCalc,
@@ -20,39 +20,13 @@ import {
   Span,
   FormButton,
   Error,
+  ErrorBlood,
 } from "./calculatorFormStyle";
 import { getLoading } from "../../redux/selectors/spinSelector";
 import Spin from "../../components/loader/Spin";
+import { schema } from "./schemaYup";
 
-const blType = {
-  TYPE1: 1,
-  TYPE2: 2,
-  TYPE3: 3,
-  TYPE4: 4,
-};
-
-const renderProps = Object.keys(blType).map((item) => ({
-  value: blType[item],
-}));
-
-const renderInputForm = [
-  {
-    title: "Рост *",
-    name: "height",
-  },
-  {
-    title: "Возраст *",
-    name: "age",
-  },
-  {
-    title: "Текущий вес *",
-    name: "weight",
-  },
-  {
-    title: "Желаемый вес *",
-    name: "desiredWeight",
-  },
-];
+const types = [1, 2, 3, 4];
 
 const initialState = {
   weight: "",
@@ -62,172 +36,125 @@ const initialState = {
   bloodType: null,
 };
 
-class CalculatorForm extends Component {
-  state = { ...initialState };
+const FormikCalc = ({ getReccomendation, chngUserParam, id, title, spin }) => {
+  return (
+    <WrapCalc>
+      {spin && <Spin />}
+      <TitleForm>{title}</TitleForm>
+      <Formik
+        initialValues={{ ...initialState }}
+        validationSchema={schema}
+        onSubmit={(values, actions) => {
+          values = {
+            weight: parseInt(values.weight),
+            height: parseInt(values.height),
+            age: parseInt(values.age),
+            desiredWeight: parseInt(values.desiredWeight),
+            bloodType: Number(values.bloodType),
+          };
+          if (!id) {
+            getReccomendation({ ...values });
+          } else {
+            chngUserParam({ ...values }, id);
+          }
+          actions.resetForm({ ...initialState });
+        }}
+      >
+        {({
+          errors,
+          touched,
+          values,
+          handleChange,
+          isValid,
+          dirty,
+          isSubmitting,
+        }) => (
+          <Form>
+            <InnerDiv>
+              <WrapInput>
+                <LabelCalc>Рост *</LabelCalc>
+                <InputCalc
+                  name="height"
+                  value={values.height}
+                  onChange={handleChange}
+                />
+                <Error component="div" name="height" />
+              </WrapInput>
+              <WrapInput>
+                <LabelCalc>Возраст *</LabelCalc>
+                <InputCalc
+                  name="age"
+                  value={values.age}
+                  onChange={handleChange}
+                />
+                <Error component="div" name="age" />
+              </WrapInput>
+              <WrapInput>
+                <LabelCalc>Текущий вес *</LabelCalc>
+                <InputCalc
+                  name="weight"
+                  value={values.weight}
+                  onChange={handleChange}
+                />
+                <Error component="div" name="weight" />
+              </WrapInput>
+              <WrapInput>
+                <LabelCalc>Желаемый вес *</LabelCalc>
+                <InputCalc
+                  name="desiredWeight"
+                  value={values.desiredWeight}
+                  onChange={handleChange}
+                />
+                <Error component="div" name="desiredWeight" />
+              </WrapInput>
+              <Text>Группа крови *</Text>
+              <WrapRadio role="group" aria-labelledby="my-radio-group">
+                {types.map((item) => (
+                  <LabelRadio key={item}>
+                    <InputRadio
+                      key={item}
+                      type="radio"
+                      name="bloodType"
+                      id={item}
+                      value={item}
+                      checked={values.bloodType == item}
+                    />
+                    {values.bloodType == item ? (
+                      <>
+                        <Svg>
+                          <use href={sprite + "#icon-elips-combine"} />
+                        </Svg>
+                        <Span checked>{item}</Span>
+                      </>
+                    ) : (
+                      <>
+                        <Svg>
+                          <use href={sprite + "#icon-elips-gray"} />
+                        </Svg>
+                        <Span>{item}</Span>
+                      </>
+                    )}
+                  </LabelRadio>
+                ))}
+              </WrapRadio>
+              <ErrorBlood component="div" name="bloodType" />
+            </InnerDiv>
 
-  onInputChng = (e) => {
-    const { name, value } = e.target;
-    this.setState({ [name]: value });
-  };
-
-  onRadioCheck = (e) => {
-    this.setState({ bloodType: Number(e.target.value) });
-  };
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-    if (!this.props.id) {
-      this.props.getReccomendation({ ...this.state });
-    } else {
-      console.log(this.props.id);
-      this.props.chngUserParam({ ...this.state }, this.props.id);
-    }
-  };
-
-  render() {
-    return (
-      <>
-        <WrapCalc>
-          {this.props.spin && <Spin />}
-          <TitleForm>{this.props.title}</TitleForm>
-
-          <Formik
-            initialValues={{ ...initialState }}
-            validate={(values) => {
-              const errors = {};
-              if (!values.weight) {
-                errors.weight = "Все поля должны быть заполнены";
-              } else if (!parseInt(values.weight)) {
-                errors.weight = "Укажите вес от 20 до 500кг";
-              } else if (
-                parseInt(values.weight) < 20 ||
-                parseInt(values.weight) > 500
-              ) {
-                errors.weight = "Укажите вес от 20 до 500кг";
-              }
-              if (!values.height) {
-                errors.height = "Все поля должны быть заполнены";
-              } else if (!parseInt(values.height)) {
-                errors.height = "Укажите рост от 100 до 250см";
-              } else if (
-                parseInt(values.height) < 100 ||
-                parseInt(values.height) > 250
-              ) {
-                errors.height = "Укажите рост от 100 до 250см";
-              }
-              if (!values.desiredWeight) {
-                errors.desiredWeight = "Все поля должны быть заполнены";
-              } else if (!parseInt(values.desiredWeight)) {
-                errors.desiredWeight = "Укажите вес от 20 до 500кг";
-              } else if (
-                parseInt(values.desiredWeight) < 20 ||
-                parseInt(values.desiredWeight) > 500
-              ) {
-                errors.desiredWeight = "Укажите вес от 20 до 500кг";
-              }
-              if (!values.age) {
-                errors.age = "Все поля должны быть заполнены";
-              } else if (!parseInt(values.age)) {
-                errors.age = "Укажите возраст от 18 до 100лет";
-              } else if (
-                parseInt(values.age) < 18 ||
-                parseInt(values.age) > 100
-              ) {
-                errors.age = "Укажите возраст от 18 до 100лет";
-              }
-              if (!values.bloodType) {
-                errors.bloodType = "Все поля должны быть заполнены";
-              }
-              return errors;
-            }}
-            onSubmit={(values) => {
-              this.setState({
-                weight: parseInt(values.weight),
-                height: parseInt(values.height),
-                age: parseInt(values.age),
-                desiredWeight: parseInt(values.desiredWeight),
-                bloodType: Number(values.bloodType),
-              });
-              console.log("state", this.state);
-              // this.onSubmitForm(values);
-            }}
-          >
-            {({
-              values,
-              errors,
-              touched,
-              handleChange,
-              handleBlur,
-              handleSubmit,
-              isSubmitting,
-            }) => (
-              <form onSubmit={this.handleSubmit}>
-                <InnerDiv>
-                  {renderInputForm.map((item) => (
-                    <WrapInput key={item.name}>
-                      <LabelCalc>{item.title}</LabelCalc>
-                      <InputCalc
-                        type="text"
-                        value={values[item.name]}
-                        name={item.name}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                      />
-                      {/* </LabelCalc> */}
-                      {errors[item.name] && touched[item.name] && (
-                        <Error>{errors[item.name]}</Error>
-                      )}
-                    </WrapInput>
-                  ))}
-
-                  <Text>Группа крови *</Text>
-                  <WrapRadio role="group">
-                    {renderProps.map((item) => (
-                      <LabelRadio key={item.value}>
-                        <InputRadio
-                          type="radio"
-                          value={item.value}
-                          checked={item.value === values.bloodType}
-                          onChange={handleChange}
-                          name={item.value}
-                        />
-                        {item.value === this.state.bloodType ? (
-                          <>
-                            <Svg checked>
-                              <use href={sprite + "#icon-elips-combine"} />
-                            </Svg>
-                            <Span checked>{item.value}</Span>
-                          </>
-                        ) : (
-                          <>
-                            <Svg>
-                              <use href={sprite + "#icon-elips-gray"} />
-                              {/* <use href={sprite + "#icon-elips-orange"} /> */}
-                            </Svg>
-                            <Span>{item.value}</Span>{" "}
-                          </>
-                        )}{" "}
-                      </LabelRadio>
-                    ))}
-                  </WrapRadio>
-                  {/* {errors.bloodType && touched.bloodType && (
-                    <Error>{errors.bloodType}</Error>
-                  )} */}
-                </InnerDiv>
-                <FormButton type="submit">Похудеть</FormButton>
-              </form>
-            )}
-          </Formik>
-        </WrapCalc>
-      </>
-    );
-  }
-}
+            <FormButton
+              type="submit"
+              disabled={!isValid && !dirty && isSubmitting}
+            >
+              Похудеть
+            </FormButton>
+          </Form>
+        )}
+      </Formik>
+    </WrapCalc>
+  );
+};
 
 const mapDispatchToProps = {
   getReccomendation,
-  // clearState,
-  // toggleModal,
   chngUserParam,
 };
 
@@ -239,4 +166,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CalculatorForm);
+export default connect(mapStateToProps, mapDispatchToProps)(FormikCalc);

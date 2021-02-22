@@ -84,7 +84,7 @@ const InputCalc = styled(Field)`
   outline: none;
   width: 100%;
   height: 26px;
-  padding-left: 160px;
+  padding-left: 180px;
   &:focus {
     background-color: white;
     border-bottom: 1px solid #e0e0e0;
@@ -103,21 +103,28 @@ const LabelCalc = styled.span`
   line-height: 1.214;
   letter-spacing: 0.04em;
   color: #9b9faa;
-  /* color: #264061; */
+  ${InputCalc} &:focus {
+    color: #264061;
+  }
 `;
-
 const InputRadio = styled(Field)`
   position: absolute;
-  width: 1px;
+  /* width: 1px;
   height: 1px;
   margin: -1px;
   padding: 0;
   overflow: hidden;
   border: 0;
-  clip: rect(0 0 0 0);
-  &:hover {
-    font-family: "Verdana-Bold";
-    color: #fc842d;
+  clip: rect(0 0 0 0); */
+  appearance: none;
+  &:focus {
+    width: 16px;
+    height: 16px;
+    outline: 1px solid #fc842d;
+    transform: translate(-3px, -2px);
+  }
+  &:checked {
+    outline: none;
   }
 `;
 
@@ -132,15 +139,11 @@ const LabelRadio = styled.label`
   &:not(:last-child) {
     margin-right: 28px;
   }
-  &:checked {
+  ${InputRadio}:focus & {
     font-family: "Verdana-Bold";
     color: #fc842d;
   }
   &:focus {
-    font-family: "Verdana-Bold";
-    color: #fc842d;
-  }
-  &:hover {
     font-family: "Verdana-Bold";
     color: #fc842d;
   }
@@ -155,9 +158,6 @@ const Svg = styled.svg`
 const Span = styled.span`
   color: ${(props) => (props.checked ? "#fc842d" : "#9b9faa")};
   font-family: ${(props) => (props.checked ? "Verdana-Bold" : "Verdana")};
-  ${InputRadio}:checked & {
-    color: yellow;
-  }
 `;
 
 const Text = styled.p`
@@ -166,6 +166,7 @@ const Text = styled.p`
   line-height: 1.214;
   letter-spacing: 0.04em;
   color: #9b9faa;
+  margin-bottom: 8px;
   @media (min-width: 768px) {
     margin-left: 15px;
   }
@@ -193,18 +194,21 @@ const FormButton = styled.button`
   text-align: center;
   letter-spacing: 0.04em;
   margin: 60px 0 0 0;
-  color: #fff;
+  /* color: #fff; */
+  /* color: ${(props) => (props.disabled ? "#9b9faa" : "#fff")}; */
+  color: ${(props) => (props.disabled ? "green" : "#fff")};
+  background-color: ${(props) =>
+    props.disabled ? "rgba(252, 132, 45, 0.5)" : "#fc842d"};
 
   margin-top: 40px;
   margin-right: auto;
   margin-left: auto;
-  &:focus {
+  /* &:focus {
     background: #fff;
     color: #fc842d;
     border: 2px solid #fc842d;
     box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
-  }
-
+  } */
   @media (min-width: 768px) {
     margin-top: 60px;
     margin-left: 0;
@@ -215,10 +219,20 @@ const FormButton = styled.button`
   }
 `;
 
-const Error = styled.p`
+const Error = styled(ErrorMessage)`
   font-family: "Verdana";
   font-size: 10px;
   color: red;
+`;
+const ErrorBlood = styled(ErrorMessage)`
+  font-family: "Verdana";
+  font-size: 10px;
+  color: red;
+  margin-bottom: -12px;
+  @media (min-width: 768px) {
+    margin-left: 15px;
+    margin-bottom: 0;
+  }
 `;
 
 export {
@@ -236,4 +250,5 @@ export {
   Span,
   FormButton,
   Error,
+  ErrorBlood,
 };

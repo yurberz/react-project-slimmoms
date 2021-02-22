@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import getReccomendation from "../../redux/operations/calcOperation";
 import { chngUserParam } from "../../redux/operations/logInOperation";
 import sprite from "../../svg/elipscomb.svg";
-
 import {
   TitleForm,
   LabelCalc,
@@ -20,17 +20,13 @@ import {
   Span,
   FormButton,
   Error,
+  ErrorBlood,
 } from "./calculatorFormStyle";
 import { getLoading } from "../../redux/selectors/spinSelector";
 import Spin from "../../components/loader/Spin";
+import { schema } from "./schemaYup";
 
 const types = [1, 2, 3, 4];
-// const renderProps = Object.keys(types).map((item) => ({
-//   value: types[item],
-// }));
-// types.map((item) => {
-//   console.log("item", item);
-// });
 
 const initialState = {
   weight: "",
@@ -40,59 +36,6 @@ const initialState = {
   bloodType: null,
 };
 
-function validateWeight(value) {
-  let error;
-  if (!value) {
-    error = "Все поля должны быть заполнены";
-  } else if (!parseInt(value)) {
-    error = "Укажите вес от 20 до 500кг";
-  } else if (parseInt(value) < 20 || parseInt(value) > 500) {
-    error = "Укажите вес от 20 до 500кг";
-  }
-  return error;
-}
-function validateHeight(value) {
-  let error;
-  if (!value) {
-    error = "Все поля должны быть заполнены";
-  } else if (!parseInt(value)) {
-    error = "Укажите рост от 100 до 250см";
-  } else if (parseInt(value) < 100 || parseInt(value) > 250) {
-    error = "Укажите рост от 100 до 250см";
-  }
-  return error;
-}
-function validateAge(value) {
-  let error;
-  if (!value) {
-    error = "Все поля должны быть заполнены";
-  } else if (!parseInt(value)) {
-    error = "Укажите возраст от 18 до 100лет";
-  } else if (parseInt(value) < 18 || parseInt(value) > 100) {
-    error = "Укажите возраст от 18 до 100лет";
-  }
-  return error;
-}
-
-function validateDesireWeight(value) {
-  let error;
-  if (!value) {
-    error = "Все поля должны быть заполнены";
-  } else if (!parseInt(value)) {
-    error = "Укажите желаемый вес от 20 до 500кг ";
-  } else if (parseInt(value) < 18 || parseInt(value) > 500) {
-    error = "Укажите желаемый вес от 20 до 500кг ";
-  }
-  return error;
-}
-
-function validateBloodType(value) {
-  let error;
-  if (!value) {
-    error = "Все поля должны быть заполнены";
-  }
-}
-
 const FormikCalc = ({ getReccomendation, chngUserParam, id, title, spin }) => {
   return (
     <WrapCalc>
@@ -100,7 +43,8 @@ const FormikCalc = ({ getReccomendation, chngUserParam, id, title, spin }) => {
       <TitleForm>{title}</TitleForm>
       <Formik
         initialValues={{ ...initialState }}
-        onSubmit={(values) => {
+        validationSchema={schema}
+        onSubmit={(values, actions) => {
           values = {
             weight: parseInt(values.weight),
             height: parseInt(values.height),
@@ -113,21 +57,17 @@ const FormikCalc = ({ getReccomendation, chngUserParam, id, title, spin }) => {
           } else {
             chngUserParam({ ...values }, id);
           }
+          actions.resetForm({ ...initialState });
         }}
-        // setFieldValue={(values) => {
-        //   console.log("values", values);
-        // }}
       >
         {({
           errors,
           touched,
-          isValidating,
-          validate,
           values,
-          handleBlur,
           handleChange,
-          setFieldValue,
-          handleReset,
+          isValid,
+          dirty,
+          isSubmitting,
         }) => (
           <Form>
             <InnerDiv>
@@ -135,102 +75,77 @@ const FormikCalc = ({ getReccomendation, chngUserParam, id, title, spin }) => {
                 <LabelCalc>Рост *</LabelCalc>
                 <InputCalc
                   name="height"
-                  validate={validateHeight}
                   value={values.height}
                   onChange={handleChange}
                 />
-                {errors.height && touched.height && (
-                  <Error>{errors.height}</Error>
-                )}
+                <Error component="div" name="height" />
               </WrapInput>
               <WrapInput>
                 <LabelCalc>Возраст *</LabelCalc>
                 <InputCalc
                   name="age"
-                  validate={validateAge}
                   value={values.age}
                   onChange={handleChange}
                 />
-                {errors.age && touched.age && <Error>{errors.age}</Error>}
+                <Error component="div" name="age" />
               </WrapInput>
               <WrapInput>
                 <LabelCalc>Текущий вес *</LabelCalc>
                 <InputCalc
                   name="weight"
-                  validate={validateWeight}
                   value={values.weight}
                   onChange={handleChange}
                 />
-                {errors.weight && touched.weight && (
-                  <Error>{errors.weight}</Error>
-                )}
+                <Error component="div" name="weight" />
               </WrapInput>
               <WrapInput>
                 <LabelCalc>Желаемый вес *</LabelCalc>
                 <InputCalc
                   name="desiredWeight"
-                  validate={validateDesireWeight}
                   value={values.desiredWeight}
                   onChange={handleChange}
                 />
-                {errors.desiredWeight && touched.desiredWeight && (
-                  <Error>{errors.desiredWeight}</Error>
-                )}
+                <Error component="div" name="desiredWeight" />
               </WrapInput>
               <Text>Группа крови *</Text>
               <WrapRadio role="group" aria-labelledby="my-radio-group">
                 {types.map((item) => (
                   <LabelRadio key={item}>
                     <InputRadio
+                      key={item}
                       type="radio"
                       name="bloodType"
+                      id={item}
                       value={item}
-                      checked={values.bloodType === item}
-                      onChange={() => setFieldValue("bloodType", item)}
+                      checked={values.bloodType == item}
                     />
-                    {values.bloodType === item ? (
-                      <Svg>
-                        <use href={sprite + "#icon-elips-combine"} />
-                      </Svg>
+                    {values.bloodType == item ? (
+                      <>
+                        <Svg>
+                          <use href={sprite + "#icon-elips-combine"} />
+                        </Svg>
+                        <Span checked>{item}</Span>
+                      </>
                     ) : (
-                      <Svg>
-                        <use href={sprite + "#icon-elips-gray"} />
-                      </Svg>
+                      <>
+                        <Svg>
+                          <use href={sprite + "#icon-elips-gray"} />
+                        </Svg>
+                        <Span>{item}</Span>
+                      </>
                     )}
-                    {item}
                   </LabelRadio>
                 ))}
-                {/* <LabelRadio>
-                  <InputRadio
-                    type="radio"
-                    name="bloodType"
-                    value="1"
-                    checked={values.bloodType === "1"}
-                    onChange={() => setFieldValue("bloodType", "1")}
-                  />
-                  {values.bloodType === "1" ? (
-                    <Svg checked>
-                      <use href={sprite + "#icon-elips-combine"} />
-                    </Svg>
-                  ) : (
-                    <Svg>
-                      <use href={sprite + "#icon-elips-gray"} />
-                    </Svg>
-                  )}
-                  1
-                </LabelRadio>
-                <LabelRadio>
-                  <InputRadio type="radio" name="bloodType" value="2" />2
-                </LabelRadio>
-                <LabelRadio>
-                  <InputRadio type="radio" name="bloodType" value="3" />3
-                </LabelRadio>
-                <LabelRadio>
-                  <InputRadio type="radio" name="bloodType" value="4" />4
-                </LabelRadio> */}
               </WrapRadio>
+              <ErrorBlood component="div" name="bloodType" />
             </InnerDiv>
-            <FormButton type="submit">Похудеть</FormButton>
+
+            <FormButton
+              type="submit"
+              disabled={!isValid && !dirty && isSubmitting}
+            >
+              Похудеть
+            </FormButton>
           </Form>
         )}
       </Formik>

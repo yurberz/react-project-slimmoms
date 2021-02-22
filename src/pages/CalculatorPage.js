@@ -81,7 +81,6 @@ class CalculatorPage extends Component {
       <>
         <Background />
         <Div>
-          <FormikCalc title={"Узнай свою суточную норму калорий"} />
           <CalculatorForm
             getReccomendation={getReccomendation}
             id={this.props.id}

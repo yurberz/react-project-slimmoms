@@ -26,9 +26,6 @@ class Home extends Component {
         {this.props.modal && <Modal />}
         <HomePageDecoration />
         <Div>
-          <FormikCalc
-            title={"Просчитай свою суточную норму калорий прямо сейчас"}
-          />
           <CalculatorForm
             title={"Просчитай свою суточную норму калорий прямо сейчас"}
             getReccomendation={getReccomendation}
