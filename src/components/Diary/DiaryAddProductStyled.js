@@ -27,6 +27,7 @@ const Wrapper = styled.div`
     text-overflow: ellipsis;
   }
   .button {
+    outline: none;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -58,6 +59,22 @@ const Wrapper = styled.div`
       font-size: 14px;
     }
   }
+  @media screen and (min-width: 768px) {
+    .form_add {
+      position: relative;
+      /* outline: 1px solid tomato; */
+      //         align-items: self-start;
+      //      justify-content: space-between;
+      //      width: 524px;
+      //      padding-top: 0;
+      //     //
+      //      padding-right: 3px;
+      //   //display: flex;
+      //   height: 210px;
+      //   overscroll-behavior: contain;
+      //   overflow-y: auto;
+      //   overflow-x: hidden;
+      margin-bottom: 60px;
 
   @media screen and (min-width: 768px) {
     .form_add {
@@ -74,6 +91,7 @@ const Wrapper = styled.div`
       letter-spacing: 0.04em;
     }
     .button {
+      outline: none;
       margin-top: 0;
       margin-right: 0;
       margin-left: 0;
@@ -96,6 +114,15 @@ const Wrapper = styled.div`
       text-align: end;
     }
     .input_add-product {
+      /* width: 292px; */
+      width: 243px;
+      font-size: 16px;
+      display: inline-block;
+      margin-right: 30px;
+    }
+    .svg-add {
+      width: 50px;
+      height: 50px;
       width: 292px;
       font-size: 16px;
       display: inline-block;

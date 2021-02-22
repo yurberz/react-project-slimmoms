@@ -20,7 +20,6 @@ const TitleForm = styled.h2`
   font-size: 18px;
   line-height: 1.44;
   color: #212121;
-  /* margin-bottom: 40px; */
   margin-bottom: 30px;
   @media (min-width: 768px) {
     width: 605px;
@@ -37,7 +36,6 @@ const TitleForm = styled.h2`
 `;
 
 const InnerDiv = styled.div`
-  /* outline: 1px solid tomato; */
   @media (min-width: 768px) {
     margin: -15px;
     height: 200px;
@@ -49,7 +47,6 @@ const InnerDiv = styled.div`
   }
 `;
 const WrapInput = styled.div`
-  /* outline: 1px solid green; */
   position: relative;
   width: 240px;
   height: 26px;
@@ -103,9 +100,6 @@ const LabelCalc = styled.span`
   line-height: 1.214;
   letter-spacing: 0.04em;
   color: #9b9faa;
-  ${InputCalc} &:focus {
-    color: #264061;
-  }
 `;
 const InputRadio = styled(Field)`
   position: absolute;
@@ -195,23 +189,20 @@ const FormButton = styled.button`
   letter-spacing: 0.04em;
   margin: 60px 0 0 0;
   /* color: #fff; */
-  /* color: ${(props) => (props.disabled ? "#9b9faa" : "#fff")}; */
-  color: ${(props) => (props.disabled ? "green" : "#fff")};
-  background-color: ${(props) => {
-    return;
-    console.log(props.disabled);
-    // props.disabled ? "rgba(252, 132, 45, 0.5)" : "#fc842d";
-  }};
+  color: ${(props) => (props.shadow ? "#9b9faa" : "#fff")};
+  /* color: ${(props) => (props.disabled ? "green" : "#fff")}; */
+  background-color: ${(props) =>
+    props.shadow ? "rgba(252, 132, 45, 0.5)" : "#fc842d"};
 
   margin-top: 40px;
   margin-right: auto;
   margin-left: auto;
-  /* &:focus {
+  &:focus {
     background: #fff;
     color: #fc842d;
     border: 2px solid #fc842d;
     box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
-  } */
+  }
   @media (min-width: 768px) {
     margin-top: 60px;
     margin-left: 0;

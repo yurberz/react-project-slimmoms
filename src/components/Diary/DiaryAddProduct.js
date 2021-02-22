@@ -19,6 +19,7 @@ class DiaryAddProduct extends Component {
     productId: "",
     date: "",
     render: false,
+    inputValue: "",
   };
 
   submitDiaryAddProduct = (event) => {
@@ -41,6 +42,9 @@ class DiaryAddProduct extends Component {
   };
 
   inputHandlerDiaryAddGramm = (event) => {
+    // if (this.state.inputValue) {
+    //   event.target.value = this.state.inputValue;
+    // }
     this.setState((prev) => ({ ...prev, weight: event.target.value }));
   };
 
@@ -53,7 +57,15 @@ class DiaryAddProduct extends Component {
   };
 
   filterListClickLi = (event) => {
-    this.setState((prev) => ({ ...prev, productId: event.target.dataset.id }));
+    const inputV = this.props.productVariables.find(
+      (item) => item._id == event.target.dataset.id
+    );
+
+    this.setState((prev) => ({
+      ...prev,
+      productId: event.target.dataset.id,
+      inputValue: inputV,
+    }));
   };
 
   setSelectedData = (date) => {
@@ -103,6 +115,7 @@ class DiaryAddProduct extends Component {
                   <input
                     className="input_add-product"
                     placeholder="Введите название продукта"
+                    // value
                     onChange={debounce(this.inputHandlerDiaryAddProduct, 500)}
                   />
                   {filterList.length > 0 && (
