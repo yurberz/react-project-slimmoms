@@ -6,8 +6,6 @@ import RightSideBar from "../utils/rightSideBar/rightSideBar";
 import styled from "styled-components";
 import bgLayers from "../img/layersBg.png";
 import bgTablet from "../img/rightSideBarBottom@1x.png";
-import CalcFormik from "../utils/calculatorForm/CalcFormik";
-import FormikCalc from "../utils/calculatorForm/FormikCalc";
 
 const Background = styled.div`
   position: absolute;
@@ -62,6 +60,7 @@ const Div = styled.div`
   padding-right: 15px;
 
   @media screen and (min-width: 768px) {
+    padding-top: 99px;
     padding-left: 87px;
     padding-right: 87px;
   }
@@ -70,6 +69,7 @@ const Div = styled.div`
     display: flex;
     align-items: baseline;
     justify-content: space-between;
+    padding-top: 0px;
     padding-left: 115px;
     padding-right: 115px;
   }

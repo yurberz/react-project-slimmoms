@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import debounce from "lodash.debounce";
 import FilterList from "./FilterList";
 import DiaryCalendar from "./DiaryCalendar";
+import back from "../modal/svg/icon-back.svg";
 
 class DiaryAddProduct extends Component {
   state = {
@@ -18,12 +19,6 @@ class DiaryAddProduct extends Component {
     productId: "",
     date: "",
     render: false,
-  };
-
-  handleClick = () => {
-    this.setState((prevState) => {
-      return { render: !prevState.render };
-    });
   };
 
   submitDiaryAddProduct = (event) => {
@@ -35,16 +30,20 @@ class DiaryAddProduct extends Component {
         weight: this.state.weight,
       });
     }
+    this.handleClick();
   };
+
   inputHandlerDiaryAddProduct = ({ target }) => {
     if (target.value === "") {
       return;
     }
     this.props.searchProductOperation(target.value);
   };
+
   inputHandlerDiaryAddGramm = (event) => {
     this.setState((prev) => ({ ...prev, weight: event.target.value }));
   };
+
   filterList = () => {
     return this.props.productVariables
       .map(({ title, _id }) => {
@@ -52,15 +51,21 @@ class DiaryAddProduct extends Component {
       })
       .filter((prod, index) => (index <= 9 ? true : false));
   };
+
   filterListClickLi = (event) => {
     this.setState((prev) => ({ ...prev, productId: event.target.dataset.id }));
   };
+
   setSelectedData = (date) => {
     this.setState((prev) => ({ ...prev, date: date }));
   };
-  // componentDidUpdate() {
-  //     console.log(this.state);
-  // }
+
+  handleClick = () => {
+    this.setState((prevState) => {
+      return { render: !prevState.render };
+    });
+  };
+
   render() {
     const filterList = this.filterList();
     if (this.props.mobile) {
@@ -87,8 +92,7 @@ class DiaryAddProduct extends Component {
                   type="button"
                   className="closeModal"
                 >
-                  {/* <img src={back} alt="back-arrow" /> */}
-                  back
+                  <img src={back} alt="back-arrow" />
                 </button>
               </div>
               <>

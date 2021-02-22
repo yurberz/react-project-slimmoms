@@ -53,7 +53,7 @@ export const Section = styled.section`
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     display: flex;
     position: relative;
-    padding-top: 250px;
+    padding-top: 160px;
     padding-bottom: 0px;
     h2 {
       margin-bottom: 23px;
