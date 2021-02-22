@@ -1,8 +1,12 @@
-const FilterList = ({list, handleClickLi}) => {
+import FilterListStyled from "./FilterListStyled"
+
+const FilterList = ({ list, handleClickLi }) => {
     return (
-        <ul>
-            {list.map((item) => (<li key={item.id} data-id={item.id} onClick={handleClickLi}>{item.title}</li>))} 
+        <FilterListStyled>
+        <ul className="filter-list_ul">
+            {list.map((item) => (<li className="filter-list_li" key={item.id} data-id={item.id} onClick={handleClickLi}>{item.title}</li>))} 
             </ul>
+            </FilterListStyled>
     )
 }
 

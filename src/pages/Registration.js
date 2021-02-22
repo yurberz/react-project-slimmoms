@@ -11,15 +11,26 @@ import "../components/form/register.css";
 
 const ContainerForm = styled.div`
   max-width: 439px;
-  padding: 15px;
-  @media screen and (max-width: 1279px) {
-    margin: 82px auto;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  @media screen and (min-width: 768px) {
+    max-width: 639px;
+    padding-left: 87px;
+    padding-right: 87px;
+  }
+  @media screen and (min-width: 1280px) {
+    max-width: 639px;
+    padding-left: 115px;
+    padding-right: 115px;
   }
   @media screen and (max-width: 768px) {
-    margin: 82px auto 82px auto;
+    max-width: 439px;
+    margin: 0 auto;
   }
-  @media screen and (max-width: 390px) {
-    margin: 20px auto 0px auto;
+  @media screen and (max-width: 369px) {
+    max-width: 439px;
+    margin: 0 auto;
   }
 `;
 const ContainerButton = styled.div`
@@ -42,15 +53,20 @@ const HeadingH1 = styled.h1`
   font-size: 14px;
   line-height: 13px;
   letter-spacing: 0.04em;
+  margin-top: 100px;
+
   margin-bottom: 60px;
   @media screen and (min-width: 1300px) {
+    margin-top: 100px;
     padding-top: 0;
-    margin-top: 0;
   }
   @media screen and (max-width: 766px) {
     padding-top: 0;
-    margin-top: 0;
+    margin-top: 100px;
     text-align: center;
+  }
+  @media screen and (max-width: 390px) {
+    margin-top: 42px;
   }
 `;
 

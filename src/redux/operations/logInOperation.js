@@ -23,14 +23,10 @@ const logInOperation = (user) => async (dispatch) => {
 
     slimMomApi.setToken(response.accessToken);
 
-    if (response === "Request failed with status code 403") {
-      dispatch(setErrorr(response));
-    } else {
-      dispatch(signIn(response));
-      dispatch(getUserInfo());
-    }
+    dispatch(signIn(response));
+    dispatch(getUserInfo());
   } catch (error) {
-    // dispatch(setErrorr(error));
+    dispatch(setErrorr(error.message));
   } finally {
     // dispatch(setLoading());
   }
