@@ -3,10 +3,10 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 
 const WrapCalc = styled.div`
   width: 290px;
-  margin-top: 30px;
-  /* margin-bottom: 80x; */
+  padding-top: 30px;
 
   @media (min-width: 768px) {
+    padding-top: 90px;
     width: 605px;
     height: 420px;
   }
@@ -215,7 +215,7 @@ const FormButton = styled.button`
   }
   @media (min-width: 1280px) {
     margin-top: 60px;
-    margin-left: 320px;
+    margin-left: 348px;
   }
 `;
 

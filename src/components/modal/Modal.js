@@ -28,7 +28,9 @@ class Modal extends Component {
       // this.props.toggleModal();
       // this.props.clearState();gi
       this.hndlBtnNext();
+      return;
     }
+    this.hndlBtnNext();
   };
   hndlBtnNext = () => {
     this.props.toggleModal();

@@ -56,7 +56,7 @@ class slimMomApi {
         });
     }
     return axios
-      .post("/daily-rate/", userCharacteristics)
+      .post("/daily-rate", userCharacteristics)
       .then((res) => res.data)
       .catch((error) => {
         throw new Error(error);
@@ -92,7 +92,9 @@ class slimMomApi {
     return axios
       .get("/user")
       .then((res) => res.data)
-      .catch((error) => error.message);
+      .catch((error) => {
+        throw new Error(error);
+      });
   }
   //===
 }

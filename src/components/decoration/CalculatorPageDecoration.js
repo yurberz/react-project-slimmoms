@@ -1,11 +1,11 @@
 import React from 'react'
-import s from './CalculatorPageDecoration.module.css'
+import { CalcContainer } from './CalculatorPageStyled'
 
 const CalculatorPageDecoration = () => {
     return (
-        <div className={s.decoration}>
-            <div className={s.decleaves}></div>
-        </div>
+        <CalcContainer>
+            <div className="decleaves"></div>
+        </CalcContainer>
     );
 }
 
