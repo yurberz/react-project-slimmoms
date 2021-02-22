@@ -30,7 +30,7 @@ const logInOperation = (user) => async (dispatch) => {
       dispatch(getUserInfo());
     }
   } catch (error) {
-    // dispatch(setErrorr(error));
+    dispatch(setErrorr(error.message));
   } finally {
     dispatch(setLoading());
   }

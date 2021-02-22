@@ -13,8 +13,7 @@ const signUpOperation = (user, history) => async (dispatch) => {
       });
     }
   } catch (error) {
-    // dispatch(setError(error));
-    // console.log(error);
+    dispatch(setError(error.message));
   } finally {
     // dispatch(signIn(response.user));
   }
