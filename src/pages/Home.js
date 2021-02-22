@@ -14,8 +14,13 @@ const Div = styled.div`
   margin-bottom: 0px;
   margin-top: 0px;
   padding-left: 15px;
-  @media screen and(min-width: 768px) {
+  @media screen and (min-width: 768px) {
     margin: 0 auto;
+    padding-left: 87px;
+  }
+   @media screen and (min-width: 1280px) {
+    margin: 0 auto;
+    padding-left: 115px;
   }
 `;
 
