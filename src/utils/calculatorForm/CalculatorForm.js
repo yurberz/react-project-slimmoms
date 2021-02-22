@@ -143,6 +143,7 @@ const FormikCalc = ({ getReccomendation, chngUserParam, id, title, spin }) => {
             <FormButton
               type="submit"
               disabled={!isValid && !dirty && isSubmitting}
+              shadow={!isValid}
             >
               Похудеть
             </FormButton>
