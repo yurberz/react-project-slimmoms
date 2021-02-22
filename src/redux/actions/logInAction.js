@@ -4,6 +4,8 @@ export const signIn = createAction("@SIGN_IN");
 
 export const setErrorr = createAction("@SET_ERRORR");
 
+export const setLoading = createAction("@SET_LOADING");
+
 //=====================
 
 export const chngRecomends = createAction("@CHNGUSERRECOMENDS");

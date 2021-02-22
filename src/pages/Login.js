@@ -9,6 +9,7 @@ import { logOut } from "../redux/actions/logOutAction";
 import { Link } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import "../components/form/register.css";
+import { getLoading } from "../redux/selectors/spinSelector";
 
 const ContainerForm = styled.div`
   max-width: 439px;
@@ -112,53 +113,55 @@ class Login extends Component {
   render() {
     const error = this.props.error;
     return (
-      <ContainerForm>
-        <LoginPageDecoration />
-        <CSSTransition
-          in={this.state.error.length >= 1}
-          timeout={500}
-          classNames="fade"
-          unmountOnExit
-        >
-          <div className="warning">
-            <p>{this.state.error}</p>
-          </div>
-        </CSSTransition>
-        <CSSTransition
-          in={error.length >= 1}
-          timeout={500}
-          classNames="fade"
-          unmountOnExit
-        >
-          <div className="warning">
-            <p>Профиль не зарегестрирован</p>
-          </div>
-        </CSSTransition>
-        <HeadingH1>ВХОД</HeadingH1>
-        <form onSubmit={this.onSubmit}>
-          <Inputt
-            text={"email"}
-            placeholder={"Электронная почта *"}
-            name={"email"}
-            onChange={this.onChange}
-            value={this.state.email}
-          />
+      <>
+        <ContainerForm>
+          <LoginPageDecoration />
+          <CSSTransition
+            in={this.state.error.length >= 1}
+            timeout={500}
+            classNames="fade"
+            unmountOnExit
+          >
+            <div className="warning">
+              <p>{this.state.error}</p>
+            </div>
+          </CSSTransition>
+          <CSSTransition
+            in={error.length >= 1}
+            timeout={500}
+            classNames="fade"
+            unmountOnExit
+          >
+            <div className="warning">
+              <p>Профиль не зарегестрирован</p>
+            </div>
+          </CSSTransition>
+          <HeadingH1>ВХОД</HeadingH1>
+          <form onSubmit={this.onSubmit}>
+            <Inputt
+              text={"email"}
+              placeholder={"Электронная почта *"}
+              name={"email"}
+              onChange={this.onChange}
+              value={this.state.email}
+            />
 
-          <Inputt
-            text={"password"}
-            placeholder={"Пароль *"}
-            name={"password"}
-            onChange={this.onChange}
-            value={this.state.password}
-          />
-          <ContainerButton>
-            <Buttonn type={"submit"} text={"Вход"} />
-            <Link to={{ pathname: "/registration" }} className="linkTablet">
-              <Buttonn type={""} text={"Регистрация"} />
-            </Link>
-          </ContainerButton>
-        </form>
-      </ContainerForm>
+            <Inputt
+              text={"password"}
+              placeholder={"Пароль *"}
+              name={"password"}
+              onChange={this.onChange}
+              value={this.state.password}
+            />
+            <ContainerButton>
+              <Buttonn type={"submit"} text={"Вход"} />
+              <Link to={{ pathname: "/registration" }} className="linkTablet">
+                <Buttonn type={""} text={"Регистрация"} />
+              </Link>
+            </ContainerButton>
+          </form>
+        </ContainerForm>
+      </>
     );
   }
 }
@@ -166,6 +169,8 @@ class Login extends Component {
 const mapStateToProps = (state) => {
   return {
     error: state.LogInReducer.error,
+    spin: getLoading(state),
+    isLoading: state.loading,
   };
 };
 

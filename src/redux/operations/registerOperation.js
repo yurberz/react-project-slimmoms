@@ -1,7 +1,12 @@
 import { signUp, setError } from "../actions/registerAction";
 import slimMomApi from "../../services/api";
+import {
+  chngRecomendsRequest,
+  chngRecomendsSuccess,
+} from "../actions/logInAction";
 
 const signUpOperation = (user, history) => async (dispatch) => {
+  dispatch(chngRecomendsRequest());
   try {
     const response = await slimMomApi.register({ ...user });
     if (response === "Request failed with status code 409") {
@@ -13,10 +18,9 @@ const signUpOperation = (user, history) => async (dispatch) => {
       });
     }
   } catch (error) {
-    // dispatch(setError(error));
-    // console.log(error);
+    dispatch(setError(error.message));
   } finally {
-    // dispatch(signIn(response.user));
+    dispatch(chngRecomendsSuccess());
   }
 };
 
