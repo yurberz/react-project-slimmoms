@@ -20,9 +20,9 @@ render(){
                     <span className="diary-list_name">{eatenProduct.title}</span>
                     <span className="diary-list_gramm">{eatenProduct.weight} г</span>
                      <span className="diary-list_kkal">{eatenProduct.kcal} kkal</span>
-                        <button className="button-svg" onClick={this.onClickDelete} data-id={eatenProduct.id} >
-                            <DelIcon height="16" width="16" fill="#9B9FAA" />
+                        <button className="button-svg" onClick={this.onClickDelete} data-id={eatenProduct.id} > <DelIcon height="16" width="16" fill="#9B9FAA" />
                             </button>
+                          
                                  
             </li>))}    
         </ul>
