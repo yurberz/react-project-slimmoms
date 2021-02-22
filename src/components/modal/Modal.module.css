@@ -66,6 +66,7 @@
 @media (min-width: 1024px) {
   .modalBody {
     width: 690px;
+    height: 580px;
   }
   .list {
     margin-left: 160px;

@@ -13,12 +13,6 @@ class Modal extends Component {
   //   static propTypes = {
   //      modal: this.PropTypes.func,
   //   };
-  modal = (e) => {
-    if (e.code === "Escape" || e.target.id === "overlay") {
-      this.props.toggleModal();
-      this.props.clearState();
-    }
-  };
 
   componentDidMount = () => {
     window.addEventListener("keydown", this.modal);
@@ -29,6 +23,19 @@ class Modal extends Component {
     window.removeEventListener("keydown", this.modal);
     window.removeEventListener("click", this.modal);
   };
+  modal = (e) => {
+    if (e.code === "Escape" || e.target.id === "overlay") {
+      // this.props.toggleModal();
+      // this.props.clearState();gi
+      this.hndlBtnNext();
+      return;
+    }
+    this.hndlBtnNext();
+  };
+  hndlBtnNext = () => {
+    this.props.toggleModal();
+    this.props.clearState();
+  };
 
   render() {
     return (
@@ -36,14 +43,15 @@ class Modal extends Component {
         <div
           className={s.modalWrapper}
           ref={this.backdrop}
-          onClick={this.props.toggleModal}
+          onClick={this.modal}
           role="presentation"
         >
           <div className={s.modalBody}>
             <button
               type="button"
+              // name="zakrosya"
               className={s.modalBtn}
-              // onClickStart={this.modal}
+              onClick={this.hndlBtnNext}
             ></button>
             <DailyCalorieIntake
               dailyRate={this.props.dailyRate}

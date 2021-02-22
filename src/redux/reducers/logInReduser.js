@@ -2,8 +2,9 @@ import { createReducer } from "@reduxjs/toolkit";
 import {
   signIn,
   setErrorr,
-  chngRecomends,
+  chngRecomendsSuccess,
   chngParams,
+  newTknSuccess,
 } from "../actions/logInAction";
 import { logOut } from "../actions/logOutAction";
 import { persistReducer } from "redux-persist";
@@ -35,10 +36,6 @@ const logInReducer = createReducer(
   { ...initialState },
   {
     [signIn]: (state, action) => ({
-      // accessToken: action.payload.accessToken,
-      // refreshToken: action.payload.refreshToken,
-      // sid: action.payload.sid,
-      // userId: action.payload.user,
       ...action.payload,
       error: "",
     }),
@@ -47,11 +44,18 @@ const logInReducer = createReducer(
       error: action.payload,
     }),
     [logOut]: (state, action) => ({
-      // ...state,
       ...initialState,
     }),
+
+    [newTknSuccess]: (state, { payload }) => ({
+      ...state,
+      accessToken: payload.newAccessToken,
+      refreshToken: payload.newRefreshToken,
+      sid: payload.sid,
+    }),
+
     //==========================================
-    [chngRecomends]: (state, action) => {
+    [chngRecomendsSuccess]: (state, action) => {
       return {
         ...state,
         user: {
@@ -81,6 +85,6 @@ const authPersistConfig = {
 export default persistReducer(
   authPersistConfig,
   logInReducer,
-  chngRecomends,
+  chngRecomendsSuccess,
   chngParams
 );
