@@ -1,20 +1,14 @@
 import { createReducer } from "@reduxjs/toolkit";
 import {
   clearState,
-  // getRecomends,
-  // setError,
-  // setUserInfo,
   toggleModal,
   getRecomendsSuccess,
 } from "../actions/calcAction";
 
 const initialState = {
-  // userInfo: {},
   notAllowed: [],
   dailyRate: "",
-  error: "",
   modal: false,
-  // userResponse: {},
 };
 
 export const calcReducer = createReducer(
@@ -23,23 +17,18 @@ export const calcReducer = createReducer(
     [getRecomendsSuccess]: (state, action) => {
       return {
         ...state,
-        dailyRate: action.payload.dailyRate,
+        dailyRate: Math.round(action.payload.dailyRate),
         notAllowed: [...action.payload.notAllowedProducts],
+        modal: true,
       };
     },
-    // [setError]: (state, action) => {
-    //   return {
-    //     ...state,
-    //     error: action.error,
-    //   };
-    // },
     [toggleModal]: (state, action) => {
-      // console.log(action);
       return {
-        ...state,
-        modal: !state.modal,
+        ...initialState,
+        modal: false,
       };
     },
+    //======delet==========================
     [clearState]: (state, action) => {
       return { ...initialState };
     },

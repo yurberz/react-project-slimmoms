@@ -12,7 +12,7 @@ const getUserInfo = () => async (dispatch, getState) => {
     const { data } = await axios.get("/user");
     dispatch(getUserInfoActions.getUserInfoSuccess(data));
   } catch (error) {
-    dispatch(getUserInfoActions.getUserInfoError(error));
+    dispatch(getUserInfoActions.getUserInfoError(error.message));
   }
 };
 

@@ -11,8 +11,25 @@ import "../components/form/register.css";
 
 const ContainerForm = styled.div`
   max-width: 439px;
-  padding: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  @media screen and (min-width: 768px) {
+    max-width: 639px;
+    padding-left: 87px;
+    padding-right: 87px;
+  }
+  @media screen and (min-width: 1280px) {
+    max-width: 639px;
+    padding-left: 115px;
+    padding-right: 115px;
+  }
   @media screen and (max-width: 768px) {
+    max-width: 439px;
+    margin: 0 auto;
+  }
+  @media screen and (max-width: 369px) {
+    max-width: 439px;
     margin: 0 auto;
   }
 `;
@@ -22,6 +39,10 @@ const ContainerButton = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 0px;
+  margin-top: 82px;
+  @media screen and (max-width: 390px) {
+    margin-top: 42px;
+  }
 `;
 
 const HeadingH1 = styled.h1`
@@ -32,7 +53,21 @@ const HeadingH1 = styled.h1`
   font-size: 14px;
   line-height: 13px;
   letter-spacing: 0.04em;
+  margin-top: 100px;
+
   margin-bottom: 60px;
+  @media screen and (min-width: 1300px) {
+    margin-top: 100px;
+    padding-top: 0;
+  }
+  @media screen and (max-width: 766px) {
+    padding-top: 0;
+    margin-top: 100px;
+    text-align: center;
+  }
+  @media screen and (max-width: 390px) {
+    margin-top: 42px;
+  }
 `;
 
 class Registration extends Component {
@@ -57,12 +92,12 @@ class Registration extends Component {
       this.state.password.length > 12
     ) {
       this.setState({
-        error: "Пароль должно содержать не меньше 3 символов и не больше 12 ",
+        error: "Пароль должно содержать не меньше 3 символов и не больше 12",
       });
       return;
     } else if (!this.state.email.includes("@")) {
       this.setState({
-        error: "Адресс почты введен неверно",
+        error: "Адрес почты введен неверно",
       });
       return;
     } else {
@@ -118,14 +153,14 @@ class Registration extends Component {
             value={this.state.username}
           />
           <Inputt
-            text={"text"}
+            text={"email"}
             placeholder={"Электронная почта *"}
             name={"email"}
             onChange={this.onChange}
             value={this.state.email}
           />
           <Inputt
-            text={""}
+            text={"password"}
             placeholder={"Пароль *"}
             name={"password"}
             onChange={this.onChange}

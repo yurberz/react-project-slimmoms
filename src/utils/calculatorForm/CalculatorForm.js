@@ -1,11 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { CSSTransition } from "react-transition-group";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import getReccomendation from "../../redux/operations/calcOperation";
-import { clearState, toggleModal } from "../../redux/actions/calcAction";
 import { chngUserParam } from "../../redux/operations/logInOperation";
 import sprite from "../../svg/elipscomb.svg";
-
 import {
   TitleForm,
   LabelCalc,
@@ -20,39 +19,14 @@ import {
   Text,
   Span,
   FormButton,
+  Error,
+  ErrorBlood,
 } from "./calculatorFormStyle";
 import { getLoading } from "../../redux/selectors/spinSelector";
 import Spin from "../../components/loader/Spin";
+import { schema } from "./schemaYup";
 
-const blType = {
-  TYPE1: 1,
-  TYPE2: 2,
-  TYPE3: 3,
-  TYPE4: 4,
-};
-
-const renderProps = Object.keys(blType).map((item) => ({
-  value: blType[item],
-}));
-
-const renderInputForm = [
-  {
-    title: "Рост *",
-    name: "height",
-  },
-  {
-    title: "Возраст *",
-    name: "age",
-  },
-  {
-    title: "Текущий вес *",
-    name: "weight",
-  },
-  {
-    title: "Желаемый вес *",
-    name: "desiredWeight",
-  },
-];
+const types = [1, 2, 3, 4];
 
 const initialState = {
   weight: "",
@@ -62,110 +36,125 @@ const initialState = {
   bloodType: null,
 };
 
-class CalculatorForm extends Component {
-  state = { ...initialState };
-
-  // componentDidUpdate = () => {
-  //   if (this.props.accessToken) {
-  //     this.props.clearState();
-  //   }
-  // };
-  // componentDidUpdate = () => {
-  //   if (this.props.accessToken) {
-  //     this.props.clearState();
-  //   }
-  // };
-
-  onInputChng = (e) => {
-    const { name, value } = e.target;
-    if (Number.isNaN(Number(value))) {
-      return;
-    } else {
-      this.setState({ [name]: Number(value) });
-    }
-  };
-
-  onRadioCheck = (e) => {
-    this.setState({ bloodType: Number(e.target.value) });
-  };
-
-  onSubmitForm = (e) => {
-    e.preventDefault();
-    if (!this.props.accessToken) {
-      this.props.toggleModal();
-      this.props.getReccomendation({ ...this.state });
-    } else {
-      console.log(this.props.id);
-      this.props.chngUserParam({ ...this.state }, this.props.id);
-    }
-    this.setState({ ...initialState });
-  };
-
-  render() {
-    return (
-      <>
-        <WrapCalc>
-          <TitleForm>{this.props.title}</TitleForm>
-          <form onSubmit={this.onSubmitForm}>
+const FormikCalc = ({ getReccomendation, chngUserParam, id, title, spin }) => {
+  return (
+    <WrapCalc>
+      {spin && <Spin />}
+      <TitleForm>{title}</TitleForm>
+      <Formik
+        initialValues={{ ...initialState }}
+        validationSchema={schema}
+        onSubmit={(values, actions) => {
+          values = {
+            weight: parseInt(values.weight),
+            height: parseInt(values.height),
+            age: parseInt(values.age),
+            desiredWeight: parseInt(values.desiredWeight),
+            bloodType: Number(values.bloodType),
+          };
+          if (!id) {
+            getReccomendation({ ...values });
+          } else {
+            chngUserParam({ ...values }, id);
+          }
+          actions.resetForm({ ...initialState });
+        }}
+      >
+        {({
+          errors,
+          touched,
+          values,
+          handleChange,
+          isValid,
+          dirty,
+          isSubmitting,
+        }) => (
+          <Form>
             <InnerDiv>
-              {renderInputForm.map((item) => (
-                <WrapInput key={item.name}>
-                  <LabelCalc>
-                    {item.title}
-                    <InputCalc
-                      autoFocus
-                      // placeholder={item.title}
-                      type="text"
-                      value={this.state[item.name]}
-                      name={item.name}
-                      onChange={this.onInputChng}
-                    />
-                  </LabelCalc>
-                </WrapInput>
-              ))}
-
+              <WrapInput>
+                <LabelCalc>Рост *</LabelCalc>
+                <InputCalc
+                  name="height"
+                  value={values.height}
+                  onChange={handleChange}
+                />
+                <Error component="div" name="height" />
+              </WrapInput>
+              <WrapInput>
+                <LabelCalc>Возраст *</LabelCalc>
+                <InputCalc
+                  name="age"
+                  value={values.age}
+                  onChange={handleChange}
+                />
+                <Error component="div" name="age" />
+              </WrapInput>
+              <WrapInput>
+                <LabelCalc>Текущий вес *</LabelCalc>
+                <InputCalc
+                  name="weight"
+                  value={values.weight}
+                  onChange={handleChange}
+                />
+                <Error component="div" name="weight" />
+              </WrapInput>
+              <WrapInput>
+                <LabelCalc>Желаемый вес *</LabelCalc>
+                <InputCalc
+                  name="desiredWeight"
+                  value={values.desiredWeight}
+                  onChange={handleChange}
+                />
+                <Error component="div" name="desiredWeight" />
+              </WrapInput>
               <Text>Группа крови *</Text>
-              <WrapRadio role="group">
-                {renderProps.map((item, idx) => (
-                  <LabelRadio key={item.value}>
+              <WrapRadio role="group" aria-labelledby="my-radio-group">
+                {types.map((item) => (
+                  <LabelRadio key={item}>
                     <InputRadio
+                      key={item}
                       type="radio"
-                      value={item.value}
-                      checked={item.value === this.state.bloodType}
-                      onChange={this.onRadioCheck}
-                      tabIndex={idx}
+                      name="bloodType"
+                      id={item}
+                      value={item}
+                      checked={values.bloodType == item}
                     />
-                    {item.value === this.state.bloodType ? (
+                    {values.bloodType == item ? (
                       <>
-                        <Svg checked>
+                        <Svg>
                           <use href={sprite + "#icon-elips-combine"} />
                         </Svg>
-                        <Span checked>{item.value}</Span>
+                        <Span checked>{item}</Span>
                       </>
                     ) : (
                       <>
                         <Svg>
                           <use href={sprite + "#icon-elips-gray"} />
                         </Svg>
-                        <Span>{item.value}</Span>{" "}
+                        <Span>{item}</Span>
                       </>
-                    )}{" "}
+                    )}
                   </LabelRadio>
                 ))}
               </WrapRadio>
+              <ErrorBlood component="div" name="bloodType" />
             </InnerDiv>
-            <FormButton type="submit">Похудеть</FormButton>
-          </form>
-        </WrapCalc>
-      </>
-    );
-  }
-}
+
+            <FormButton
+              type="submit"
+              disabled={!isValid && !dirty && isSubmitting}
+            >
+              Похудеть
+            </FormButton>
+          </Form>
+        )}
+      </Formik>
+    </WrapCalc>
+  );
+};
 
 const mapDispatchToProps = {
   getReccomendation,
-  clearState,
-  toggleModal,
   chngUserParam,
 };
 
@@ -177,4 +166,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CalculatorForm);
+export default connect(mapStateToProps, mapDispatchToProps)(FormikCalc);

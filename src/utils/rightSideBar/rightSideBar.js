@@ -23,6 +23,7 @@ class RightSideBar extends Component {
                           ? 0
                           : Math.round(daySummary.kcalLeft)) + " ккал"
                       : "000 калл"}
+                    {/* {daySummary.kcalLeft} */}
                   </span>
                 </p>
               </li>
@@ -80,7 +81,7 @@ class RightSideBar extends Component {
               <li>
                 <p>
                   n% от нормы
-                  <span>000 калл}</span>
+                  <span>000 калл</span>
                 </p>
               </li>
             </ul>
@@ -89,7 +90,7 @@ class RightSideBar extends Component {
         <div className="notAllowedWrapper">
           <h2>Нерекомендуемые продукты</h2>
 
-          {!!notAllowedProducts ? (
+          {notAllowedProducts.length ? (
             <div className="notAllowedProducts">
               {notAllowedProducts.map((product) => (
                 <p key={product}>{product}, </p>

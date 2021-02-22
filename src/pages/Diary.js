@@ -1,13 +1,11 @@
 import { Component } from "react";
 import DiaryAddProduct from "../components/Diary/DiaryAddProduct";
-import DiaryCalendar from "../components/Diary/DiaryCalendar";
 import DiaryList from "../components/Diary/DiaryList";
 import RightSideBar from "../utils/rightSideBar/rightSideBar";
 import DiaryStyle from "../components/Diary/DiaryStyled";
 import styled from "styled-components";
 import bgLayers from "../img/layersBg.png";
 import bgTablet from "../img/rightSideBarBottom@1x.png";
-// import CalculatorPageDecoration from "../components/decoration/CalculatorPageDecoration";
 
 const Background = styled.div`
   position: absolute;
@@ -76,21 +74,46 @@ const Div = styled.div`
 `;
 
 class Diary extends Component {
+  state = {
+    screenWidth: window.innerWidth,
+  };
+
   render() {
-    return (
+    return this.state.screenWidth < 768 ? (
       <>
         <Background />
         <Div>
           <DiaryStyle>
-            <DiaryCalendar />
-            <DiaryAddProduct />
+            <DiaryAddProduct mobile={true} />
             <DiaryList />
-            {/* <CalculatorPageDecoration /> */}
           </DiaryStyle>
           <RightSideBar />
         </Div>
       </>
+    ) : (
+      <Background>
+        <Background />
+        <Div>
+          <DiaryStyle>
+            <DiaryList />
+            <DiaryAddProduct mobile={false} />
+          </DiaryStyle>
+          <RightSideBar />
+        </Div>
+      </Background>
     );
+    // return (
+    //   <>
+    //     <Background />
+    //     <Div>
+    //       <DiaryStyle>
+    //         <DiaryAddProduct />
+    //         <DiaryList />
+    //       </DiaryStyle>
+    //       <RightSideBar />
+    //     </Div>
+    //   </>
+    // );
   }
 }
 

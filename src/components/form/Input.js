@@ -5,8 +5,8 @@ const FormInput = styled.input`
   border-top: none;
   border-right: none;
   border-left: none;
-  padding: 15px;
-  width: 239px;
+  padding: 15px 15px 15px 0;
+  width: 289px;
   font-family: Verdana;
   font-style: normal;
   font-weight: bold;
