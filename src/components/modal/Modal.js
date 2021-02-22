@@ -1,24 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { toggleModal, clearState } from "../../redux/actions/calcAction";
-
+import { toggleModal } from "../../redux/actions/calcAction";
 // import PropTypes from "prop-types";
-
 import Button from "./button/Button";
-
 import s from "./Modal.module.css";
 import DailyCalorieIntake from "../dailyCalorieInTake/DailyCalorieInTake";
-
+import { CSSTransition } from "react-transition-group";
 class Modal extends Component {
   //   static propTypes = {
   //      modal: this.PropTypes.func,
   //   };
-
   componentDidMount = () => {
     window.addEventListener("keydown", this.modal);
     window.addEventListener("click", this.modal);
   };
-
   componentWillUnmount = () => {
     window.removeEventListener("keydown", this.modal);
     window.removeEventListener("click", this.modal);
@@ -34,9 +29,7 @@ class Modal extends Component {
   };
   hndlBtnNext = () => {
     this.props.toggleModal();
-    this.props.clearState();
   };
-
   render() {
     return (
       <>
@@ -46,27 +39,27 @@ class Modal extends Component {
           onClick={this.modal}
           role="presentation"
         >
-          <div className={s.modalBody}>
-            <button
-              type="button"
-              // name="zakrosya"
-              className={s.modalBtn}
-              onClick={this.hndlBtnNext}
-            ></button>
-            <DailyCalorieIntake
-              dailyRate={this.props.dailyRate}
-              notAllowed={this.props.notAllowed}
-              hndlBtnNext={this.hndlBtnNext}
-            />
-          </div>
+          <CSSTransition
+            in={this.modal}
+            appear
+            timeout={250}
+            classNames={s}
+            unmountOnExit
+          >
+            <div className={s.modalBody}>
+              <button
+                type="button"
+                className={s.modalBtn}
+                onClick={this.hndlBtnNext}
+              ></button>
+              {this.props.children}
+            </div>
+          </CSSTransition>
         </div>
       </>
     );
   }
 }
-
-//notAllowed - огромній массив завтра уточним как вібирать
-
 const mapStateToProps = (state) => {
   return {
     modal: state.calculator.modal,
@@ -76,7 +69,5 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = {
   toggleModal,
-  clearState,
 };
-
 export default connect(mapStateToProps, mapDispatchToProps)(Modal);
