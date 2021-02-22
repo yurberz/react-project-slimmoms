@@ -1,14 +1,14 @@
 import styled from "styled-components";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Field, ErrorMessage } from "formik";
 
 const WrapCalc = styled.div`
   width: 290px;
   padding-top: 30px;
 
   @media (min-width: 768px) {
-    padding-top: 90px;
     width: 605px;
     height: 420px;
+    padding-top: 0;
   }
   @media (min-width: 1280px) {
     width: 605px;

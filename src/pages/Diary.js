@@ -56,10 +56,12 @@ const Background = styled.div`
 `;
 
 const Div = styled.div`
+  padding-top: 40px;
   padding-left: 15px;
   padding-right: 15px;
 
   @media screen and (min-width: 768px) {
+    padding-top: 190px;
     padding-left: 87px;
     padding-right: 87px;
   }
@@ -68,6 +70,7 @@ const Div = styled.div`
     display: flex;
     align-items: baseline;
     justify-content: space-between;
+    padding-top: 236px;
     padding-left: 115px;
     padding-right: 115px;
   }
@@ -95,8 +98,8 @@ class Diary extends Component {
         <Background />
         <Div>
           <DiaryStyle>
-            <DiaryList />
             <DiaryAddProduct mobile={false} />
+            <DiaryList />
           </DiaryStyle>
           <RightSideBar />
         </Div>
