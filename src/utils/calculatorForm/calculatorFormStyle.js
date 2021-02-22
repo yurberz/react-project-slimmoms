@@ -197,8 +197,11 @@ const FormButton = styled.button`
   /* color: #fff; */
   /* color: ${(props) => (props.disabled ? "#9b9faa" : "#fff")}; */
   color: ${(props) => (props.disabled ? "green" : "#fff")};
-  background-color: ${(props) =>
-    props.disabled ? "rgba(252, 132, 45, 0.5)" : "#fc842d"};
+  background-color: ${(props) => {
+    return;
+    console.log(props.disabled);
+    // props.disabled ? "rgba(252, 132, 45, 0.5)" : "#fc842d";
+  }};
 
   margin-top: 40px;
   margin-right: auto;

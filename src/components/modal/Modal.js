@@ -5,6 +5,8 @@ import { toggleModal } from "../../redux/actions/calcAction";
 import Button from "./button/Button";
 import s from "./Modal.module.css";
 import DailyCalorieIntake from "../dailyCalorieInTake/DailyCalorieInTake";
+import { CSSTransition } from "react-transition-group";
+
 class Modal extends Component {
   //   static propTypes = {
   //      modal: this.PropTypes.func,
@@ -38,14 +40,22 @@ class Modal extends Component {
           onClick={this.modal}
           role="presentation"
         >
-          <div className={s.modalBody}>
-            <button
-              type="button"
-              className={s.modalBtn}
-              onClick={this.hndlBtnNext}
-            ></button>
-            {this.props.children}
-          </div>
+          <CSSTransition
+            in={this.modal}
+            appear
+            timeout={250}
+            classNames={s}
+            unmountOnExit
+          >
+            <div className={s.modalBody}>
+              <button
+                type="button"
+                className={s.modalBtn}
+                onClick={this.hndlBtnNext}
+              ></button>
+              {this.props.children}
+            </div>
+          </CSSTransition>
         </div>
       </>
     );

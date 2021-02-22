@@ -9,14 +9,18 @@ class slimMomApi {
     return axios
       .post("/auth/register", newUser)
       .then((res) => res.data)
-      .catch((error) => error.message);
+      .catch((error) => {
+        throw new Error(error);
+      });
   }
 
   logIn(userCredentials) {
     return axios
       .post("/auth/login", userCredentials)
       .then((res) => res.data)
-      .catch((error) => error.message);
+      .catch((error) => {
+        throw new Error(error);
+      });
   }
 
   logOut() {

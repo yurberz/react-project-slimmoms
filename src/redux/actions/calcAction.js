@@ -12,5 +12,5 @@ export {
   getRecomendsSuccess,
   getRecomendsError,
   toggleModal,
-  clearState,
+  // clearState,
 };

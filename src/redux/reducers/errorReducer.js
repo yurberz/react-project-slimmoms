@@ -1,10 +1,21 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { getRecomendsError } from "../actions/calcAction";
-import { chngRecomendseError } from "../actions/logInAction";
+import { chngRecomendseError, newTknError } from "../actions/logInAction";
 import getUserInfoActions from "../actions/getUserInfoActions";
+import {
+  addProductError,
+  deleteProductError,
+  getCurentDayInfoError,
+  searchProductError,
+} from "../actions/diaryActions";
 
 export const errorReducer = createReducer(null, {
   [getRecomendsError]: (state, { payload }) => payload,
   [chngRecomendseError]: (state, { payload }) => payload,
   [getUserInfoActions.getUserInfoError]: (_, { payload }) => payload,
+  [searchProductError]: (state, { payload }) => payload,
+  [addProductError]: (state, { payload }) => payload,
+  [deleteProductError]: (state, { payload }) => payload,
+  [getCurentDayInfoError]: (state, { payload }) => payload,
+  [newTknError]: (state, { payload }) => payload,
 });

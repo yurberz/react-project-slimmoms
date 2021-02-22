@@ -115,7 +115,7 @@
   }
   .container {
     width: 594px;
-    height: 530px;
+    height: 500px;
   }
   .title {
     margin-top: 0px;
@@ -216,3 +216,18 @@
 .scrollbar::-webkit-scrollbar-thumb:horizontal {
   min-width: 1.5rem;
 } */
+
+.appear {
+  opacity: 0.01;
+}
+.appearActive {
+  opacity: 1;
+  transition: opacity 0.5s ease-in;
+}
+.exit {
+  opacity: 0.01;
+}
+.exitActive {
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+}

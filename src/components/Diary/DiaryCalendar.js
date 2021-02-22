@@ -34,4 +34,8 @@ const DiaryCalendar = ({setSelectedData, getCurentDayInfoOperation}) => {
   );
 };
 
+<<<<<<< HEAD
 export default  DiaryCalendar;
+=======
+export default  DiaryCalendar;
+>>>>>>> 312281f22a90bbf326e634ac33c5fb1ecaff1d55
