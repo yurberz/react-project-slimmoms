@@ -24,7 +24,7 @@ const RegisterReducer = createReducer(
       ...initialState,
     }),
     [setError]: (state, action) => ({
-      ...state,
+      ...initialState,
       error: action.payload,
     }),
   }

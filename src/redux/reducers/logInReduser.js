@@ -5,13 +5,17 @@ import {
   chngRecomendsSuccess,
   chngParams,
   newTknSuccess,
+  setLoading,
 } from "../actions/logInAction";
+// import { setLoading } from "../actions/loadingAction";
+
 import { logOut } from "../actions/logOutAction";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 const initialState = {
   error: "",
+  isLoading: false,
   accessToken: "",
   refreshToken: "",
   sid: "",
@@ -45,6 +49,9 @@ const logInReducer = createReducer(
     }),
     [logOut]: (state, action) => ({
       ...initialState,
+    }),
+    [setLoading]: (state, action) => ({
+      isLoading: true,
     }),
 
     [newTknSuccess]: (state, { payload }) => ({

@@ -3,7 +3,6 @@ import {
   signIn,
   setErrorr,
   chngParams,
-  chngRecomends,
   newTknSuccess,
   newTknError,
   newTknRequest,
@@ -14,25 +13,22 @@ import {
 import { logOut } from "../actions/logOutAction";
 import slimMomApi from "../../services/api";
 import getUserInfo from "./getUserInfoOperation";
-import { setLoading } from "../actions/loadingAction";
 
 const logInOperation = (user) => async (dispatch) => {
-  dispatch(setLoading());
+
+  dispatch(chngRecomendsRequest());
+
   try {
     const response = await slimMomApi.logIn({ ...user });
-
     slimMomApi.setToken(response.accessToken);
-
-    if (response === "Request failed with status code 403") {
-      dispatch(setErrorr(response));
-    } else {
-      dispatch(signIn(response));
-      dispatch(getUserInfo());
-    }
+    dispatch(signIn(response));
+    dispatch(getUserInfo());
   } catch (error) {
-    // dispatch(setErrorr(error));
+    dispatch(setErrorr(error.message));
   } finally {
-    dispatch(setLoading());
+
+    dispatch(chngRecomendsSuccess());
+
   }
 };
 // ====================================================
