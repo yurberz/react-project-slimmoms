@@ -15,7 +15,9 @@ import slimMomApi from "../../services/api";
 import getUserInfo from "./getUserInfoOperation";
 
 const logInOperation = (user) => async (dispatch) => {
+
   dispatch(chngRecomendsRequest());
+
   try {
     const response = await slimMomApi.logIn({ ...user });
     slimMomApi.setToken(response.accessToken);
@@ -24,7 +26,9 @@ const logInOperation = (user) => async (dispatch) => {
   } catch (error) {
     dispatch(setErrorr(error.message));
   } finally {
+
     dispatch(chngRecomendsSuccess());
+
   }
 };
 // ====================================================

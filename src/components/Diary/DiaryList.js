@@ -6,10 +6,11 @@ import DiaryStyled from './DiaryListStyled'
 
 class DiaryList extends Component {
 
-    onClickDelete = (event) => {
-        this.props.deleteProductOperation({dayId: this.props.dayId , eatenProductId: event.target.dataset.id})
+    onClickDelete = (id) => {
+        this.props.deleteProductOperation({dayId: this.props.dayId , eatenProductId: id})
         //console.log(event.target);
     }
+
     
 render(){
     return (
@@ -19,11 +20,9 @@ render(){
                      <li className="diary-list_li" key={eatenProduct.id}>
                     <span className="diary-list_name">{eatenProduct.title}</span>
                     <span className="diary-list_gramm">{eatenProduct.weight} г</span>
-                     <span className="diary-list_kkal">{eatenProduct.kcal} kkal</span>
-                        <button className="button-svg" onClick={this.onClickDelete} data-id={eatenProduct.id} > <DelIcon height="16" width="16" fill="#9B9FAA" />
-                            </button>
-                          
-                                 
+                     <span className="diary-list_kkal">{Math.round(eatenProduct.kcal)} ккал</span>
+                        <button onClick={()=> this.onClickDelete(eatenProduct.id)} data-id={eatenProduct.id} ><DelIcon height="16" width="16" fill="#9B9FAA" />
+                            </button>               
             </li>))}    
         </ul>
         </DiaryStyled>

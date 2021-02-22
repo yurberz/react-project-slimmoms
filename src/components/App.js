@@ -7,6 +7,7 @@ import Header from "./header/Header";
 import routes from "../routes/routes";
 import PrivateRoutes from "./routes/PrivateRoutes";
 import PublicRoutes from "./routes/PublicRoutes";
+
 import { refreshToken } from "../redux/operations/logInOperation";
 import { getLoading } from "../redux/selectors/spinSelector";
 
@@ -21,7 +22,7 @@ class App extends Component {
       <Layout>
         {this.props.isLoading && <Spin />}
         <Header />
-        <Suspense fallback={<h2>Loading...</h2>}>
+        <Suspense fallback={<Spin />}>
           <Switch>
             <Route
               path="/"
