@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import debounce from "lodash.debounce";
 import FilterList from "./FilterList";
 import DiaryCalendar from "./DiaryCalendar";
+
 class DiaryAddProduct extends Component {
   state = {
     product: "",
@@ -18,11 +19,13 @@ class DiaryAddProduct extends Component {
     date: "",
     render: false,
   };
+
   handleClick = () => {
     this.setState((prevState) => {
       return { renderMarker: !prevState.renderMarker };
     });
   };
+
   submitDiaryAddProduct = (event) => {
     event.preventDefault();
     if (this.state.productId && this.state.weight) {

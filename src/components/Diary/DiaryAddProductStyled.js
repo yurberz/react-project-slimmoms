@@ -1,10 +1,8 @@
 import styled from "styled-components";
-
 const Wrapper = styled.div`
 .form_add{
     margin-top: 80px;
     margin-bottom: 182px;
-
 }
 .input_add-product,
 .input_add-gramm{
@@ -27,17 +25,14 @@ const Wrapper = styled.div`
     position: relative;
     text-overflow: ellipsis;
 }
-
 .button{
     margin-top: 60px;
     margin-right: 57px;
     margin-left: 57px;
-
     width: 176px;
     height: 44px;
     border-radius: 30px;
     border: none;
-
     font-weight: 700;
     font-size: 14px;
     align-items: center;
@@ -46,7 +41,6 @@ const Wrapper = styled.div`
     color: #FFFFFF;
     background-color: #FC842D;
     padding: 13px 46px;
-
 }
 @media screen and (max-width: 767px){
     .form_add{
@@ -71,7 +65,6 @@ const Wrapper = styled.div`
      width: 289px;
     font-size: 14px;
 }
-
 }
 @media screen and (min-width: 768px){
     .form_add{
@@ -110,7 +103,6 @@ margin-bottom: 60px;
     background-repeat: no-repeat;
     background-position: center;
     }
- 
     .input_add-gramm{
     text-align: center;
     width: 105px;
@@ -126,7 +118,6 @@ margin-bottom: 60px;
     font-size: 16px;
     display: inline-block;
     margin-right: 30px
-    
     }
       .svg-add{
         width: 50px;
@@ -135,10 +126,8 @@ margin-bottom: 60px;
         border: none;
         border-radius: 30px;
     }
-
 }
 @media screen and (min-width: 1280px){
-    
     .input_add-gramm{
         text-align: center;
     width: 105px;
@@ -153,9 +142,6 @@ margin-bottom: 60px;
         border: none;
         border-radius: 30px;
     }
-    
-
 }
 `
-
 export default Wrapper;
