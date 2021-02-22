@@ -7,7 +7,6 @@ import { toggleModal } from "../../redux/actions/calcAction";
 import Button from "./button/Button";
 
 import s from "./Modal.module.css";
-import DailyCalorieIntake from "../dailyCalorieInTake/DailyCalorieInTake";
 
 class Modal extends Component {
   //   static propTypes = {
@@ -51,11 +50,7 @@ class Modal extends Component {
               className={s.modalBtn}
               onClick={this.hndlBtnNext}
             ></button>
-            <DailyCalorieIntake
-              dailyRate={this.props.dailyRate}
-              notAllowed={this.props.notAllowed}
-              hndlBtnNext={this.hndlBtnNext}
-            />
+            {this.props.children}
           </div>
         </div>
       </>

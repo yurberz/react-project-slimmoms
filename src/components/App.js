@@ -7,7 +7,6 @@ import Header from "./header/Header";
 import routes from "../routes/routes";
 import PrivateRoutes from "./routes/PrivateRoutes";
 import PublicRoutes from "./routes/PublicRoutes";
-import Spin from "./loader/Spin";
 
 import { refreshToken } from "../redux/operations/logInOperation";
 import { getLoading } from "../redux/selectors/spinSelector";

@@ -1,9 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import {
-  clearState,
-  toggleModal,
-  getRecomendsSuccess,
-} from "../actions/calcAction";
+import { toggleModal, getRecomendsSuccess } from "../actions/calcAction";
 
 const initialState = {
   notAllowed: [],
@@ -27,10 +23,6 @@ export const calcReducer = createReducer(
         ...initialState,
         modal: false,
       };
-    },
-    //======delet==========================
-    [clearState]: (state, action) => {
-      return { ...initialState };
     },
   }
 );
