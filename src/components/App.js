@@ -1,6 +1,5 @@
 import { Provider } from "react-redux";
 import store from "../redux/store";
-import { connect } from "react-redux";
 
 import React, { Suspense, lazy } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
@@ -18,7 +17,7 @@ const App = ({ spin }) => {
     <Provider store={store}>
       <Layout>
         <Header />
-        <Suspense fallback={spin && <Spin />}>
+        <Suspense fallback={<Spin />}>
           <Switch>
             <Route
               path="/"
@@ -42,10 +41,4 @@ const App = ({ spin }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    spin: getLoading(state),
-  };
-};
-
-export default connect(mapStateToProps, null)(App);
+export default App;
