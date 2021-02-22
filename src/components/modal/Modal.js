@@ -4,6 +4,7 @@ import { toggleModal } from "../../redux/actions/calcAction";
 // import PropTypes from "prop-types";
 import Button from "./button/Button";
 import s from "./Modal.module.css";
+
 import DailyCalorieIntake from "../dailyCalorieInTake/DailyCalorieInTake";
 class Modal extends Component {
   //   static propTypes = {
