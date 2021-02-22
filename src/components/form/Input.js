@@ -5,7 +5,7 @@ const FormInput = styled.input`
   border-top: none;
   border-right: none;
   border-left: none;
-  padding: 15px;
+  padding: 15px 15px 15px 0;
   width: 239px;
   font-family: Verdana;
   font-style: normal;
