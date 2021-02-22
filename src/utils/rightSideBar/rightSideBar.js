@@ -80,7 +80,7 @@ class RightSideBar extends Component {
               <li>
                 <p>
                   n% от нормы
-                  <span>000 калл}</span>
+                  <span>000 калл</span>
                 </p>
               </li>
             </ul>
