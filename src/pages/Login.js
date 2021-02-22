@@ -17,6 +17,7 @@ const ContainerForm = styled.div`
   padding-right: 15px;
 
   @media screen and (min-width: 768px) {
+    margin-top: 160px;
     max-width: 639px;
     padding-left: 87px;
     padding-right: 87px;
@@ -27,8 +28,8 @@ const ContainerForm = styled.div`
     padding-right: 115px;
   }
   @media screen and (max-width: 768px) {
-    max-width: 439px;
-    margin: 0 auto;
+    /* max-width: 439px; */
+    /* margin: 0 auto; */
   }
   @media screen and (max-width: 369px) {
     max-width: 439px;
@@ -39,7 +40,7 @@ const ContainerButton = styled.div`
   max-width: 400px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 0px;
   margin-top: 82px;
   @media screen and (max-width: 390px) {
@@ -49,9 +50,7 @@ const ContainerButton = styled.div`
 
 const HeadingH1 = styled.h1`
   color: #fc842d;
-  font-family: "GothamPro";
-  font-style: normal;
-  font-weight: bold;
+  font-family: GothamPro-Bold;
   font-size: 14px;
   line-height: 13px;
   letter-spacing: 0.04em;
@@ -61,8 +60,7 @@ const HeadingH1 = styled.h1`
     margin-top: 100px;
     padding-top: 0;
   }
-  @media screen and (max-width: 1280px) {
-    margin-top: 170px;
+  @media screen and (max-width: 1279px) {
     padding-top: 0;
   }
   @media screen and (max-width: 766px) {
@@ -114,8 +112,9 @@ class Login extends Component {
     const error = this.props.error;
     return (
       <>
+        <LoginPageDecoration />
         <ContainerForm>
-          <LoginPageDecoration />
+          {/* <LoginPageDecoration /> */}
           <CSSTransition
             in={this.state.error.length >= 1}
             timeout={500}
