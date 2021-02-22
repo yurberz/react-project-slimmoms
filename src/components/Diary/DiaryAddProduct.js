@@ -22,7 +22,7 @@ class DiaryAddProduct extends Component {
 
   handleClick = () => {
     this.setState((prevState) => {
-      return { renderMarker: !prevState.renderMarker };
+      return { render: !prevState.render };
     });
   };
 
@@ -79,7 +79,7 @@ class DiaryAddProduct extends Component {
               +
             </button>
           </div>
-          {this.state.renderMarker ? (
+          {this.state.render ? (
             <div className="modal">
               <div className="buttonWrapper">
                 <button
@@ -147,7 +147,6 @@ class DiaryAddProduct extends Component {
               />
             )}
 
-                  
             <input
               className="input_add-gramm"
               placeholder="Грамм"
@@ -181,11 +180,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 export default connect(mapStateToPtops, mapDispatchToProps)(DiaryAddProduct);
 
-
-
-
-
-
 // import DiaryStyled from './DiaryAddProductStyled'
 // import PlusIcon from "../icons/PlusIcon"
 // import { searchProductOperation, addNewProductOperation, getCurentDayInfoOperation } from "../../redux/operations/diaryOperations"
@@ -205,7 +199,7 @@ export default connect(mapStateToPtops, mapDispatchToProps)(DiaryAddProduct);
 //         date: "",
 //         windowInnerWidth: window.innerWidth,
 //     }
-    
+
 //     submitDiaryAddProduct = event => {
 //         event.preventDefault();
 //         if (this.state.productId && this.state.weight) {
@@ -220,7 +214,7 @@ export default connect(mapStateToPtops, mapDispatchToProps)(DiaryAddProduct);
 //     }
 
 //     inputHandlerDiaryAddProduct = ({ target }) => {
-        
+
 //         if (target.value === "") {
 //             return
 //         }
@@ -229,10 +223,10 @@ export default connect(mapStateToPtops, mapDispatchToProps)(DiaryAddProduct);
 //     inputHandlerDiaryAddGramm = (event) => {
 //         this.setState((prev) => ({ ...prev, weight: event.target.value }))
 //     }
-    
+
 //     filterList = () => {
-//     return this.props.productVariables.map(({ title, _id }) => { return {title: title.ru , id: _id}})   
-//             .filter((prod, index) => index <= 9 ? true : false)  
+//     return this.props.productVariables.map(({ title, _id }) => { return {title: title.ru , id: _id}})
+//             .filter((prod, index) => index <= 9 ? true : false)
 //     }
 
 //     filterListClickLi = event => {
@@ -251,20 +245,20 @@ export default connect(mapStateToPtops, mapDispatchToProps)(DiaryAddProduct);
 //         const filterList = this.filterList()
 //         console.log(this.state.windowInnerWidth);
 //         const { windowInnerWidth } = this.state;
- 
+
 //         return (
 //             <DiaryStyled>
 //                 <DiaryCalendar setSelectedData={this.setSelectedData} getCurentDayInfoOperation={this.props.getCurentDayInfoOperation} />
 //                 <form className="form_add" onSubmit={this.submitDiaryAddProduct} >
 //                     {/* <Modal>
-                        
+
 //                     </Modal> */}
 //                     <input className="input_add-product" placeholder="Введите название продукта" onChange={debounce(this.inputHandlerDiaryAddProduct, 500)} />
 //                     {filterList.length > 0 && <FilterList list={filterList} handleClickLi={this.filterListClickLi} />}
 //                         <input className="input_add-gramm" placeholder="Грамм" onChange={this.inputHandlerDiaryAddGramm} />
 //                     {windowInnerWidth >= 768 ? <button className="button" type="submit" className="svg-add" ><PlusIcon width="14" height="14" fill="white" /></button> :
 //                             <button className="button" type="submit">Добавить</button>}
-                    
+
 //                 </form>
 //             </DiaryStyled>
 //         )
