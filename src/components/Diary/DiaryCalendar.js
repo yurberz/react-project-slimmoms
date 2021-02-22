@@ -5,18 +5,22 @@ import CalendarIcon from "../icons/CalendarIcon";
 import DiaryCalendarStyled from "./DiaryCalendarStyled";
 import React from "react";
 
-const DiaryCalendar = ({setSelectedData, getCurentDayInfoOperation}) => {
-  
+const DiaryCalendar = ({ setSelectedData, getCurentDayInfoOperation }) => {
   const [startDate, setStartDate] = useState(new Date());
 
   useEffect(() => {
-    const month = (startDate.getMonth() + 1) < 10 ? "0" + (startDate.getMonth() + 1) : (startDate.getMonth() + 1);
-    const day = startDate.getDate() < 10 ? "0" + startDate.getDate() : startDate.getDate() ;
+    const month =
+      startDate.getMonth() + 1 < 10
+        ? "0" + (startDate.getMonth() + 1)
+        : startDate.getMonth() + 1;
+    const day =
+      startDate.getDate() < 10
+        ? "0" + startDate.getDate()
+        : startDate.getDate();
     const date = startDate.getFullYear() + "-" + month + "-" + day;
     setSelectedData(date);
-    getCurentDayInfoOperation({date: date});
-  }, [startDate])
-
+    getCurentDayInfoOperation({ date: date });
+  }, [startDate]);
 
   return (
     <DiaryCalendarStyled>
@@ -34,4 +38,4 @@ const DiaryCalendar = ({setSelectedData, getCurentDayInfoOperation}) => {
   );
 };
 
-export default  DiaryCalendar;
+export default DiaryCalendar;

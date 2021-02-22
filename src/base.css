@@ -85,7 +85,7 @@ p {
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
   border-radius: 4px;
   background: transparent;
 }
@@ -93,7 +93,7 @@ p {
 ::-webkit-scrollbar-thumb {
   background-color: black;
   border-radius: 4px;
-  height: 20px;
+  height: 15px;
 }
 
 ::-webkit-scrollbar-thumb:hover {

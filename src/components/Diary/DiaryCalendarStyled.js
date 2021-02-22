@@ -2,28 +2,25 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   .only-calendar {
-    background-position: center;
-    background-position-x: left;
-    background-size: cover;
-    margin-top: 40px;
+    display: flex;
+    align-items: center;
   }
+
   .input-calendar {
-    border: none;
-    width: 120px;
-    font-weight: 700;
+    font-family: Verdana-Bold;
     font-size: 18px;
-    line-height: 1.4;
+    line-height: 22px;
+    margin-right: 20px;
+    width: 120px;
+    border: none;
   }
-  .input-calendar:focus {
+  .input-calendar:hover {
     border: none;
   }
   .input-calendar:hover {
     border: none;
   }
   @media screen and (min-width: 768px) {
-    .only-calendar {
-      margin-top: 100px;
-    }
     .input-calendar {
       border: none;
       width: 220px;

@@ -60,6 +60,7 @@ const Div = styled.div`
   padding-right: 15px;
 
   @media screen and (min-width: 768px) {
+    padding-top: 99px;
     padding-left: 87px;
     padding-right: 87px;
   }
@@ -68,6 +69,7 @@ const Div = styled.div`
     display: flex;
     align-items: baseline;
     justify-content: space-between;
+    padding-top: 0px;
     padding-left: 115px;
     padding-right: 115px;
   }

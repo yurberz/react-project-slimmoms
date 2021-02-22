@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import debounce from "lodash.debounce";
 import FilterList from "./FilterList";
 import DiaryCalendar from "./DiaryCalendar";
+import back from "../modal/svg/icon-back.svg";
 
 class DiaryAddProduct extends Component {
   state = {
@@ -21,12 +22,6 @@ class DiaryAddProduct extends Component {
     inputValue: "",
   };
 
-  handleClick = () => {
-    this.setState((prevState) => {
-      return { renderMarker: !prevState.renderMarker };
-    });
-  };
-
   submitDiaryAddProduct = (event) => {
     event.preventDefault();
     if (this.state.productId && this.state.weight) {
@@ -36,19 +31,23 @@ class DiaryAddProduct extends Component {
         weight: this.state.weight,
       });
     }
+    this.handleClick();
   };
+
   inputHandlerDiaryAddProduct = ({ target }) => {
     if (target.value === "") {
       return;
     }
     this.props.searchProductOperation(target.value);
   };
+
   inputHandlerDiaryAddGramm = (event) => {
     // if (this.state.inputValue) {
     //   event.target.value = this.state.inputValue;
     // }
     this.setState((prev) => ({ ...prev, weight: event.target.value }));
   };
+
   filterList = () => {
     return this.props.productVariables
       .map(({ title, _id }) => {
@@ -56,6 +55,7 @@ class DiaryAddProduct extends Component {
       })
       .filter((prod, index) => (index <= 9 ? true : false));
   };
+
   filterListClickLi = (event) => {
     const inputV = this.props.productVariables.find(
       (item) => item._id == event.target.dataset.id
@@ -67,12 +67,17 @@ class DiaryAddProduct extends Component {
       inputValue: inputV,
     }));
   };
+
   setSelectedData = (date) => {
     this.setState((prev) => ({ ...prev, date: date }));
   };
-  // componentDidUpdate() {
-  //     console.log(this.state);
-  // }
+
+  handleClick = () => {
+    this.setState((prevState) => {
+      return { render: !prevState.render };
+    });
+  };
+
   render() {
     const filterList = this.filterList();
     if (this.props.mobile) {
@@ -91,7 +96,7 @@ class DiaryAddProduct extends Component {
               +
             </button>
           </div>
-          {this.state.renderMarker ? (
+          {this.state.render ? (
             <div className="modal">
               <div className="buttonWrapper">
                 <button
@@ -99,8 +104,7 @@ class DiaryAddProduct extends Component {
                   type="button"
                   className="closeModal"
                 >
-                  {/* <img src={back} alt="back-arrow" /> */}
-                  back
+                  <img src={back} alt="back-arrow" />
                 </button>
               </div>
               <>
