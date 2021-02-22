@@ -1,21 +1,28 @@
-import { Provider } from "react-redux";
-import store from "../redux/store";
-
-import React, { Suspense, lazy } from "react";
+import { Component, Suspense, lazy } from "react";
+import { connect } from "react-redux";
 import { Route, Switch, Redirect } from "react-router-dom";
-
+import Spin from "./loader/Spin";
 import Layout from "./layout/Layout";
 import Header from "./header/Header";
 import routes from "../routes/routes";
 import PrivateRoutes from "./routes/PrivateRoutes";
 import PublicRoutes from "./routes/PublicRoutes";
 
-const App = () => {
-  return (
-    <Provider store={store}>
+import { refreshToken } from "../redux/operations/logInOperation";
+import { getLoading } from "../redux/selectors/spinSelector";
+
+class App extends Component {
+  componentDidMount() {
+    const { refreshToken, isAuth } = this.props;
+    isAuth && refreshToken();
+  }
+
+  render() {
+    return (
       <Layout>
+        {this.props.isLoading && <Spin />}
         <Header />
-        <Suspense fallback={<h2>Loading...</h2>}>
+        <Suspense fallback={<Spin />}>
           <Switch>
             <Route
               path="/"
@@ -35,8 +42,17 @@ const App = () => {
           </Switch>
         </Suspense>
       </Layout>
-    </Provider>
-  );
+    );
+  }
+}
+
+const mSTP = (state) => ({
+  isAuth: state.LogInReducer.accessToken,
+  isLoading: getLoading(state),
+});
+
+const mDTP = {
+  refreshToken,
 };
 
-export default App;
+export default connect(mSTP, mDTP)(App);

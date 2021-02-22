@@ -9,14 +9,14 @@ import bgTablet from "../img/rightSideBarBottom@1x.png";
 
 const Background = styled.div`
   position: absolute;
-  top: 0;
+  top: 11px;
   right: 0;
   z-index: -100;
   width: 100vw;
   min-height: 1024px;
   height: 100%;
   overflow: hidden;
-  background: linear-gradient(180deg, #fff, #fff 664px, #f0f1f3 0, #f0f1f3);
+  background: linear-gradient(180deg, #fff, #fff 635px, #f0f1f3 0, #f0f1f3);
 
   @media screen and (min-width: 768px) {
     position: absolute;

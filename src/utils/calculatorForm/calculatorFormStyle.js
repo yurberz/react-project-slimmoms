@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 
 const WrapCalc = styled.div`
   width: 290px;
-  margin-top: 30px;
-  /* margin-bottom: 80x; */
+  padding-top: 30px;
 
   @media (min-width: 768px) {
+    padding-top: 90px;
     width: 605px;
     height: 420px;
   }
@@ -61,21 +62,15 @@ const WrapInput = styled.div`
   }
 `;
 const WrapRadio = styled.div`
-  /* outline: 1px solid green; */
   display: flex;
-  /* justify-content: space-between; */
-  /* align-items: center; */
   width: 240px;
-  /* height: 46px; */
   height: 20px;
   @media (min-width: 768px) {
-    /* height: 55px; */
     margin: 15px;
   }
 `;
 
-const InputCalc = styled.input`
-  /* position: relative; */
+const InputCalc = styled(Field)`
   font-family: "Verdana-Bold";
   font-size: 14px;
   line-height: 17px;
@@ -89,6 +84,7 @@ const InputCalc = styled.input`
   outline: none;
   width: 100%;
   height: 26px;
+  padding-left: 180px;
   &:focus {
     background-color: white;
     border-bottom: 1px solid #e0e0e0;
@@ -97,22 +93,39 @@ const InputCalc = styled.input`
     border-left: none;
     color: #9b9faa;
   }
-  &:invalid {
-    border-bottom: 2px solid red;
-  }
 `;
-const LabelCalc = styled.label`
+const LabelCalc = styled.span`
   position: absolute;
+  transform: translateY(7px);
+
   font-family: "Verdana-Bold";
   font-size: 14px;
   line-height: 1.214;
   letter-spacing: 0.04em;
-  /* color: #fc842d; */
-  /* color: #212121; */
   color: #9b9faa;
-  /* ${InputCalc}:focus & {
-    transform: translateY(-55%);
-  } */
+  ${InputCalc} &:focus {
+    color: #264061;
+  }
+`;
+const InputRadio = styled(Field)`
+  position: absolute;
+  /* width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0 0 0 0); */
+  appearance: none;
+  &:focus {
+    width: 16px;
+    height: 16px;
+    outline: 1px solid #fc842d;
+    transform: translate(-3px, -2px);
+  }
+  &:checked {
+    outline: none;
+  }
 `;
 
 const LabelRadio = styled.label`
@@ -123,29 +136,17 @@ const LabelRadio = styled.label`
   line-height: 1.214;
   letter-spacing: 0.04em;
   color: #9b9faa;
-
   &:not(:last-child) {
     margin-right: 28px;
   }
-
-  /* &:checked {
+  ${InputRadio}:focus & {
     font-family: "Verdana-Bold";
     color: #fc842d;
   }
-  &::focus {
+  &:focus {
     font-family: "Verdana-Bold";
     color: #fc842d;
-  } */
-`;
-const InputRadio = styled.input`
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  border: 0;
-  clip: rect(0 0 0 0);
+  }
 `;
 
 const Svg = styled.svg`
@@ -165,6 +166,7 @@ const Text = styled.p`
   line-height: 1.214;
   letter-spacing: 0.04em;
   color: #9b9faa;
+  margin-bottom: 8px;
   @media (min-width: 768px) {
     margin-left: 15px;
   }
@@ -192,19 +194,47 @@ const FormButton = styled.button`
   text-align: center;
   letter-spacing: 0.04em;
   margin: 60px 0 0 0;
-  color: #fff;
+  /* color: #fff; */
+  /* color: ${(props) => (props.disabled ? "#9b9faa" : "#fff")}; */
+  color: ${(props) => (props.disabled ? "green" : "#fff")};
+  background-color: ${(props) => {
+    return;
+    console.log(props.disabled);
+    // props.disabled ? "rgba(252, 132, 45, 0.5)" : "#fc842d";
+  }};
 
   margin-top: 40px;
   margin-right: auto;
   margin-left: auto;
-
+  /* &:focus {
+    background: #fff;
+    color: #fc842d;
+    border: 2px solid #fc842d;
+    box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+  } */
   @media (min-width: 768px) {
     margin-top: 60px;
     margin-left: 0;
   }
   @media (min-width: 1280px) {
     margin-top: 60px;
-    margin-left: 320px;
+    margin-left: 348px;
+  }
+`;
+
+const Error = styled(ErrorMessage)`
+  font-family: "Verdana";
+  font-size: 10px;
+  color: red;
+`;
+const ErrorBlood = styled(ErrorMessage)`
+  font-family: "Verdana";
+  font-size: 10px;
+  color: red;
+  margin-bottom: -12px;
+  @media (min-width: 768px) {
+    margin-left: 15px;
+    margin-bottom: 0;
   }
 `;
 
@@ -222,4 +252,6 @@ export {
   Text,
   Span,
   FormButton,
+  Error,
+  ErrorBlood,
 };

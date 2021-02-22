@@ -6,6 +6,7 @@ import Button from "./button/Button";
 import s from "./Modal.module.css";
 import DailyCalorieIntake from "../dailyCalorieInTake/DailyCalorieInTake";
 import { CSSTransition } from "react-transition-group";
+
 class Modal extends Component {
   //   static propTypes = {
   //      modal: this.PropTypes.func,

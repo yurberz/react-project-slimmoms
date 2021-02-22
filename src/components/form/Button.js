@@ -16,7 +16,7 @@ const Button = styled.button`
   text-align: center;
   letter-spacing: 0.04em;
   color: #fc842d;
-  margin: 60px 0 0 0;
+  margin: 15px 0 15px 0;
   outline: none;
   &:hover {
     background: #fc842d;
