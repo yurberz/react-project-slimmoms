@@ -53,11 +53,11 @@ const getCurentDayInfoOperation = date => async (dispatch, getState) => {
 const deleteProductOperation = prodOfDay => async (dispatch, getState) => {
     const accessToken = getState().LogInReducer.accessToken;
     api.setToken(accessToken);
+    const {eatenProductId} = prodOfDay;
     dispatch(deleteProductRequest());
     try {
         const data = await api.delEatenProduct(prodOfDay);
-        console.log(data);
-        dispatch(deleteProductSuccess(data));
+        dispatch(deleteProductSuccess({...data, eatenProductId}));
     } catch (error) {
         dispatch(deleteProductError(error));
     }
