@@ -28,6 +28,10 @@ const Wrapper = styled.div`
     left: 18%;
 
 }
+.button-svg{
+    height: 50px;
+    width: 50px;
+}
 `
 
 export default Wrapper;
