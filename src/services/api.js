@@ -41,7 +41,9 @@ class slimMomApi {
     return axios
       .get(`/product?search=${query}`)
       .then((res) => res.data)
-      .catch((error) => error.message);
+      .catch((error) => {
+        throw new Error(error);
+      });
   }
   //===
 
@@ -69,21 +71,27 @@ class slimMomApi {
     return axios
       .post("/day", product)
       .then((res) => res.data)
-      .catch((error) => error.message);
+      .catch((error) => {
+        throw new Error(error);
+      });
   }
 
   delEatenProduct(product) {
     return axios
       .delete("/day", { data: product })
       .then((res) => res.data)
-      .catch((error) => error.message);
+      .catch((error) => {
+        throw new Error(error);
+      });
   }
 
   getProducts(date) {
     return axios
       .post("/day/info", date)
       .then((res) => res.data)
-      .catch((error) => error.message);
+      .catch((error) => {
+        throw new Error(error);
+      });
   }
   //===
 
