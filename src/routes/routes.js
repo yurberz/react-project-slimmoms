@@ -20,20 +20,20 @@ const routes = [
     isPrivate: false,
   },
   {
-    name: "КАЛЬКУЛЯТОР",
-    path: "/calculator",
-    exact: true,
-    component: lazy(() =>
-      import("../pages/CalculatorPage" /* webpackChunkName: "CalculatorPage"*/)
-    ),
-    isPrivate: true,
-  },
-  {
     name: "ДНЕВНИК",
     path: "/diary",
     exact: true,
     component: lazy(() =>
       import("../pages/Diary" /* webpackChunkName: "DiaryPage"*/)
+    ),
+    isPrivate: true,
+  },
+  {
+    name: "КАЛЬКУЛЯТОР",
+    path: "/calculator",
+    exact: true,
+    component: lazy(() =>
+      import("../pages/CalculatorPage" /* webpackChunkName: "CalculatorPage"*/)
     ),
     isPrivate: true,
   },
