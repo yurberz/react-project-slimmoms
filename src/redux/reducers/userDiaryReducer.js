@@ -2,6 +2,7 @@ import { createReducer, combineReducers } from "@reduxjs/toolkit";
 import moment from "moment";
 
 import {
+  resetList,
   searchProductRequest,
   searchProductSuccess,
   searchProductError,
@@ -36,18 +37,27 @@ const formDiaryReducer = createReducer(initialState, {
     ...state,
     productsFound: [...payload],
   }),
+  [resetList]: (state, { payload }) => ({
+    ...state,
+    productsFound: [],
+  }),
 
   [addProductSuccess]: (state, { payload }) => ({
     ...state,
+    daySummary: payload.daySummary,
     eatenProducts: [...state.eatenProducts, payload.eatenProduct],
   }),
 
-    [deleteProductSuccess]: (state, {payload}) => ({
-        ...state,
-        eatenProducts: [...state.eatenProducts.filter(product => product.id !== payload.eatenProductId)],
-        daySummary: payload.newDaySummary,
-    }),
-  
+  [deleteProductSuccess]: (state, { payload }) => ({
+    ...state,
+    eatenProducts: [
+      ...state.eatenProducts.filter(
+        (product) => product.id !== payload.eatenProductId
+      ),
+    ],
+    daySummary: payload.newDaySummary,
+  }),
+
   [getCurentDayInfoSuccess]: (state, { payload }) => ({
     ...state,
     eatenProducts: payload.eatenProducts ? payload.eatenProducts : [],
@@ -68,22 +78,22 @@ const formDiaryReducer = createReducer(initialState, {
   },
 });
 
-const errorDiaryReducer = createReducer(null, {
-  [searchProductError]: ({ payload }) => payload,
-  [searchProductRequest]: () => null,
+// const errorDiaryReducer = createReducer(null, {
+//   [searchProductError]: ({ payload }) => payload,
+//   [searchProductRequest]: () => null,
 
-  [addProductError]: ({ payload }) => payload,
-  [addProductRequest]: () => null,
+//   [addProductError]: ({ payload }) => payload,
+//   [addProductRequest]: () => null,
 
-  [deleteProductError]: ({ payload }) => payload,
-  [deleteProductRequest]: () => null,
+//   [deleteProductError]: ({ payload }) => payload,
+//   [deleteProductRequest]: () => null,
 
-  [getCurentDayInfoError]: ({ payload }) => payload,
-  [getCurentDayInfoRequest]: () => null,
-});
+//   [getCurentDayInfoError]: ({ payload }) => payload,
+//   [getCurentDayInfoRequest]: () => null,
+// });
 const userDiaryReducer = combineReducers({
   user: formDiaryReducer,
-  error: errorDiaryReducer,
+  // error: errorDiaryReducer,
 });
 
 export default userDiaryReducer;

@@ -20,6 +20,7 @@ const Wrapper = styled.div`
   overscroll-behavior: contain;
   overflow-x: hidden;
   padding-right: 5px;
+  width: 289px;
   @media screen and (min-width: 768px) {
     display: flex;
     position: absolute;
