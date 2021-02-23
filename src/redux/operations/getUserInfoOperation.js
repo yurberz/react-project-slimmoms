@@ -16,16 +16,4 @@ const getUserInfo = () => async (dispatch, getState) => {
   }
 };
 
-// const getUserInfo = () => (dispatch, getState) => {
-//   const accessToken = getState().LogInReducer.accessToken;
-//   api.setToken(accessToken);
-
-//   dispatch(getUserInfoActions.getUserInfoRequest());
-
-//   api
-//     .getUserInfo()
-//     .then(({ data }) => dispatch(getUserInfoActions.getUserInfoSuccess(data)))
-//     .catch((error) => dispatch(getUserInfoActions.getUserInfoError(error)));
-// };
-
 export default getUserInfo;
