@@ -73,6 +73,9 @@ const Div = styled.div`
     padding-top: 236px;
     padding-left: 115px;
     padding-right: 115px;
+    width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
   }
 `;
 
