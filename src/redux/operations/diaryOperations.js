@@ -22,7 +22,7 @@ const searchProductOperation = (query) => async (dispatch, getState) => {
     const data = await api.searchProduct(query);
     dispatch(searchProductSuccess(data));
   } catch (error) {
-    dispatch(searchProductError(error));
+    dispatch(searchProductError(error.message));
   }
 };
 
@@ -34,7 +34,7 @@ const addNewProductOperation = (product) => async (dispatch, getState) => {
     const data = await api.addEatenProduct(product);
     dispatch(addProductSuccess(data));
   } catch (error) {
-    dispatch(addProductError(error));
+    dispatch(addProductError(error.message));
   }
 };
 
@@ -46,7 +46,7 @@ const getCurentDayInfoOperation = (date) => async (dispatch, getState) => {
     const data = await api.getProducts(date);
     dispatch(getCurentDayInfoSuccess(data));
   } catch (error) {
-    dispatch(getCurentDayInfoError(error));
+    dispatch(getCurentDayInfoError(error.message));
   }
 };
 
@@ -59,7 +59,7 @@ const deleteProductOperation = (prodOfDay) => async (dispatch, getState) => {
     const data = await api.delEatenProduct(prodOfDay);
     dispatch(deleteProductSuccess({ ...data, eatenProductId }));
   } catch (error) {
-    dispatch(deleteProductError(error));
+    dispatch(deleteProductError(error.message));
   }
 };
 
