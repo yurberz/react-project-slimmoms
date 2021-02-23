@@ -1,4 +1,5 @@
 import { createAction } from "@reduxjs/toolkit";
+const resetList = createAction("@user/resetList");
 
 const searchProductRequest = createAction("@user/searchProductRequest");
 const searchProductSuccess = createAction("@user/searchProductSuccess");
@@ -17,6 +18,7 @@ const getCurentDayInfoSuccess = createAction("@user/getCurentDayInfoSuccess");
 const getCurentDayInfoError = createAction("@user/getCurentDayInfoError");
 
 export {
+  resetList,
   searchProductRequest,
   searchProductSuccess,
   searchProductError,

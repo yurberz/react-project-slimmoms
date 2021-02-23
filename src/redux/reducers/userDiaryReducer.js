@@ -2,6 +2,7 @@ import { createReducer, combineReducers } from "@reduxjs/toolkit";
 import moment from "moment";
 
 import {
+  resetList,
   searchProductSuccess,
   addProductSuccess,
   deleteProductSuccess,
@@ -28,6 +29,10 @@ const formDiaryReducer = createReducer(initialState, {
     ...state,
     productsFound: [...payload],
   }),
+  [resetList]: (state, { payload }) => ({
+    ...state,
+    productsFound: [],
+  }),
 
   [addProductSuccess]: (state, { payload }) => ({
     ...state,
@@ -35,12 +40,16 @@ const formDiaryReducer = createReducer(initialState, {
     eatenProducts: [...state.eatenProducts, payload.eatenProduct],
   }),
 
-    [deleteProductSuccess]: (state, {payload}) => ({
-        ...state,
-        eatenProducts: [...state.eatenProducts.filter(product => product.id !== payload.eatenProductId)],
-        daySummary: payload.newDaySummary,
-    }),
-  
+  [deleteProductSuccess]: (state, { payload }) => ({
+    ...state,
+    eatenProducts: [
+      ...state.eatenProducts.filter(
+        (product) => product.id !== payload.eatenProductId
+      ),
+    ],
+    daySummary: payload.newDaySummary,
+  }),
+
   [getCurentDayInfoSuccess]: (state, { payload }) => ({
     ...state,
     eatenProducts: payload.eatenProducts ? payload.eatenProducts : [],
@@ -60,6 +69,7 @@ const formDiaryReducer = createReducer(initialState, {
     };
   },
 });
+
 const userDiaryReducer = combineReducers({
   user: formDiaryReducer,
 });

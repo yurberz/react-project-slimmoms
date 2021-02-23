@@ -5,21 +5,26 @@ import {
   addNewProductOperation,
   getCurentDayInfoOperation,
 } from "../../redux/operations/diaryOperations";
+import { resetList } from "../../redux/actions/diaryActions";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import debounce from "lodash.debounce";
+import { debounce } from "lodash";
 import FilterList from "./FilterList";
 import DiaryCalendar from "./DiaryCalendar";
 import back from "../modal/svg/icon-back.svg";
 
+const initialState = {
+  product: "",
+  weight: "",
+  productId: "",
+  date: "",
+  render: false,
+  inputValue: "",
+};
+
 class DiaryAddProduct extends Component {
   state = {
-    product: "",
-    weight: "",
-    productId: "",
-    date: "",
-    render: false,
-    inputValue: "",
+    ...initialState,
   };
 
   submitDiaryAddProduct = (event) => {
@@ -28,24 +33,30 @@ class DiaryAddProduct extends Component {
       this.props.addNewProductOperation({
         date: this.state.date,
         productId: this.state.productId,
-        weight: this.state.weight,
+        weight: Number(this.state.weight),
       });
+      this.setState({ ...initialState });
+      return;
     }
     this.handleClick();
   };
 
-  inputHandlerDiaryAddProduct = ({ target }) => {
-    if (target.value === "") {
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.inputValue === this.state.inputValue) {
       return;
+    } else {
+      if (this.state.inputValue.legth < 2) {
+        return;
+      }
+      this.props.searchProductOperation(this.state.inputValue);
     }
-    this.props.searchProductOperation(target.value);
-  };
+  }
 
-  inputHandlerDiaryAddGramm = (event) => {
-    // if (this.state.inputValue) {
-    //   event.target.value = this.state.inputValue;
-    // }
-    this.setState((prev) => ({ ...prev, weight: event.target.value }));
+  inputHandlerDiaryAddProduct = (e) => {
+    this.setState({ inputValue: e.target.value });
+  };
+  inputHandlerDiaryAddGramm = (e) => {
+    this.setState({ weight: e.target.value });
   };
 
   filterList = () => {
@@ -60,12 +71,12 @@ class DiaryAddProduct extends Component {
     const inputV = this.props.productVariables.find(
       (item) => item._id == event.target.dataset.id
     );
-
     this.setState((prev) => ({
       ...prev,
       productId: event.target.dataset.id,
-      inputValue: inputV,
+      inputValue: inputV.title.ru,
     }));
+    this.props.resetList();
   };
 
   setSelectedData = (date) => {
@@ -108,6 +119,7 @@ class DiaryAddProduct extends Component {
                 </button>
               </div>
               <>
+                {/* ================================================================ */}
                 <form
                   className="form_add"
                   onSubmit={this.submitDiaryAddProduct}
@@ -115,8 +127,9 @@ class DiaryAddProduct extends Component {
                   <input
                     className="input_add-product"
                     placeholder="Введите название продукта"
-                    // value
-                    onChange={debounce(this.inputHandlerDiaryAddProduct, 500)}
+                    name="inputValue"
+                    value={this.state.inputValue}
+                    onChange={this.inputHandlerDiaryAddProduct}
                   />
                   {filterList.length > 0 && (
                     <FilterList
@@ -127,6 +140,7 @@ class DiaryAddProduct extends Component {
                   <input
                     className="input_add-gramm"
                     placeholder="Грамм"
+                    value={this.state.weight}
                     onChange={this.inputHandlerDiaryAddGramm}
                   />
                   {window.innerWidth < 768 ? (
@@ -194,6 +208,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(addNewProductOperation(product)),
   getCurentDayInfoOperation: (date) =>
     dispatch(getCurentDayInfoOperation(date)),
+  resetList: () => dispatch(resetList()),
 });
 export default connect(mapStateToPtops, mapDispatchToProps)(DiaryAddProduct);
 
