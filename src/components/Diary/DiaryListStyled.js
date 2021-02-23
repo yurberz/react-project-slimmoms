@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   .diary-list_ul {
+    margin-left: auto;
+    margin-right: auto;
     padding-right: 7px;
     width: 304px;
     height: 230px;
@@ -145,7 +147,7 @@ const Wrapper = styled.div`
       margin-right: 31px;
       border-bottom: 1px solid #e0e0e0;
       white-space: nowrap;
-      overflow: auto;
+      /* overflow: auto; */
     }
     .diary-list_gramm {
       text-align: center;
@@ -156,7 +158,7 @@ const Wrapper = styled.div`
       margin-right: 31px;
       border-bottom: 1px solid #e0e0e0;
       white-space: nowrap;
-      overflow: auto;
+      /* overflow: auto; */
     }
     .diary-list_kkal {
       text-align: center;
@@ -167,7 +169,7 @@ const Wrapper = styled.div`
       margin-right: 10px;
       border-bottom: 1px solid #e0e0e0;
       white-space: nowrap;
-      overflow: auto;
+      /* overflow: auto; */
     }
     /* .button {
       height: max-content;

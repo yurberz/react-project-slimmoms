@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
+  /* margin-top: 50px; */
+
   .only-calendar {
     display: flex;
     align-items: center;
@@ -21,6 +23,8 @@ const Wrapper = styled.div`
     border: none;
   }
   @media screen and (min-width: 768px) {
+    margin-bottom: 40px;
+
     .input-calendar {
       border: none;
       width: 220px;
@@ -28,6 +32,10 @@ const Wrapper = styled.div`
       font-size: 34px;
       line-height: 1.4;
     }
+  }
+
+  @media screen and (min-width: 1280px) {
+    margin-bottom: 50px;
   }
 `;
 
