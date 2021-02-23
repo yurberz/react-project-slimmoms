@@ -169,7 +169,9 @@ class DiaryAddProduct extends Component {
             <input
               className="input_add-product"
               placeholder="Введите название продукта"
-              onChange={debounce(this.inputHandlerDiaryAddProduct, 500)}
+              name="inputValue"
+              value={this.state.inputValue}
+              onChange={this.inputHandlerDiaryAddProduct}
             />
             {filterList.length > 0 && (
               <FilterList
@@ -181,6 +183,7 @@ class DiaryAddProduct extends Component {
             <input
               className="input_add-gramm"
               placeholder="Грамм"
+              value={this.state.weight}
               onChange={this.inputHandlerDiaryAddGramm}
             />
             {window.innerWidth < 768 ? (
