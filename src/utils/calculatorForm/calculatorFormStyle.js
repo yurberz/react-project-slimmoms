@@ -9,6 +9,7 @@ const WrapCalc = styled.div`
     width: 605px;
     height: 420px;
     padding-top: 0;
+    margin-bottom: 28px;
   }
   @media (min-width: 1280px) {
     width: 605px;
