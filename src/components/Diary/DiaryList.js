@@ -63,7 +63,7 @@ class DiaryList extends Component {
             ))
             .reverse()}
         </TransitionGroup>
-        <div className="transparent"></div>
+        {/* <div className="transparent"></div> */}
       </DiaryStyled>
     );
   }

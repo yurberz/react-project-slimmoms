@@ -2,6 +2,8 @@ import styled from "styled-components";
 import calendarSvg from "../../svg/calendar.svg";
 
 const Wrapper = styled.div`
+  margin-bottom: 12px;
+
   .relative {
     position: relative;
   }
@@ -100,36 +102,8 @@ const Wrapper = styled.div`
     background-color: transparent;
   }
 
-  .transparent {
-    position: absolute;
-    width: 283px;
-    height: 58px;
-    bottom: 433px;
-    left: 5px;
-    opacity: 0.5;
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.5) 0%,
-      #ffffff 42.19%
-    );
-  }
-
   @media screen and (min-width: 768px) {
-    .transparent {
-      width: 534px;
-      height: 71px;
-      bottom: 382px;
-      left: 87px;
-    }
-  }
-
-  @media screen and (min-width: 1280px) {
-    .transparent {
-      width: 562px;
-      height: 71px;
-      bottom: 177px;
-      left: 186px;
-    }
+    margin-bottom: 49px;
   }
 `;
 
