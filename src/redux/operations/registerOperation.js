@@ -1,4 +1,5 @@
 import { signUp, setError } from "../actions/registerAction";
+import { signIn } from "../actions/logInAction";
 import slimMomApi from "../../services/api";
 import {
   chngRecomendsRequest,
@@ -20,6 +21,11 @@ const signUpOperation = (user, history) => async (dispatch) => {
   } catch (error) {
     dispatch(setError(error.message));
   } finally {
+    // history.push({
+    //   pathname: "/login",
+    // });
+    // dispatch(signIn(response));
+    // console.log("finaly", response);
     dispatch(chngRecomendsSuccess());
   }
 };
