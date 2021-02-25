@@ -3,7 +3,6 @@ import {
   getRecomendsRequest,
   getRecomendsError,
   getRecomendsSuccess,
-  toggleModal,
 } from "../actions/calcAction";
 
 const getReccomendation = (userInfo, id) => async (dispatch) => {

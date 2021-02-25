@@ -68,6 +68,7 @@ const ContainerForm = styled.div`
     padding-right: 87px;
   }
   @media screen and (min-width: 1280px) {
+    margin-top: 148px;
     max-width: 639px;
     padding-left: 115px;
     padding-right: 115px;
@@ -90,9 +91,10 @@ const ContainerButton = styled.div`
   display: flex;
   flex-wrap: wrap;
   padding: 0px;
-  margin-top: 60px;
-  @media screen and (max-width: 390px) {
-    margin-top: 42px;
+  margin-top: 90px;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 82px;
   }
 `;
 

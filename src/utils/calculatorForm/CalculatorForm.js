@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import { Formik, Form } from "formik";
 import getReccomendation from "../../redux/operations/calcOperation";
 import { chngUserParam } from "../../redux/operations/logInOperation";
 import sprite from "../../svg/elipscomb.svg";

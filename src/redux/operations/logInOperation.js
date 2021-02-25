@@ -13,22 +13,22 @@ import {
 import { logOut } from "../actions/logOutAction";
 import slimMomApi from "../../services/api";
 import getUserInfo from "./getUserInfoOperation";
+import { getCurentDayInfoOperation } from "./diaryOperations";
 
 const logInOperation = (user) => async (dispatch) => {
-
   dispatch(chngRecomendsRequest());
 
   try {
     const response = await slimMomApi.logIn({ ...user });
     slimMomApi.setToken(response.accessToken);
     dispatch(signIn(response));
+    dispatch(refreshToken());
     dispatch(getUserInfo());
+    dispatch(getCurentDayInfoOperation());
   } catch (error) {
     dispatch(setErrorr(error.message));
   } finally {
-
     dispatch(chngRecomendsSuccess());
-
   }
 };
 // ====================================================
@@ -56,7 +56,6 @@ const refreshToken = () => async (dispatch, getState) => {
 
     await slimMomApi.setToken(res.data.newAccessToken);
     dispatch(newTknSuccess(res.data));
-    await dispatch(getUserInfo());
   } catch (error) {
     dispatch(newTknError(error.message));
     dispatch(logOut());

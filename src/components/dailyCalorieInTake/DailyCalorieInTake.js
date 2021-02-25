@@ -2,7 +2,6 @@ import React from "react";
 import s from "./DailyCalorieInTake.module.css";
 import { Link } from "react-router-dom";
 const DailyCalorieIntake = ({ dailyRate, notAllowed, hndlBtnNext }) => {
-  // const history = useHistory();
   const filterNotAllowed = notAllowed.filter((product, index) => index < 4);
   const onStartClick = () => {
     hndlBtnNext();

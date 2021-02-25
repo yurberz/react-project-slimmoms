@@ -6,6 +6,7 @@ import DiaryStyle from "../components/Diary/DiaryStyled";
 import styled from "styled-components";
 import bgLayers from "../img/layersBg.png";
 import bgTablet from "../img/rightSideBarBottom@1x.png";
+import { connect } from "react-redux";
 
 const Background = styled.div`
   position: absolute;
@@ -84,6 +85,10 @@ class Diary extends Component {
     screenWidth: window.innerWidth,
   };
 
+  componentDidMount = () => {
+    !this.props.dailyRate && this.props.history.replace("/calculator");
+  };
+
   render() {
     return this.state.screenWidth < 768 ? (
       <>
@@ -108,19 +113,11 @@ class Diary extends Component {
         </Div>
       </Background>
     );
-    // return (
-    //   <>
-    //     <Background />
-    //     <Div>
-    //       <DiaryStyle>
-    //         <DiaryAddProduct />
-    //         <DiaryList />
-    //       </DiaryStyle>
-    //       <RightSideBar />
-    //     </Div>
-    //   </>
-    // );
   }
 }
 
-export default Diary;
+const mapStateToPtops = (state) => ({
+  dailyRate: state.LogInReducer.user.userData.dailyRate,
+});
+
+export default connect(mapStateToPtops)(Diary);

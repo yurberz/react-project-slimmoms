@@ -31,7 +31,6 @@ const DiaryCalendar = ({ setSelectedData, getCurentDayInfoOperation }) => {
           dateFormat="dd.MM.yyyy"
           className="input-calendar"
         />
-
         <CalendarIcon width="18" height="20" />
       </div>
     </DiaryCalendarStyled>
