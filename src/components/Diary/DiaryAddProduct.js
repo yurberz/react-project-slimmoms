@@ -11,6 +11,7 @@ import { connect } from "react-redux";
 import FilterList from "./FilterList";
 import DiaryCalendar from "./DiaryCalendar";
 import back from "../modal/svg/icon-back.svg";
+import moment from "moment";
 
 const initialState = {
   product: "",
@@ -19,6 +20,7 @@ const initialState = {
   date: "",
   render: false,
   inputValue: "",
+  localEerror: "",
 };
 
 class DiaryAddProduct extends Component {
@@ -34,36 +36,51 @@ class DiaryAddProduct extends Component {
         productId: this.state.productId,
         weight: Number(this.state.weight),
       });
-      this.setState({ ...initialState });
+      this.setState((prev) => ({ ...initialState, date: prev.date }));
       return;
     }
     this.handleClick();
   };
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.inputValue === this.state.inputValue) {
-      return;
-    } else {
-      if (this.state.inputValue.legth < 2) {
-        return;
-      }
-      this.props.searchProductOperation(this.state.inputValue);
-    }
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevState.inputValue === this.state.inputValue) {
+  //     return;
+  //   } else {
+  //     if (this.state.inputValue.legth < 2) {
+  //       return;
+  //     }
+  //     this.props.searchProductOperation(this.state.inputValue);
+  //   }
+  // }
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevState.inputValue === this.state.inputValue) {
+  //     return;
+  //   } else if (this.state.inputValue.length === 0) {
+  //     this.props.resetList();
+  //   } else if (this.state.inputValue.legth < 2) {
+  //     return;
+  //   }
+  //   this.props.searchProductOperation(this.state.inputValue);
+  // }
 
   inputHandlerDiaryAddProduct = (e) => {
     this.setState({ inputValue: e.target.value });
+    if (this.state.inputValue.length <= 2) {
+      this.props.resetList();
+    } else if (this.state.inputValue.length > 2) {
+      this.props.searchProductOperation(this.state.inputValue);
+    }
   };
+
   inputHandlerDiaryAddGramm = (e) => {
     this.setState({ weight: e.target.value });
   };
 
   filterList = () => {
-    return this.props.productVariables
-      .map(({ title, _id }) => {
-        return { title: title.ru, id: _id };
-      })
-      .filter((prod, index) => (index <= 9 ? true : false));
+    return this.props.productVariables.map(({ title, _id }) => {
+      return { title: title.ru, id: _id };
+    });
   };
 
   filterListClickLi = (event) => {
@@ -129,6 +146,7 @@ class DiaryAddProduct extends Component {
                     name="inputValue"
                     value={this.state.inputValue}
                     onChange={this.inputHandlerDiaryAddProduct}
+                    required
                   />
                   {filterList.length > 0 && (
                     <FilterList
@@ -141,6 +159,7 @@ class DiaryAddProduct extends Component {
                     placeholder="Грамм"
                     value={this.state.weight}
                     onChange={this.inputHandlerDiaryAddGramm}
+                    required
                   />
                   {window.innerWidth < 768 ? (
                     <button className="button svg-add" type="submit">
@@ -152,6 +171,7 @@ class DiaryAddProduct extends Component {
                     </button>
                   )}
                 </form>
+                {/* =================================================================== */}
               </>
             </div>
           ) : null}
@@ -171,6 +191,7 @@ class DiaryAddProduct extends Component {
               name="inputValue"
               value={this.state.inputValue}
               onChange={this.inputHandlerDiaryAddProduct}
+              required
             />
             {filterList.length > 0 && (
               <FilterList
@@ -184,6 +205,7 @@ class DiaryAddProduct extends Component {
               placeholder="Грамм"
               value={this.state.weight}
               onChange={this.inputHandlerDiaryAddGramm}
+              required
             />
             {window.innerWidth < 768 ? (
               <button className="button svg-add" type="submit">
@@ -203,6 +225,7 @@ class DiaryAddProduct extends Component {
 
 const mapStateToPtops = (state) => ({
   productVariables: state.userDiary.user.productsFound,
+  error: state.error,
 });
 const mapDispatchToProps = (dispatch) => ({
   searchProductOperation: (query) => dispatch(searchProductOperation(query)),
