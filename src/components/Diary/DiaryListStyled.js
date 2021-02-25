@@ -6,7 +6,7 @@ const Wrapper = styled.div`
     margin-right: auto;
     padding-right: 7px;
     width: 304px;
-    height: 229px;
+    height: 216px;
     overscroll-behavior: contain;
     overflow-y: auto;
     overflow-x: hidden;
@@ -69,7 +69,7 @@ const Wrapper = styled.div`
     .diary-list_ul {
       padding-right: 31px;
       width: 589px;
-      height: 240px;
+      height: 191px;
     }
 
     .diary-list_name {
@@ -127,7 +127,7 @@ const Wrapper = styled.div`
     .diary-list_ul {
       padding-right: 21px;
       width: 600px;
-      height: 265px;
+      height: 313px;
     }
     .diary-list_li {
       display: flex;
