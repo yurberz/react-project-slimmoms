@@ -68,7 +68,6 @@ const ContainerForm = styled.div`
     padding-right: 87px;
   }
   @media screen and (min-width: 1280px) {
-    margin-top: 148px;
     max-width: 639px;
     padding-left: 115px;
     padding-right: 115px;
