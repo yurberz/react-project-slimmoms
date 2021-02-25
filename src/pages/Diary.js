@@ -84,10 +84,10 @@ class Diary extends Component {
   state = {
     screenWidth: window.innerWidth,
   };
-  
+
   componentDidMount = () => {
-    !this.props.dailyRate && this.props.history.replace('/calculator');
-  }
+    !this.props.dailyRate && this.props.history.replace("/calculator");
+  };
 
   render() {
     return this.state.screenWidth < 768 ? (
@@ -113,18 +113,6 @@ class Diary extends Component {
         </Div>
       </Background>
     );
-    // return (
-    //   <>
-    //     <Background />
-    //     <Div>
-    //       <DiaryStyle>
-    //         <DiaryAddProduct />
-    //         <DiaryList />
-    //       </DiaryStyle>
-    //       <RightSideBar />
-    //     </Div>
-    //   </>
-    // );
   }
 }
 

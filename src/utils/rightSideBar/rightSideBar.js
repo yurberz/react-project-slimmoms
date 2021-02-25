@@ -28,7 +28,6 @@ class RightSideBar extends Component {
                           ? 0
                           : Math.round(daySummary.kcalLeft)) + " ккал"
                       : "000 калл"}
-                    {/* {daySummary.kcalLeft} */}
                   </span>
                 </p>
               </li>

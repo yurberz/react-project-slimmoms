@@ -15,9 +15,6 @@ const rootReducer = combineReducers({
   getUserInfo: summInfo,
   loading: loadingReducer,
   error: errorReducer,
-
 });
-
-// const rootReducer = combineReducers({ RegisterReducer, LogInReducer });
 
 export default rootReducer;

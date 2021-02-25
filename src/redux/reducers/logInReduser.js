@@ -7,7 +7,6 @@ import {
   newTknSuccess,
   setLoading,
 } from "../actions/logInAction";
-// import { setLoading } from "../actions/loadingAction";
 
 import { logOut } from "../actions/logOutAction";
 import { persistReducer } from "redux-persist";
@@ -86,7 +85,6 @@ const logInReducer = createReducer(
 const authPersistConfig = {
   key: "logIn",
   storage,
-  // whitelist: ["accessToken", "refreshToken", "sid"],
 };
 
 export default persistReducer(
