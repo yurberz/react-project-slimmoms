@@ -99,6 +99,38 @@ const Wrapper = styled.div`
     border: none;
     background-color: transparent;
   }
+
+  .transparent {
+    position: absolute;
+    width: 308px;
+    height: 58px;
+    bottom: 433px;
+    left: 5px;
+    opacity: 0.5;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.5) 0%,
+      #ffffff 42.19%
+    );
+  }
+
+  @media screen and (min-width: 768px) {
+    .transparent {
+      width: 580px;
+      height: 71px;
+      bottom: 382px;
+      left: 87px;
+    }
+  }
+
+  @media screen and (min-width: 1280px) {
+    .transparent {
+      width: 595px;
+      height: 71px;
+      bottom: 177px;
+      left: 186px;
+    }
+  }
 `;
 
 export default Wrapper;

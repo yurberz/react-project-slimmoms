@@ -45,7 +45,7 @@ export const Section = styled.section`
     overflow-y: scroll;
     z-index: 1;
     position: relative;
-    overscroll-behavior: contain;
+    overscroll-behavior: smooth;
     overflow-x: hidden;
     padding-right: 5px;
   }
