@@ -102,7 +102,7 @@ const Wrapper = styled.div`
 
   .transparent {
     position: absolute;
-    width: 308px;
+    width: 283px;
     height: 58px;
     bottom: 433px;
     left: 5px;
@@ -116,7 +116,7 @@ const Wrapper = styled.div`
 
   @media screen and (min-width: 768px) {
     .transparent {
-      width: 580px;
+      width: 534px;
       height: 71px;
       bottom: 382px;
       left: 87px;
@@ -125,7 +125,7 @@ const Wrapper = styled.div`
 
   @media screen and (min-width: 1280px) {
     .transparent {
-      width: 595px;
+      width: 562px;
       height: 71px;
       bottom: 177px;
       left: 186px;

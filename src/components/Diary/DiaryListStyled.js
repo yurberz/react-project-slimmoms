@@ -183,6 +183,21 @@ const Wrapper = styled.div`
       background-color: transparent;
     } */
   }
+
+  .itemOpacity-enter {
+    opacity: 0.1;
+  }
+  .itemOpacity-enter-active {
+    opacity: 1;
+    transition: all 250ms linear;
+  }
+  .itemOpacity-exit {
+    opacity: 1;
+  }
+  .itemOpacity-exit-active {
+    opacity: 0.1;
+    transition: all 250ms linear;
+  }
 `;
 
 export default Wrapper;

@@ -1,6 +1,7 @@
 import { deleteProductOperation } from "../../redux/operations/diaryOperations";
 import { Component } from "react";
 import { connect } from "react-redux";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import DelIcon from "../icons/DelIcon";
 import DiaryStyled from "./DiaryListStyled";
 
@@ -16,7 +17,7 @@ class DiaryList extends Component {
   render() {
     return (
       <DiaryStyled>
-        <ul className="diary-list_ul">
+        {/* <ul className="diary-list_ul">
           {this.props.eatenProducts.map((eatenProduct) => (
             <li className="diary-list_li" key={eatenProduct.id}>
               <span className="diary-list_name">{eatenProduct.title}</span>
@@ -33,7 +34,35 @@ class DiaryList extends Component {
               </button>
             </li>
           ))}
-        </ul>
+        </ul> */}
+        <TransitionGroup component="ul" className="diary-list_ul">
+          {this.props.eatenProducts
+            .map((eatenProduct) => (
+              <CSSTransition
+                key={eatenProduct.id}
+                timeout={250}
+                classNames="itemOpacity"
+              >
+                <li className="diary-list_li">
+                  <span className="diary-list_name">{eatenProduct.title}</span>
+                  <span className="diary-list_gramm">
+                    {eatenProduct.weight} г
+                  </span>
+                  <span className="diary-list_kkal">
+                    {Math.round(eatenProduct.kcal)} ккал
+                  </span>
+                  <button
+                    className="delBtn"
+                    onClick={() => this.onClickDelete(eatenProduct.id)}
+                    data-id={eatenProduct.id}
+                  >
+                    <DelIcon height="16" width="16" fill="#9B9FAA" />
+                  </button>
+                </li>
+              </CSSTransition>
+            ))
+            .reverse()}
+        </TransitionGroup>
         <div className="transparent"></div>
       </DiaryStyled>
     );
