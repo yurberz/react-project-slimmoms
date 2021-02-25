@@ -32,6 +32,9 @@ const ContainerForm = styled.div`
     outline: none;
     background-color: white;
   }
+  input:invalid {
+    background-color: blue;
+  }
   button {
     width: 176px;
     height: 44px;
@@ -56,7 +59,9 @@ const ContainerForm = styled.div`
     color: white;
     box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
   }
-
+  div {
+    font-family: Verdana;
+  }
   @media screen and (min-width: 768px) {
     max-width: 639px;
     padding-left: 87px;
@@ -80,7 +85,7 @@ const ContainerForm = styled.div`
   }
 `;
 const ContainerButton = styled.div`
-  max-width: 400px;
+  max-width: 382px;
   justify-content: space-between;
   display: flex;
   flex-wrap: wrap;
@@ -98,21 +103,22 @@ const HeadingH1 = styled.h1`
   line-height: 13px;
   letter-spacing: 0.04em;
 
-  margin-bottom: 60px;
   @media screen and (min-width: 1300px) {
+    margin-top: 90px;
     padding-top: 0;
   }
   @media screen and (max-width: 1279px) {
-    margin-top: 42px;
+    margin-top: 157px;
     padding-top: 0;
   }
   @media screen and (max-width: 766px) {
+    margin-top: 157px;
     padding-top: 0;
-    margin-top: 42px;
+
     text-align: center;
   }
   @media screen and (max-width: 390px) {
-    margin-top: 42px;
+    margin-top: 40px;
   }
 `;
 
@@ -128,18 +134,18 @@ class Login extends Component {
 
     return (
       <>
+        {error.length > 0 ? (
+          <div className="ctrl ">
+            <span className="nortification animateOpen warning">
+              Профиль не найден.
+            </span>
+          </div>
+        ) : (
+          <br />
+        )}
         <LoginPageDecoration />
 
         <ContainerForm>
-          {error.length > 0 ? (
-            <div className="ctrl ">
-              <span className="nortification animateOpen warning">
-                Профиль не найден.
-              </span>
-            </div>
-          ) : (
-            <br />
-          )}
           <HeadingH1>ВХОД</HeadingH1>
 
           <Formik
