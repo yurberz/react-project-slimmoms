@@ -30,6 +30,9 @@ const ContainerForm = styled.div`
     outline: none;
     background-color: white;
   }
+  input:invalid {
+    background-color: blue;
+  }
   button {
     width: 176px;
     height: 44px;
@@ -54,7 +57,9 @@ const ContainerForm = styled.div`
     color: white;
     box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
   }
-
+  div {
+    font-family: Verdana;
+  }
   @media screen and (min-width: 768px) {
     max-width: 639px;
     padding-left: 87px;
@@ -63,15 +68,20 @@ const ContainerForm = styled.div`
   @media screen and (min-width: 1280px) {
     max-width: 639px;
     padding-left: 115px;
-    padding-right: 115px;
   }
-  @media screen and (max-width: 768px) {
-    /* max-width: 439px; */
-    /* margin: 0 auto; */
+  @media screen and (max-width: 767px) {
+    max-width: 439px;
+    margin: 0 auto;
+    button {
+      margin: 15px auto;
+    }
   }
   @media screen and (max-width: 388px) {
     max-width: 439px;
     margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 0px;
+
     button {
       margin: 15px auto;
     }
@@ -83,9 +93,10 @@ const ContainerButton = styled.div`
   display: flex;
   flex-wrap: wrap;
   padding: 0px;
-  margin-top: 60px;
-  @media screen and (max-width: 390px) {
-    margin-top: 42px;
+  margin-top: 90px;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 82px;
   }
 `;
 
