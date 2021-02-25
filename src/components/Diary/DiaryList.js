@@ -34,6 +34,7 @@ class DiaryList extends Component {
             </li>
           ))}
         </ul>
+        <div className="transparent"></div>
       </DiaryStyled>
     );
   }

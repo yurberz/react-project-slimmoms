@@ -8,7 +8,6 @@ import {
 import { resetList } from "../../redux/actions/diaryActions";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { debounce } from "lodash";
 import FilterList from "./FilterList";
 import DiaryCalendar from "./DiaryCalendar";
 import back from "../modal/svg/icon-back.svg";
