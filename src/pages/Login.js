@@ -70,15 +70,20 @@ const ContainerForm = styled.div`
   @media screen and (min-width: 1280px) {
     max-width: 639px;
     padding-left: 115px;
-    padding-right: 115px;
   }
-  @media screen and (max-width: 768px) {
-    /* max-width: 439px; */
-    /* margin: 0 auto; */
+  @media screen and (max-width: 767px) {
+    max-width: 439px;
+    margin: 0 auto;
+    button {
+      margin: 15px auto;
+    }
   }
   @media screen and (max-width: 388px) {
     max-width: 439px;
     margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 0px;
+
     button {
       margin: 15px auto;
     }

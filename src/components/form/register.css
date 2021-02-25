@@ -108,7 +108,11 @@
     }
 }
 
-
+@media screen and (max-width: 768px) {
+    .linkTablet {
+        margin: 0 auto;
+    }
+}
 
 @media screen and (max-width: 388px) {
     .linkTablet {
