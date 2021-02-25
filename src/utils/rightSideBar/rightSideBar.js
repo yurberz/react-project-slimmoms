@@ -11,7 +11,12 @@ class RightSideBar extends Component {
     return (
       <Section>
         <div className="dayInfoWrapper">
-          <h2>Сводка за {moment(daySummary.date).format("DD.MM.YYYY")}</h2>
+          <h2>
+            Сводка за{" "}
+            {daySummary?.date
+              ? moment(daySummary.date).format("DD.MM.YYYY")
+              : moment(Date.now()).format("DD.MM.YYYY")}
+          </h2>
           {daySummary ? (
             <ul>
               <li>
@@ -23,7 +28,6 @@ class RightSideBar extends Component {
                           ? 0
                           : Math.round(daySummary.kcalLeft)) + " ккал"
                       : "000 калл"}
-                    {/* {daySummary.kcalLeft} */}
                   </span>
                 </p>
               </li>

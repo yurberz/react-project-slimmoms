@@ -1,8 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { signUp, setError } from "../actions/registerAction";
 import { logOut } from "../actions/logOutAction";
-import { persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
 
 const initialState = {
   email: "",

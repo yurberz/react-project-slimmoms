@@ -6,7 +6,7 @@ const Wrapper = styled.div`
     margin-right: auto;
     padding-right: 7px;
     width: 304px;
-    height: 229px;
+    height: 216px;
     overscroll-behavior: contain;
     overflow-y: auto;
     overflow-x: hidden;
@@ -29,13 +29,11 @@ const Wrapper = styled.div`
 
   .diary-list_name {
     display: inline-block;
-    /* padding-top: 20px; */
     padding-bottom: 10px;
     margin-right: 10px;
 
     border-bottom: 1px solid #e0e0e0;
     white-space: normal;
-    /* overflow: auto; */
     flex: 3 1;
     color: #212121;
     font-size: 14px;
@@ -44,24 +42,20 @@ const Wrapper = styled.div`
     text-align: center;
     display: inline-block;
     min-width: 43px;
-    /* padding-top: 20px; */
     padding-bottom: 10px;
     margin-right: 10px;
     border-bottom: 1px solid #e0e0e0;
     white-space: nowrap;
-    /* overflow: auto; */
     color: #212121;
     font-size: 14px;
   }
   .diary-list_kkal {
     text-align: center;
     display: inline-block;
-    /* padding-top: 20px; */
     padding-bottom: 10px;
     margin-right: 10px;
     border-bottom: 1px solid #e0e0e0;
     white-space: nowrap;
-    /* overflow: auto; */
     color: #212121;
     font-size: 14px;
   }
@@ -69,7 +63,7 @@ const Wrapper = styled.div`
     .diary-list_ul {
       padding-right: 31px;
       width: 589px;
-      height: 240px;
+      height: 191px;
     }
 
     .diary-list_name {
@@ -78,7 +72,6 @@ const Wrapper = styled.div`
       margin-right: 31px;
       border-bottom: 1px solid #e0e0e0;
       white-space: nowrap;
-      /* overflow: auto; */
       font-size: 14px;
       font-weight: 400;
       line-height: 1.4;
@@ -87,12 +80,10 @@ const Wrapper = styled.div`
       text-align: right;
       display: inline-block;
       width: 49.67px;
-      /* padding-top: 15px; */
       padding-bottom: 19px;
       margin-right: 31px;
       border-bottom: 1px solid #e0e0e0;
       white-space: nowrap;
-      /* overflow: auto; */
       font-size: 14px;
       font-weight: 400;
       line-height: 1.4;
@@ -101,33 +92,20 @@ const Wrapper = styled.div`
       text-align: right;
       display: inline-block;
       width: 60px;
-      /* padding-top: 15px; */
       padding-bottom: 19px;
       margin-right: 31px;
       border-bottom: 1px solid #e0e0e0;
       white-space: nowrap;
-      /* overflow: auto; */
       font-size: 14px;
       font-weight: 400;
       line-height: 1.4;
     }
-    /* .button {
-      height: max-content;
-      display: inline-block;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-      border: none;
-      background-color: transparent;
-    } */
   }
   @media screen and (min-width: 1280px) {
     .diary-list_ul {
       padding-right: 21px;
       width: 600px;
-      height: 265px;
+      height: 313px;
     }
     .diary-list_li {
       display: flex;
@@ -147,7 +125,6 @@ const Wrapper = styled.div`
       margin-right: 31px;
       border-bottom: 1px solid #e0e0e0;
       white-space: nowrap;
-      /* overflow: auto; */
     }
     .diary-list_gramm {
       text-align: center;
@@ -158,7 +135,6 @@ const Wrapper = styled.div`
       margin-right: 31px;
       border-bottom: 1px solid #e0e0e0;
       white-space: nowrap;
-      /* overflow: auto; */
     }
     .diary-list_kkal {
       text-align: center;
@@ -169,19 +145,22 @@ const Wrapper = styled.div`
       margin-right: 10px;
       border-bottom: 1px solid #e0e0e0;
       white-space: nowrap;
-      /* overflow: auto; */
     }
-    /* .button {
-      height: max-content;
-      display: inline-block;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-      border: none;
-      background-color: transparent;
-    } */
+  }
+
+  .itemOpacity-enter {
+    opacity: 0.1;
+  }
+  .itemOpacity-enter-active {
+    opacity: 1;
+    transition: all 250ms linear;
+  }
+  .itemOpacity-exit {
+    opacity: 1;
+  }
+  .itemOpacity-exit-active {
+    opacity: 0.1;
+    transition: all 250ms linear;
   }
 `;
 
