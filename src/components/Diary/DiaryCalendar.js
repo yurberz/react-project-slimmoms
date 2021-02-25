@@ -24,16 +24,15 @@ const DiaryCalendar = ({ setSelectedData, getCurentDayInfoOperation }) => {
 
   return (
     <DiaryCalendarStyled>
-      <div className="only-calendar">
-        <DatePicker
+        <label className="only-calendar">
+          <DatePicker
           selected={startDate}
           onChange={(date) => setStartDate(date)}
           dateFormat="dd.MM.yyyy"
           className="input-calendar"
         />
-
         <CalendarIcon width="18" height="20" />
-      </div>
+      </label>  
     </DiaryCalendarStyled>
   );
 };
