@@ -133,9 +133,7 @@ class Registration extends Component {
               Профиль уже зарегистрирован.
             </span>
           </div>
-        ) : (
-          console.log("not done")
-        )}
+        ) : null}
 
         <HeadingH1>РЕГИСТРАЦИЯ</HeadingH1>
         <Formik
