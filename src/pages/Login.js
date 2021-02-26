@@ -140,8 +140,7 @@ class Login extends Component {
                 Профиль не найден.
               </span>
             </div>
-          ) : // <br />
-          null}
+          ) : null}
           <HeadingH1>ВХОД</HeadingH1>
 
           <Formik
