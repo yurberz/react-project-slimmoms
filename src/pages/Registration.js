@@ -30,9 +30,7 @@ const ContainerForm = styled.div`
     outline: none;
     background-color: white;
   }
-  input:invalid {
-    background-color: blue;
-  }
+
   button {
     width: 176px;
     height: 44px;
@@ -106,6 +104,7 @@ const HeadingH1 = styled.h1`
   font-size: 14px;
   line-height: 13px;
   letter-spacing: 0.04em;
+  margin-bottom: 60px;
 
   @media screen and (min-width: 1300px) {
     margin-top: 90px;
@@ -118,11 +117,10 @@ const HeadingH1 = styled.h1`
   @media screen and (max-width: 766px) {
     margin-top: 157px;
     padding-top: 0;
-
-    text-align: center;
   }
   @media screen and (max-width: 390px) {
     margin-top: 40px;
+    text-align: center;
   }
 `;
 
