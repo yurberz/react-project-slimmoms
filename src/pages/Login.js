@@ -58,20 +58,18 @@ const ContainerForm = styled.div`
   }
 
   @media screen and (min-width: 768px) {
+    margin-top: 42px;
     max-width: 639px;
     padding-left: 87px;
     padding-right: 87px;
   }
   @media screen and (min-width: 1280px) {
-    margin-top: 148px;
+    margin-top: 0px;
     max-width: 639px;
     padding-left: 115px;
     padding-right: 115px;
   }
-  @media screen and (max-width: 768px) {
-    /* max-width: 439px; */
-    /* margin: 0 auto; */
-  }
+
   @media screen and (max-width: 388px) {
     max-width: 439px;
     margin: 0 auto;
@@ -89,7 +87,10 @@ const ContainerButton = styled.div`
   margin-top: 90px;
 
   @media screen and (min-width: 768px) {
-    margin-top: 82px;
+    margin-top: 108px;
+  }
+  @media screen and (min-width: 1280px) {
+    margin-top: 108px;
   }
 `;
 
@@ -101,11 +102,11 @@ const HeadingH1 = styled.h1`
   letter-spacing: 0.04em;
 
   margin-bottom: 60px;
-  @media screen and (min-width: 1300px) {
+  @media screen and (min-width: 1280px) {
     padding-top: 0;
   }
   @media screen and (max-width: 1279px) {
-    margin-top: 42px;
+    margin-top: 23px;
     padding-top: 0;
   }
   @media screen and (max-width: 766px) {
@@ -139,9 +140,8 @@ class Login extends Component {
                 Профиль не найден.
               </span>
             </div>
-          ) : (
-            <br />
-          )}
+          ) : // <br />
+          null}
           <HeadingH1>ВХОД</HeadingH1>
 
           <Formik

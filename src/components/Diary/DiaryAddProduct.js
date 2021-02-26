@@ -11,12 +11,13 @@ import { connect } from "react-redux";
 import FilterList from "./FilterList";
 import DiaryCalendar from "./DiaryCalendar";
 import back from "../modal/svg/icon-back.svg";
+import moment from "moment";
 
 const initialState = {
   product: "",
   weight: "",
   productId: "",
-  date: "",
+  date: moment(Date.now()).format("YYYY-MM-DD"),
   render: false,
   inputValue: "",
   localEerror: "",

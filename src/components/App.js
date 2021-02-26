@@ -14,7 +14,14 @@ import { getLoading } from "../redux/selectors/spinSelector";
 class App extends Component {
   componentDidMount() {
     const { refreshToken, isAuth } = this.props;
-    isAuth && refreshToken();
+    const initial = async () => {
+      try {
+        await refreshToken();
+      } catch (error) {
+        return;
+      }
+    };
+    isAuth && initial();
   }
 
   render() {

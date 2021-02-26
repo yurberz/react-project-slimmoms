@@ -2,8 +2,6 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   .diary-list_ul {
-    margin-left: auto;
-    margin-right: auto;
     padding-right: 7px;
     width: 304px;
     height: 216px;
@@ -14,13 +12,17 @@ const Wrapper = styled.div`
 
   .diary-list_li {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     list-style: none;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
     line-height: 17px;
     letter-spacing: 0.04em;
+  
+  
+}
+
   }
 
   .diary-list_li:not(:last-child) {
@@ -66,9 +68,14 @@ const Wrapper = styled.div`
       height: 191px;
     }
 
+.diary-list_li {
+  align-items:inherit;
+}
+
+
     .diary-list_name {
       display: inline-block;
-      padding-bottom: 19px;
+      padding-bottom: 10px;
       margin-right: 31px;
       border-bottom: 1px solid #e0e0e0;
       white-space: nowrap;
@@ -80,7 +87,7 @@ const Wrapper = styled.div`
       text-align: right;
       display: inline-block;
       width: 49.67px;
-      padding-bottom: 19px;
+      padding-bottom: 10px;
       margin-right: 31px;
       border-bottom: 1px solid #e0e0e0;
       white-space: nowrap;
@@ -92,7 +99,7 @@ const Wrapper = styled.div`
       text-align: right;
       display: inline-block;
       width: 60px;
-      padding-bottom: 19px;
+      padding-bottom: 10px;
       margin-right: 31px;
       border-bottom: 1px solid #e0e0e0;
       white-space: nowrap;
@@ -105,7 +112,7 @@ const Wrapper = styled.div`
     .diary-list_ul {
       padding-right: 21px;
       width: 600px;
-      height: 313px;
+      height: 214px;
     }
     .diary-list_li {
       display: flex;
@@ -120,7 +127,7 @@ const Wrapper = styled.div`
     .diary-list_name {
       display: inline-block;
       width: 239px;
-      padding-top: 20px;
+      /* padding-top: 20px; */
       padding-bottom: 10px;
       margin-right: 31px;
       border-bottom: 1px solid #e0e0e0;
@@ -130,7 +137,7 @@ const Wrapper = styled.div`
       text-align: center;
       display: inline-block;
       width: 104.36px;
-      padding-top: 20px;
+      /* padding-top: 20px; */
       padding-bottom: 10px;
       margin-right: 31px;
       border-bottom: 1px solid #e0e0e0;
@@ -140,7 +147,7 @@ const Wrapper = styled.div`
       text-align: center;
       display: inline-block;
       width: 104.36px;
-      padding-top: 20px;
+      /* padding-top: 20px; */
       padding-bottom: 10px;
       margin-right: 10px;
       border-bottom: 1px solid #e0e0e0;
