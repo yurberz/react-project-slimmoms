@@ -39,6 +39,7 @@ class DiaryAddProduct extends Component {
       this.setState((prev) => ({ ...initialState, date: prev.date }));
       return;
     }
+
     this.handleClick();
   };
 
