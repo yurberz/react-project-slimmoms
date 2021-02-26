@@ -65,6 +65,9 @@ const Div = styled.div`
     padding-top: 190px;
     padding-left: 87px;
     padding-right: 87px;
+    width: 768px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   @media screen and (min-width: 1280px) {

@@ -22,9 +22,7 @@ const logInOperation = (user) => async (dispatch) => {
     const response = await slimMomApi.logIn({ ...user });
     slimMomApi.setToken(response.accessToken);
     dispatch(signIn(response));
-    dispatch(refreshToken());
     dispatch(getUserInfo());
-    dispatch(getCurentDayInfoOperation());
   } catch (error) {
     dispatch(setErrorr(error.message));
   } finally {
@@ -54,8 +52,9 @@ const refreshToken = () => async (dispatch, getState) => {
   try {
     const res = await axios.post("/auth/refresh", { sid });
 
-    await slimMomApi.setToken(res.data.newAccessToken);
+    slimMomApi.setToken(res.data.newAccessToken);
     dispatch(newTknSuccess(res.data));
+    await dispatch(getCurentDayInfoOperation());
   } catch (error) {
     dispatch(newTknError(error.message));
     dispatch(logOut());

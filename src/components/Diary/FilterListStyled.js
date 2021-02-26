@@ -11,6 +11,13 @@ const Wrapper = styled.div`
     color: #9b9faa;
   }
 
+  .filter-list_li:hover,
+  .filter-list_li:focus {
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
   max-height: 100px;
   overflow-y: scroll;
   z-index: 1;
