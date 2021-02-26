@@ -32,6 +32,7 @@ const ContainerForm = styled.div`
     outline: none;
     background-color: white;
   }
+
   button {
     width: 176px;
     height: 44px;
@@ -56,7 +57,9 @@ const ContainerForm = styled.div`
     color: white;
     box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
   }
-
+  div {
+    font-family: Verdana;
+  }
   @media screen and (min-width: 768px) {
     margin-top: 42px;
     max-width: 639px;
@@ -67,19 +70,29 @@ const ContainerForm = styled.div`
     margin-top: 0px;
     max-width: 639px;
     padding-left: 115px;
-    padding-right: 115px;
   }
 
-  @media screen and (max-width: 388px) {
+  @media screen and (max-width: 767px) {
     max-width: 439px;
     margin: 0 auto;
     button {
       margin: 15px auto;
     }
   }
+
+  @media screen and (max-width: 388px) {
+    max-width: 439px;
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 0px;
+
+    button {
+      margin: 15px auto;
+    }
+  }
 `;
 const ContainerButton = styled.div`
-  max-width: 400px;
+  max-width: 382px;
   justify-content: space-between;
   display: flex;
   flex-wrap: wrap;
@@ -100,8 +113,8 @@ const HeadingH1 = styled.h1`
   font-size: 14px;
   line-height: 13px;
   letter-spacing: 0.04em;
-
   margin-bottom: 60px;
+
   @media screen and (min-width: 1280px) {
     padding-top: 0;
   }
@@ -110,12 +123,12 @@ const HeadingH1 = styled.h1`
     padding-top: 0;
   }
   @media screen and (max-width: 766px) {
+    margin-top: 157px;
     padding-top: 0;
-    margin-top: 42px;
-    text-align: center;
   }
   @media screen and (max-width: 390px) {
-    margin-top: 42px;
+    margin-top: 40px;
+    text-align: center;
   }
 `;
 
@@ -131,17 +144,27 @@ class Login extends Component {
 
     return (
       <>
+        {error.length > 0 ? (
+          <div className="ctrl ">
+            <span className="nortification animateOpen warning">
+              Профиль не зарегистрирован.
+            </span>
+          </div>
+        ) : (
+          <br />
+        )}
         <LoginPageDecoration />
 
         <ContainerForm>
+
           {error.length > 0 ? (
             <div className="ctrl ">
               <span className="nortification animateOpen warning">
                 Профиль не найден.
               </span>
             </div>
-          ) : // <br />
-          null}
+          ) : null}
+
           <HeadingH1>ВХОД</HeadingH1>
 
           <Formik

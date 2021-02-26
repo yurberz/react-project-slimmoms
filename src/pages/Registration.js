@@ -30,6 +30,7 @@ const ContainerForm = styled.div`
     outline: none;
     background-color: white;
   }
+
   button {
     width: 176px;
     height: 44px;
@@ -54,7 +55,9 @@ const ContainerForm = styled.div`
     color: white;
     box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
   }
-
+  div {
+    font-family: Verdana;
+  }
   @media screen and (min-width: 768px) {
     max-width: 639px;
     padding-left: 87px;
@@ -63,29 +66,35 @@ const ContainerForm = styled.div`
   @media screen and (min-width: 1280px) {
     max-width: 639px;
     padding-left: 115px;
-    padding-right: 115px;
   }
-  @media screen and (max-width: 768px) {
-    /* max-width: 439px; */
-    /* margin: 0 auto; */
-  }
-  @media screen and (max-width: 388px) {
+  @media screen and (max-width: 767px) {
     max-width: 439px;
     margin: 0 auto;
     button {
       margin: 15px auto;
     }
   }
+  @media screen and (max-width: 388px) {
+    max-width: 439px;
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 0px;
+
+    button {
+      margin: 15px auto;
+    }
+  }
 `;
 const ContainerButton = styled.div`
-  max-width: 400px;
+  max-width: 382px;
   justify-content: space-between;
   display: flex;
   flex-wrap: wrap;
   padding: 0px;
-  margin-top: 60px;
-  @media screen and (max-width: 390px) {
-    margin-top: 42px;
+  margin-top: 90px;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 82px;
   }
 `;
 
@@ -95,22 +104,23 @@ const HeadingH1 = styled.h1`
   font-size: 14px;
   line-height: 13px;
   letter-spacing: 0.04em;
-
   margin-bottom: 60px;
+
   @media screen and (min-width: 1300px) {
+    margin-top: 90px;
     padding-top: 0;
   }
   @media screen and (max-width: 1279px) {
-    margin-top: 42px;
+    margin-top: 157px;
     padding-top: 0;
   }
   @media screen and (max-width: 766px) {
+    margin-top: 157px;
     padding-top: 0;
-    margin-top: 42px;
-    text-align: center;
   }
   @media screen and (max-width: 390px) {
-    margin-top: 42px;
+    margin-top: 40px;
+    text-align: center;
   }
 `;
 
@@ -125,8 +135,7 @@ class Registration extends Component {
   render() {
     const error = this.props.error;
     return (
-      <ContainerForm>
-        <LoginPageDecoration />
+      <>
         {error.length > 0 ? (
           <div className="ctrl ">
             <span className="nortification animateOpen warning">
@@ -134,66 +143,69 @@ class Registration extends Component {
             </span>
           </div>
         ) : (
-          console.log("not done")
+          <br></br>
         )}
+        <ContainerForm>
+          <LoginPageDecoration />
 
-        <HeadingH1>РЕГИСТРАЦИЯ</HeadingH1>
-        <Formik
-          initialValues={{ email: "", password: "", username: "" }}
-          validate={(values) => {
-            const errors = {};
-            if (!values.email) {
-              errors.email = "Обязательное поле для ввода!";
-            } else if (
-              !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-            ) {
-              errors.email = "Незарегестрированный адрес почты";
-            }
-            if (!values.password) {
-              errors.password = "Обязательное поле для ввода!";
-            } else if (values.password.length <= 3) {
-              errors.password = "Пароль должен быть больше 3 символов";
-            } else if (values.password.length >= 12) {
-              errors.password = "Пароль должен быть меньше 12 символов";
-            }
-            if (!values.username) {
-              errors.username = "Обязательное поле для ввода!";
-            } else if (values.username.length <= 3) {
-              errors.username = "Пароль должен быть больше 3 символов";
-            } else if (values.username.length >= 12) {
-              errors.username = "Пароль должен быть меньше 12 символов";
-            }
-            return errors;
-          }}
-          onSubmit={(values) => {
-            const history = this.props.history;
-            console.log("fuuu", values);
-            this.props.signUpOperation(values, history);
-          }}
-        >
-          {({ isSubmitting }) => (
-            <Form>
-              <Field type="text" name="username" placeholder="Имя *" />
-              <ErrorMessage name="username" component="div" />
-              <Field
-                type="email"
-                name="email"
-                placeholder="Электронная почта *"
-              />
-              <ErrorMessage name="email" component="div" />
-              <Field type="password" name="password" placeholder="Пароль *" />
-              <ErrorMessage name="password" component="div" />
+          <HeadingH1>РЕГИСТРАЦИЯ</HeadingH1>
+          <Formik
+            initialValues={{ email: "", password: "", username: "" }}
+            validate={(values) => {
+              const errors = {};
+              if (!values.email) {
+                errors.email = "Обязательное поле для ввода!";
+              } else if (
+                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+              ) {
+                errors.email = "Незарегестрированный адрес почты";
+              }
+              if (!values.password) {
+                errors.password = "Обязательное поле для ввода!";
+              } else if (values.password.length <= 3) {
+                errors.password = "Пароль должен быть больше 3 символов";
+              } else if (values.password.length >= 12) {
+                errors.password = "Пароль должен быть меньше 12 символов";
+              }
+              if (!values.username) {
+                errors.username = "Обязательное поле для ввода!";
+              } else if (values.username.length <= 3) {
+                errors.username = "Пароль должен быть больше 3 символов";
+              } else if (values.username.length >= 12) {
+                errors.username = "Пароль должен быть меньше 12 символов";
+              }
+              return errors;
+            }}
+            onSubmit={(values) => {
+              const history = this.props.history;
 
-              <ContainerButton>
-                <button type="submit">Регистрация</button>
-                <Link to={{ pathname: "/login" }} className="linkTablet">
-                  <button>Вход</button>
-                </Link>
-              </ContainerButton>
-            </Form>
-          )}
-        </Formik>
-      </ContainerForm>
+              this.props.signUpOperation(values, history);
+            }}
+          >
+            {({ isSubmitting }) => (
+              <Form>
+                <Field type="text" name="username" placeholder="Имя *" />
+                <ErrorMessage name="username" component="div" />
+                <Field
+                  type="email"
+                  name="email"
+                  placeholder="Электронная почта *"
+                />
+                <ErrorMessage name="email" component="div" />
+                <Field type="password" name="password" placeholder="Пароль *" />
+                <ErrorMessage name="password" component="div" />
+
+                <ContainerButton>
+                  <button type="submit">Регистрация</button>
+                  <Link to={{ pathname: "/login" }} className="linkTablet">
+                    <button>Вход</button>
+                  </Link>
+                </ContainerButton>
+              </Form>
+            )}
+          </Formik>
+        </ContainerForm>
+      </>
     );
   }
 }
