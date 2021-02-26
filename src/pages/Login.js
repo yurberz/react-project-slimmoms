@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import "../components/form/register.css";
 import { getLoading } from "../redux/selectors/spinSelector";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { setError } from "../redux/actions/registerAction";
 
 const ContainerForm = styled.div`
   max-width: 439px;
@@ -133,6 +134,10 @@ class Login extends Component {
     error: false,
   };
 
+  componentDidMount() {
+    this.props.setError("");
+  }
+
   render() {
     const error = this.props.error;
 
@@ -211,4 +216,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { logInOperation, logOut })(Login);
+export default connect(mapStateToProps, { logInOperation, logOut, setError })(
+  Login
+);
