@@ -6,6 +6,7 @@ import LoginPageDecoration from "../components/decoration/LoginPageDecoration";
 import { Link } from "react-router-dom";
 import "../components/form/register.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { setErrorr } from "../redux/actions/logInAction";
 
 const ContainerForm = styled.div`
   max-width: 439px;
@@ -122,6 +123,10 @@ class Registration extends Component {
     error: "",
   };
 
+  componentDidMount() {
+    this.props.setErrorr("");
+  }
+
   render() {
     const error = this.props.error;
     return (
@@ -202,4 +207,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { signUpOperation })(Registration);
+// export default connect(mapStateToProps, { signUpOperation })(Registration);
+export default connect(mapStateToProps, { signUpOperation, setErrorr })(
+  Registration
+);
