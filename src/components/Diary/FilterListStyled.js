@@ -10,6 +10,11 @@ const Wrapper = styled.div`
     line-height: 1.4;
     color: #9b9faa;
   }
+  .filter-list_li:hover {
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+  }
 
   max-height: 100px;
   overflow-y: scroll;

@@ -142,9 +142,7 @@ class Registration extends Component {
               Профиль уже зарегистрирован.
             </span>
           </div>
-        ) : (
-          <br></br>
-        )}
+        ) : null}
         <ContainerForm>
           <LoginPageDecoration />
 

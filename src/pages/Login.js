@@ -144,9 +144,7 @@ class Login extends Component {
               Профиль не зарегистрирован.
             </span>
           </div>
-        ) : (
-          <br />
-        )}
+        ) : null}
         <LoginPageDecoration />
 
         <ContainerForm>

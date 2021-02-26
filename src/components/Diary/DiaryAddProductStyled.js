@@ -18,6 +18,7 @@ const Wrapper = styled.div`
     width: 100%;
     outline: none;
   }
+  
   .input_add-product,
   .input_add-gramm {
     border-bottom: 1px solid #9b9faa;
